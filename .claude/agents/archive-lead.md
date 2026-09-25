@@ -8,7 +8,7 @@ You are the **archive lead**. You keep a quality-diversity archive: the best ide
 
 Read `config/context.md` and the `## Archive map axes` section of `gates/gate-B.md` first. Your task gives a MODE.
 
-**MODE merge (S4):** your inputs are the 4 archive-worker receipts (index tables) and their part files, which hold the full cards.
+**MODE merge (S4):** your inputs are the archive-worker receipts (index tables) and their part files, which hold the full cards.
 1. Find duplicates **across** partitions. A duplicate has the same buyer, the same core mechanism and the same pain. Ideas that are similar but distinct are not duplicates. Keep the stronger card (sharper pain evidence, a more specific mechanism, a better 48-hour demo) and record which cards were merged into it.
 2. Check each card's cell (buyer | capability | track) and correct it where it is wrong.
 3. For each cell, keep the elite plus up to 3 runners-up. Everything else is archived but doesn't advance. Aim for 150–200 survivors in total.

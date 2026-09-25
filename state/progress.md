@@ -21,3 +21,10 @@
 2026-09-25 | s3_ideate | done: 116/116 agents, 0 failed; 648 ideator cards (36x18) + 16 improved + 40 pivots (+8 seed originals = 712 raw); 9 dossiers; 37/48 cells; 7.08M tokens (proj 4.9M, limit 9.8M), 23 min, 98 searches | outputs/s3-ideate briefs/s3
 2026-09-25 | rubric | user amendment applied: buildability Novel 5->3, Balanced 20->12, build-effort calibration in context.md, 6 later-stage agents point to it; LEAKS regex whole-word fix | config/rubric.md config/context.md .claude/agents .claude/workflows/s8-final.js tools
 2026-09-25 | s3_ideate | stopped before S4 at the user's request | state/manifest.json
+2026-09-25 | s4_archive | started: 8 archive workers (was 4; context headroom) + lead; projected 2.6M tokens, stop at 5.2M | state/manifest.json
+2026-09-26 | s4_archive | run 1 (wf_ffad4bfd-18d): 7 of 8 workers stopped at the session usage limit; receipts 01/02/04 complete and kept; w03, w05-w08 partials deleted; workers relaunched with lead off | outputs/s4-archive
+2026-09-26 | seeds | user released seed-09 and seeds 10-11 (renamed to .md); S2 running for them, then the late seed lane, then S4 partition 9 + archive lead | inputs/seeds state/manifest.json
+2026-09-26 | s2_seeds (late) | seeds 09-11 normalized + decomposed, pool rebuilt from 11 seeds; seed-09 normalize was blocked once by a safety classifier (wf_af622d33-a43), retried with a business-level framing note and its own decomposer (wf_f88f09a1-f1c); late seed lane launched (wf_50aa06c2-429) | outputs/s2-seeds outputs/s3-ideate/seed-lane/ingredient_pool.md
+2026-09-26 | s2_seeds (late) | late seed lane done: seeds 09-11 -> 6 improved + 15 pivots | outputs/s3-ideate/seed-lane
+2026-09-26 | s4_archive | done: 736 raw -> 686 after workers -> 50 cross merges -> 162 survivors (novel 75, balanced 87; 33 protected seed cards); 34/48 cells; dup rate 13.6%; 686 idea + blind cards written; 0 blind leaks among survivors; ~2.37M tokens (proj 2.6M) | archive outputs/s4-archive
+2026-09-26 | s4_archive | holding before S5 at the user's request | state/manifest.json

@@ -1,0 +1,108 @@
+# S4 Archive Worker 06 — Receipt
+
+## Stats
+- Raw cards: 86
+- Cards kept: 83
+- Cards merged (dropped): 3
+- Duplicate rate: 3/86 ≈ 3.5%
+
+## Clusters
+- I-3534 "Crawler Bill Alarm for Makers" ← merged: s3-ideator-novel-T6-01-r1#08 ("Training-Data Toll Booth")
+- I-3560 "One Profile, Forty State Filings" ← merged: s3-ideator-balanced-T4-01-r3#01 ("Charity Registration Verify-By-Phone")
+- I-3563 "Guardian Accounting Discrepancy Sentinel" ← merged: s3-ideator-balanced-T4-01-r3#05 ("Guardian Ledger Voicemail")
+
+## Index
+
+| id | name | one-liner | track | lineage | cell (buyer\|capability\|track) | raw_id | part file |
+|---|---|---|---|---|---|---|---|
+| I-3501 | Show-Once Pawn Report Bot | Record yourself filing one day's pawn report once; the agent repeats it daily, right inside WhatsApp. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T4-02-r3#01 | part-01.md |
+| I-3502 | Teach-Once State Registration Filer | Show the agent one state's charity registration form once; it learns to fill every other state's version too. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T4-02-r3#02 | part-01.md |
+| I-3503 | Show-Once Lien Notice Filer | Walk the agent through one DMV lienholder lookup once; it repeats the exact steps for every future tow. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T4-02-r3#03 | part-01.md |
+| I-3504 | Teach-Once Fire Report Filer | An officer files one incident report on camera once; the agent fills every later report from a chat voice note. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T4-02-r3#04 | part-01.md |
+| I-3505 | Show-Once Court Filing Coach | Demonstrate one accepted filing for a court once; the agent catches every later filing's mismatches before you submit. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T4-02-r3#05 | part-01.md |
+| I-3506 | On-Device Elder-Fraud SAR Drafter | Drafts suspicious-activity reports from a member's exploitation pattern without the data ever leaving the credit union's network. | novel | ai-native | B2B\|local-private\|novel | s3-ideator-novel-T8-02-r2#01 | part-01.md |
+| I-3507 | Financial Legacy Narration Capture | A parent narrates their accounts and wishes aloud; the app builds the structured proxy directory an heir will need. | novel | seed-atom-hybrid | B2C\|extractor\|novel | s3-ideator-novel-T8-02-r2#02 | part-01.md |
+| I-3508 | Guided POA Teller Copilot | Reads the credit union's own POA policy live and coaches the teller through exactly what to accept. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T8-02-r2#03 | part-01.md |
+| I-3509 | Confidential Fiduciary Ledger Builder | Turns a parent's scanned statements into an audit-ready fiduciary accounting, without a client's financial life touching the cloud. | novel | ai-native | prosumer\|local-private\|novel | s3-ideator-novel-T8-02-r2#04 | part-01.md |
+| I-3510 | Confidential Appeal Drafter for Solos | Drafts a Medicare Advantage appeal from a client's medical records on the attorney's own laptop, nothing sent to the cloud. | novel | ai-native | prosumer\|local-private\|novel | s3-ideator-novel-T8-02-r2#05 | part-01.md |
+| I-3511 | Pawn Shop Voicemail Police Filer | The clerk leaves a nightly voicemail of the day's transactions; the callback reads back the police portal's own confirmation number. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T4-01-r3#02 | part-01.md |
+| I-3512 | Tow Yard Deadline Hotline | The clerk calls in a VIN; the agent reads back the exact notice deadline quoted straight from that state's statute. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T4-01-r3#03 | part-01.md |
+| I-3513 | Court Filing Pre-Check Line | A paralegal calls in what a filing contains; the agent checks it against the court's own live rules page aloud. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T4-01-r3#04 | part-01.md |
+| I-3514 | Toll-Free Invoice Bridge | Pulls vendor bills straight off a toll-gated system's own screens, nightly, without ever paying for its API. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T2-02-r2#01 | part-01.md |
+| I-3515 | Invoice Continuity Shadow Ledger | Keeps a live, independent copy of every invoice shown on screen, so a system outage never stalls accounts payable. | novel | ai-native | B2B\|extractor\|novel | s3-ideator-novel-T2-02-r2#02 | part-01.md |
+| I-3516 | Sync Conflict Diagnostician | Shows the evidence behind every invoice sync conflict before touching anything, then fixes it with one-click undo. | novel | seed-atom-hybrid | B2B\|verifier\|novel | s3-ideator-novel-T2-02-r2#03 | part-01.md |
+| I-3517 | Vendor Hold-Line Voice Confirmer | Calls the vendor's support line, gets a rejected invoice fixed, and reads back a clear spoken confirmation of the outcome. | novel | ai-native | B2B\|drafter-dialogue\|novel | s3-ideator-novel-T2-02-r2#04 | part-01.md |
+| I-3518 | The Workaround Runbook | Turns the one bookkeeper's narrated "here's how I deal with this vendor" into a structured runbook before they leave. | novel | seed-atom-hybrid | B2B\|extractor\|novel | s3-ideator-novel-T2-02-r2#05 | part-01.md |
+| I-3519 | Portal Fetch Proof Ledger | Every invoice-fetch bot claims success; this one attaches the screenshot and hash that prove it. | balanced | seed-atom-hybrid | B2B\|verifier\|balanced | s3-ideator-balanced-T2-01-r2#01 | part-01.md |
+| I-3520 | Portal Poll Spend Guard | Caps what your invoice-fetch agents can spend polling paid vendor portals and e-invoicing platforms, per session. | balanced | ai-native | B2B\|agent-infra\|balanced | s3-ideator-balanced-T2-01-r2#02 | part-01.md |
+| I-3521 | Receiving-Dock Video Reconciler | Answers "did this shipment actually arrive" from warehouse video, without anyone scrubbing hours of footage. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T2-01-r2#03 | part-01.md |
+| I-3522 | Vendor Portal Access Passport | Proves your invoice-fetch agent is an authorized accountholder, not a bot, before vendor portals block it. | balanced | ai-native | B2B\|agent-infra\|balanced | s3-ideator-balanced-T2-01-r2#04 | part-01.md |
+| I-3523 | Portal Fetch Triage Reflex | An instant, near-free check on every portal poll catches CAPTCHAs and login walls before they corrupt your invoice ledger. | balanced | seed-atom-hybrid | B2B\|verifier\|balanced | s3-ideator-balanced-T2-01-r2#05 | part-01.md |
+| I-3524 | Spoken Consent, In-Thread | A local voice agent explains AI recording and gets a client's verbal "yes" right inside the messaging thread they already use. | novel | ai-native | prosumer\|local-private\|novel | s3-ideator-novel-T9-02-r3#01 | part-01.md |
+| I-3525 | Read-Aloud Session Digest | After each session, a local model drafts and speaks a short client summary as a voice note, never a document. | novel | ai-native | prosumer\|local-private\|novel | s3-ideator-novel-T9-02-r3#02 | part-01.md |
+| I-3526 | Tax Doc Voice Walkthrough | A client photographs a W-2 in chat; a local model posts the numbers and replies with a spoken explanation. | novel | ai-native | prosumer\|local-private\|novel | s3-ideator-novel-T9-02-r3#03 | part-02.md |
+| I-3527 | WISP Alerts In Your Channel | A local agent checks the practice against its written security plan and posts spoken alerts into the team's existing chat. | novel | seed-atom-hybrid | prosumer\|verifier\|novel | s3-ideator-novel-T9-02-r3#04 | part-02.md |
+| I-3528 | Case Questions, Answered Aloud | A client texts a case question; a local model drafts a plain-language answer and replies as a voice message. | novel | ai-native | prosumer\|local-private\|novel | s3-ideator-novel-T9-02-r3#05 | part-02.md |
+| I-3529 | Screen-Side Cite Bailiff | Watches your open document, drives a browser to check each citation itself, and locks e-filing until you clear every flag. | novel | ai-native | prosumer\|screen-agent\|novel | s3-ideator-novel-T7-02-r3#01 | part-02.md |
+| I-3530 | Report Reply Guard | Watches your issue tracker, reproduces each vulnerability report in a sandbox, and queues every reply for your own click to send. | novel | ai-native | prosumer\|screen-agent\|novel | s3-ideator-novel-T7-02-r3#02 | part-02.md |
+| I-3531 | Claims Portal Shadow | Watches the legacy claims screen, pulls the source file itself, and blocks payout approval until every mismatch is cleared. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T7-02-r3#03 | part-02.md |
+| I-3532 | Docket Watch Overlay | Sits on top of the court's old e-filing desktop app and won't let a clerk accept a filing with unresolved fake citations. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T7-02-r3#04 | part-02.md |
+| I-3533 | CVE Portal Sentinel | Watches the CVE submission form and locks Publish until the analyst confirms your agent's own reproduction attempt. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T7-02-r3#05 | part-02.md |
+| I-3534 | Crawler Bill Alarm for Makers | Turns a small shop's raw server logs into a plain-language bill of which AI crawlers cost money, then bills or blocks them. | novel | ai-native | prosumer\|agent-infra\|novel | s3-ideator-novel-T6-01-r1#01 | part-02.md |
+| I-3535 | Trusted Agent Checkout Badge | Flags each incoming checkout as a verified shopping agent, a card-testing bot, or a human before the order ships. | novel | ai-native | prosumer\|agent-infra\|novel | s3-ideator-novel-T6-01-r1#02 | part-02.md |
+| I-3536 | CAPTCHA Handoff Concierge | When a buying agent hits a CAPTCHA or login wall, it texts the owner a ten-second tap instead of failing. | novel | ai-native | prosumer\|screen-agent\|novel | s3-ideator-novel-T6-01-r1#03 | part-02.md |
+| I-3537 | Supply-Run Spend Guardrail | Caps what a reordering agent can spend across an entire supply run, not just per call. | novel | ai-native | prosumer\|agent-infra\|novel | s3-ideator-novel-T6-01-r1#04 | part-02.md |
+| I-3538 | Reorder Proof Auditor | Checks a buying agent's "order placed" claim against the supplier's own confirmation before the owner trusts it. | novel | ai-native | prosumer\|verifier\|novel | s3-ideator-novel-T6-01-r1#05 | part-02.md |
+| I-3539 | Viral-Spike Shield | Tells a maker in real time whether a sudden traffic surge is a bot swarm or a genuine sales spike. | novel | ai-native | prosumer\|extractor\|novel | s3-ideator-novel-T6-01-r1#06 | part-02.md |
+| I-3540 | Agent Guest List | Lets a maker invite specific shopping agents to see live stock while everything else stays blocked. | novel | ai-native | prosumer\|agent-infra\|novel | s3-ideator-novel-T6-01-r1#07 | part-02.md |
+| I-3541 | Lay of the Land | A retiring farmer drives around talking; AI turns GPS and audio into confidence-tagged map layers successors view in AR. | balanced | seed-original | B2B\|extractor\|balanced | seed-03 | part-02.md |
+| I-3542 | Lab Result Relay for Vet SoRs | Watches in-house and IDEXX lab machines and posts results straight into Cornerstone the moment they're ready. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T3-02-r1#01 | part-02.md |
+| I-3543 | Migration Ledger Guard | Cross-checks every patient, appointment and imaging record between old and new practice-management systems before go-live. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T3-02-r1#02 | part-02.md |
+| I-3544 | Policy Sync Sentinel | Watches rating tools and the agency management system side by side, flagging any policy change that didn't reach both. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T3-02-r1#03 | part-02.md |
+| I-3545 | Property Ledger Closer | Turns Yardi's SFTP flat-file exports and AppFolio's manual card entries into one reconciled ledger automatically. | balanced | ai-native | B2B\|extractor\|balanced | s3-ideator-balanced-T3-02-r1#04 | part-02.md |
+| I-3546 | PioneerRx Access Concierge | Gives independent-pharmacy software vendors a working PioneerRx integration without waiting on the vendor's API gate. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T3-02-r1#05 | part-02.md |
+| I-3547 | Dealer DMS Toll Ledger | Audits every CDK, Reynolds and DealerSocket integration fee against contract terms and flags silent rate increases. | balanced | ai-native | B2B\|extractor\|balanced | s3-ideator-balanced-T3-02-r1#06 | part-02.md |
+| I-3548 | Cornerstone Report Rebuilder | Pulls raw Cornerstone data by screen and rebuilds the date-filtered reports the software itself can't produce. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T3-02-r1#07 | part-02.md |
+| I-3549 | SoR Outage Continuity Kit | Keeps a live shadow copy of dealer and dental system-of-record data so an outage doesn't stop the front desk. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T3-02-r1#08 | part-02.md |
+| I-3550 | Talk-to-the-Portal | Speak a patient and procedure aloud; the agent fills the payer's own portal form and reads back the confirmation. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r3#01 | part-02.md |
+| I-3551 | Traffic-Light Denial Board | Every open denial becomes a red, yellow or green icon; tap one and hear the next action, no jargon paragraph to parse. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r3#02 | part-03.md |
+| I-3552 | Eligibility By Ear | Ask if a patient is covered today; the agent drives the payer portal in the background and speaks back the answer. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r3#03 | part-03.md |
+| I-3553 | Read-Aloud Login Guardian | Watches for 2FA codes and lockout screens, reads them aloud, and types the response so no one squints at tiny text. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r3#04 | part-03.md |
+| I-3554 | Spoken Appeal Filer | Describe a denial in two spoken sentences; hear the drafted appeal read back and say "file it" to submit. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r3#05 | part-03.md |
+| I-3555 | No-API Portal MCP Adapter | Turns any locked practice-management system or payer portal into a standard tool server any AI agent can call. | novel | ai-native | B2B\|agent-infra\|novel | s3-ideator-novel-T3-01-r2#01 | part-03.md |
+| I-3556 | Carrier Claim Denial Resubmit Agent | Watches carrier claim portals from inside the agency management system and drafts appeals the moment a claim is denied. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T3-01-r2#02 | part-03.md |
+| I-3557 | Pharmacy Claim Rebound Agent | Reads PioneerRx's own screen, catches rejected pharmacy claims, and resubmits them against the payer with a corrected reason code. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T3-01-r2#03 | part-03.md |
+| I-3558 | Imaging Portal Session Bridge | Keeps a dental office logged into every paid imaging partner portal, so front desk staff never re-authenticate mid-appointment. | novel | ai-native | B2B\|screen-agent\|novel | s3-ideator-novel-T3-01-r2#04 | part-03.md |
+| I-3559 | Pre-Submit Fit Check | Checks every field about to be typed into an external portal against the locked system's own record before you hit submit. | novel | seed-atom-hybrid | B2B\|verifier\|novel | s3-ideator-novel-T3-01-r2#05 | part-03.md |
+| I-3560 | One Profile, Forty State Filings | An agent that keeps one charity profile and auto-fills every state's unique solicitation registration form. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T4-02-r1#01 | part-03.md |
+| I-3561 | Lien Sale Proof Vault | Captures timestamped, notarized proof that DMV lien notices went out inside each state's legal window. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T4-02-r1#02 | part-03.md |
+| I-3562 | Daily Police Report Autopilot | Turns each day's pawn or scrap transactions into the mandatory police report, filed before the legal cutoff. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T4-02-r1#03 | part-03.md |
+| I-3563 | Guardian Accounting Discrepancy Sentinel | Turns receipts and bank statements into the court's annual accounting format, flagging mismatches before the judge does. | balanced | ai-native | prosumer\|verifier\|balanced | s3-ideator-balanced-T4-02-r1#04 | part-03.md |
+| I-3564 | Incident Voice Scribe | A voice agent turns an officer's spoken recap into a complete, submission-ready incident report. | balanced | ai-native | B2B\|drafter-dialogue\|balanced | s3-ideator-balanced-T4-02-r1#05 | part-03.md |
+| I-3565 | Trust But Verify Compliance | Independently checks whether your paid registration agent actually filed, by rechecking each state's public registry. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T4-02-r1#06 | part-03.md |
+| I-3566 | Liability Radar for Nonprofits | Scans a charity's own donation activity to reveal which states it should register in but hasn't. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T4-02-r1#07 | part-03.md |
+| I-3567 | Exit Interview for Treasurers | A voice interview captures a departing treasurer's compliance knowledge before it walks out the door. | balanced | ai-native | B2B\|drafter-dialogue\|balanced | s3-ideator-balanced-T4-02-r1#08 | part-03.md |
+| I-3568 | Claim Status Heartbeat | An agent that checks every payer portal on a schedule and speaks up only when a claim's status actually changes. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r1#01 | part-03.md |
+| I-3569 | PA Night Shift | Submits routine prior-authorization requests across payer portals overnight, so staff find results waiting each morning. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r1#02 | part-03.md |
+| I-3570 | Denial Code Rosetta Stone | Turns each payer's cryptic denial code into the one next action, learned across every payer a practice bills. | balanced | ai-native | B2B\|extractor\|balanced | s3-ideator-balanced-T1-02-r1#03 | part-03.md |
+| I-3571 | Portal Credential Cockpit | One authenticated hub keeps staff logged into every payer portal, ending the daily 2FA and lockout scramble. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r1#04 | part-03.md |
+| I-3572 | Appeal Autodraft From Policy | Drafts a prior-auth appeal that quotes the payer's own published medical policy back at them. | balanced | ai-native | B2B\|drafter-dialogue\|balanced | s3-ideator-balanced-T1-02-r1#05 | part-03.md |
+| I-3573 | Denial Write-off Alarm | Tracks every open denial's appeal deadline across portals so nothing quietly ages into a write-off. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T1-02-r1#06 | part-03.md |
+| I-3574 | Duplicate Claim Guard | Catches the moment a payer portal errors out and stops staff from resubmitting into an accidental duplicate claim. | balanced | ai-native | B2B\|verifier\|balanced | s3-ideator-balanced-T1-02-r1#07 | part-03.md |
+| I-3575 | Eligibility Snapshot Nightly | Runs eligibility checks for tomorrow's entire patient schedule overnight, so front desk starts the day with answers, not portals. | balanced | ai-native | B2B\|screen-agent\|balanced | s3-ideator-balanced-T1-02-r1#08 | part-03.md |
+| I-3576 | Opposing-Counsel Citation Auditor | An agent checks every citation in the other side's brief before your response deadline hits. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T7-01-r1#01 | part-04.md |
+| I-3577 | Docket-Wide Hallucination Screener | A nightly agent sweeps a court's new filings and flags every fabricated citation before the hearing date. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T7-01-r1#02 | part-04.md |
+| I-3578 | Reproduction-First Vulnerability Gate | An agent tries to actually reproduce a reported bug in a sandbox before a maintainer ever reads it. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T7-01-r1#03 | part-04.md |
+| I-3579 | CVE Backlog Reality Filter | Re-checks the deep CVE backlog against real source code before an analyst ever opens a ticket. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T7-01-r1#04 | part-04.md |
+| I-3580 | Claims Summary Diff Viewer | Shows an adjuster exactly which sentences in an AI claim summary aren't backed by the file. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T7-01-r1#05 | part-04.md |
+| I-3581 | Claim Photo Provenance Checker | Flags AI-altered claim photos and documents at intake, before a claim is ever escalated. | novel | ai-native | B2B\|verifier\|novel | s3-ideator-novel-T7-01-r1#06 | part-04.md |
+| I-3582 | Verification-as-a-Service API for Agents | Any drafting agent pays a few cents per call to verify a citation before it's allowed to cite it. | novel | ai-native | agents\|agent-infra\|novel | s3-ideator-novel-T7-01-r1#07 | part-04.md |
+| I-3583 | Demand Letter ICD Cross-Checker | Flags every ICD code and date in an AI-drafted demand letter that doesn't match the medical file. | novel | ai-native | prosumer\|verifier\|novel | s3-ideator-novel-T7-01-r1#08 | part-04.md |
+
+## Parts
+- outputs/s4-archive/w06/part-01.md (25 cards)
+- outputs/s4-archive/w06/part-02.md (25 cards)
+- outputs/s4-archive/w06/part-03.md (25 cards)
+- outputs/s4-archive/w06/part-04.md (8 cards)
+
+<!-- COMPLETE -->

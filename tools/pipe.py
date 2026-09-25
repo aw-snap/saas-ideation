@@ -350,7 +350,7 @@ def finalists():
 def stage_args(stage, rnd=None):
     a = {'run_seed': run_seed()}
     if stage == 's1' and rnd == 'h1':  # checkpoint H1: decompose only the seeds added since launch
-        first = json.loads(read('state/manifest.json')).get('seeds_at_launch', [])
+        first = (m := json.loads(read('state/manifest.json'))).get('seeds_at_launch', []) + m.get('seeds_late', [])
         new = [s for s in seeds() if s['id'] not in first]
         a.update(skip=done_in('outputs/s2-seeds', 'outputs/s3-ideate/seed-lane'), lenses=[], seeds=new,
                  seed_card_ids={s['id']: f'I-59{i + 1:02}' for i, s in enumerate(new)})
@@ -365,9 +365,13 @@ def stage_args(stage, rnd=None):
         raw = sorted(glob.glob(p('outputs/s3-ideate/ideas/*.md')) + glob.glob(p('outputs/s3-ideate/seed-lane/s3-*.md'))
                      + glob.glob(p('outputs/s2-seeds/*.md')))
         raw = [os.path.relpath(f, ROOT) for f in raw]
+        lates = json.loads(read('state/manifest.json')).get('seeds_late', [])  # released after S3: own partition, launch partitions unchanged
+        late = [f for f in raw if '-late-' in f or any(f == f'outputs/s2-seeds/{s}.md' for s in lates)]
+        raw = [f for f in raw if f not in late]
         random.Random(run_seed()).shuffle(raw)  # seed originals must not land on the id-block starts
-        a.update(skip=done_in('outputs/s4-archive', 'archive'), partitions=[raw[k::4] for k in range(4)],
-                 id_blocks=[1001, 2001, 3001, 4001])
+        n = 8  # 4 workers x ~178 cards ran near a subagent's context limit; 8 x ~89 is safe (I-5xxx stays free for S7)
+        a.update(skip=done_in('outputs/s4-archive', 'archive'), partitions=[raw[k::n] for k in range(n)] + ([late] if late else []),
+                 id_blocks=[1001 + 500 * k for k in range(n)] + ([6001] if late else []))
     elif stage == 's5':
         a.update(skip=done_in('outputs/s5-reality'), survivors=[x for x in (jsonblock('archive/survivors.md')['survivors'])])
     elif stage == 's6':
@@ -376,7 +380,7 @@ def stage_args(stage, rnd=None):
                  prior_verdicts=prior_json(f'tournament/r{rnd}/judges/*.md'),
                  prior_pairs=[[m['a'], m['b']] for m in json.loads(read('tournament/r1/pairings.json'))['matches']] if rnd == 2 else [])
     elif stage == 's7':
-        first = json.loads(read('state/manifest.json')).get('seeds_at_launch', [])
+        first = (m := json.loads(read('state/manifest.json'))).get('seeds_at_launch', []) + m.get('seeds_late', [])
         a.update(skip=done_in('briefs/s7', 'outputs/s7-evolve', 'archive'), new_seeds=[s for s in seeds() if s['id'] not in first])
     elif stage == 's8':
         a.update(skip=done_in('outputs/s8-final'), finalists=finalists(),

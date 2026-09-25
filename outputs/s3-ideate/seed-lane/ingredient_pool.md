@@ -1,8 +1,8 @@
 # Seed-lane ingredient pool
 
-Sources: every file in `outputs/s2-seeds/decomposed/` (seed-01 to seed-08). Atom IDs and texts match the decomposed files. One text was trimmed to fit the 25-word cap (A-seed-08-insight-1).
+Sources: every file in `outputs/s2-seeds/decomposed/` (seed-01 to seed-11). Atom IDs and texts match the decomposed files. One text was trimmed to fit the 25-word cap (A-seed-08-insight-1).
 
-Included: seed-01, seed-02, seed-03, seed-04, seed-05, seed-06, seed-07, seed-08. The Allowed moves for all eight are "improve / pivot / break down".
+Included: seed-01, seed-02, seed-03, seed-04, seed-05, seed-06, seed-07, seed-08, seed-09, seed-10, seed-11. The Allowed moves for all eleven are "improve / pivot / break down" (seed-09's is marked as the default because the group hasn't said).
 Excluded: none.
 
 ## Audience
@@ -22,6 +22,13 @@ Excluded: none.
 - A-seed-07-aud-1: Open; any system or developer that would call AI on every keystroke, frame, event or log line if inference were free. (seed-07)
 - A-seed-08-aud-1: Universities, for recorded lectures and course videos, with lecturers opting in per recording. (seed-08)
 - A-seed-08-aud-2: Students, either watching lectures or enhancing their own recorded presentations. (seed-08)
+- A-seed-09-aud-1: Security teams and IT leads at mid-sized companies whose staff use copilots or whose customers talk to AI agents. (seed-09)
+- A-seed-09-aud-2: Channel partners: penetration-testing firms and managed security providers who could white-label the service. (seed-09)
+- A-seed-10-aud-1: Sales teams and contact centres without dedicated call-coaching staff. (seed-10)
+- A-seed-10-aud-2: Financial-services and small-business teams exposed to scam callers. (seed-10)
+- A-seed-10-aud-3: Sales, support and fraud/risk managers who buy the tool for their teams. (seed-10)
+- A-seed-11-aud-1: AAC users on eye-tracking, switch-scanning or other slow access methods. (seed-11)
+- A-seed-11-aud-2: Speech-language therapists, schools, clinics and AAC device/app makers who configure or fund it. (seed-11)
 
 ## Pain
 - A-seed-01-pain-1: A sofa that won't clear a stairwell or turn causes failed delivery, return freight, wall damage, lost sale. (seed-01)
@@ -40,6 +47,13 @@ Excluded: none.
 - A-seed-07-pain-1: Current AI is too slow and expensive for per-event use, forcing batching, sampling, or a human in the loop. (seed-07)
 - A-seed-08-pain-1: Monotone or filler-heavy lecture audio is unpleasant and hard to learn from. (seed-08)
 - A-seed-08-pain-2: Re-recording takes lecturers hours; manually cutting "ums" breaks sync with slides or screen recordings. (seed-08)
+- A-seed-09-pain-1: AI makes phishing emails, texts and cloned-voice calls cheaper and more convincing, raising the volume and quality attackers can produce. (seed-09)
+- A-seed-09-pain-2: Deployed AI agents can be talked into refunds, policy exceptions or data leaks, a new attack surface staff-only training ignores. (seed-09)
+- A-seed-09-pain-3: Existing social-engineering testing is a once-a-year manual pentest or generic phishing-template simulation, not continuous or tailored. (seed-09)
+- A-seed-10-pain-1: Staff must listen, follow process and take notes live, so they miss fraud cues or the right answer. (seed-10)
+- A-seed-10-pain-2: Managers cannot listen to every call live; reviewing recordings only catches problems afterward. (seed-10)
+- A-seed-11-pain-1: Finding the right saved phrase means navigating folders while the conversation keeps moving. (seed-11)
+- A-seed-11-pain-2: Typing or searching takes long enough that the moment to respond has already passed. (seed-11)
 
 ## Mechanism
 - A-seed-01-mech-1: Customer films the walk from street to room; video becomes 3D geometry of doorways, landings, turns. (seed-01)
@@ -65,6 +79,15 @@ Excluded: none.
 - A-seed-08-mech-2: Replaces filler sounds ("umm", "ahhh") with clean pauses while keeping or changing accent. (seed-08)
 - A-seed-08-mech-3: Holds every word's original time position so output drops straight onto the source video without re-syncing. (seed-08)
 - A-seed-08-mech-4: Per-section expressiveness slider, original audio always one click away; starts as upload-and-download, live later. (seed-08)
+- A-seed-09-mech-1: Client signs off on targets, channels and hard limits before any test; executives opt in before synthetic voice is used. (seed-09)
+- A-seed-09-mech-2: AI generates tailored multichannel scenarios and runs thousands of persuasion-style conversations against staff and the client's own bots. (seed-09)
+- A-seed-09-mech-3: Each failure returns with a fix (60-second lesson or guardrail change) and an automatic retest, run continuously. (seed-09)
+- A-seed-10-mech-1: Streams the live transcript and privately surfaces a policy reminder, suggested question or verify-identity alert. (seed-10)
+- A-seed-10-mech-2: A configured phrase like "help" discreetly notifies a supervisor without an abrupt hand-off. (seed-10)
+- A-seed-10-mech-3: Coaches sales calls against the company's own playbook rather than a rigid script. (seed-10)
+- A-seed-11-mech-1: Uses the other speaker's recent words as context to rank the user's own phrase bank. (seed-11)
+- A-seed-11-mech-2: Only ranks phrases the user already chose or approved; never composes or infers meaning. (seed-11)
+- A-seed-11-mech-3: Normal AAC interface stays available; user can ignore, edit or switch listening off anytime. (seed-11)
 
 ## Enabling tech
 - A-seed-01-tech-1: Video-to-3D reconstruction from casual phone footage, accurate enough for tight openings. [unverified] (seed-01)
@@ -81,6 +104,12 @@ Excluded: none.
 - A-seed-06-tech-1: Coding agents/LLMs that can explore a full repository and reason about where a change lands. [inferred] (seed-06)
 - A-seed-07-tech-1: Jev, claimed hundreds of times faster and cheaper than normal AI models. [unverified] (seed-07)
 - A-seed-08-tech-1: Expressive speech-to-speech / voice-conversion model with word-level timing alignment. [inferred], untested whether current models hold timing while changing emotion. (seed-08)
+- A-seed-09-tech-1: Language models generating tailored scenarios and running multi-turn adversarial conversations against target bots and people. (seed-09)
+- A-seed-09-tech-2: Synthetic voice generation with executive opt-in for cloned-voice test calls. (seed-09)
+- A-seed-10-tech-1: Streaming speech-to-text feeding a fast language model reasoning over the live transcript. [inferred] (seed-10)
+- A-seed-10-tech-2: Retrieval over company documents/playbook to ground prompts and answers. [inferred] (seed-10)
+- A-seed-11-tech-1: Speech-to-text on the partner's speech plus semantic embedding match against the phrase bank. [inferred] (seed-11)
+- A-seed-11-tech-2: On-device processing floated as a privacy option to avoid transmitting conversation audio. (seed-11)
 
 ## Business model
 - A-seed-01-biz-1: Retailers pay per route check, justified by returns and damage prevented. (seed-01)
@@ -94,6 +123,11 @@ Excluded: none.
 - A-seed-07-biz-1: Not specified; depends on the product eventually chosen. (seed-07)
 - A-seed-08-biz-1: Department or campus licence for universities; low-cost student subscription. (seed-08)
 - A-seed-08-biz-2: API that lecture-capture platforms can embed. (seed-08)
+- A-seed-09-biz-1: Priced per employee per year for staff testing. (seed-09)
+- A-seed-09-biz-2: Priced per AI agent per month for bot testing, with white-label pricing for security firms. (seed-09)
+- A-seed-10-biz-1: Per-seat monthly pricing, with higher tiers for analytics, integrations and supervisor tools. (seed-10)
+- A-seed-11-biz-1: License the ranking feature to AAC app or device makers. (seed-11)
+- A-seed-11-biz-2: Optional subscription for direct users, with public/charitable disability funding covering costs. (seed-11)
 
 ## Demo moment
 - A-seed-01-demo-1: Phone video of a stairwell yields a fit verdict and an animation of the sofa maneuvering through. (seed-01)
@@ -105,6 +139,10 @@ Excluded: none.
 - A-seed-06-demo-1: Paste a client request; get a codebase-grounded build-time estimate listing the files it touches. [inferred] (seed-06)
 - A-seed-07-demo-1: An AI judgement on every keystroke or frame, with no perceptible lag. (seed-07)
 - A-seed-08-demo-1: Monotone, "um"-filled lecture clip with slides, then the same clip re-audio'd, in sync and lively. (seed-08)
+- A-seed-09-demo-1: Point it at a sample support chatbot; 200 persuasion attempts find 3 that get a refund approved. (seed-09)
+- A-seed-09-demo-2: Show the failing transcript, apply a fix, and retest green in the same session. (seed-09)
+- A-seed-10-demo-1: Mock call where a request breaks a verification rule; Jev privately prompts verification and offers one-tap supervisor escalation. (seed-10)
+- A-seed-11-demo-1: Replay a consented conversation; matching saved phrases rise to the top as the partner speaks. (seed-11)
 
 ## Core insight
 - A-seed-01-insight-1: "Will it fit" is a 3D motion-planning problem, not a tape-measure problem. (seed-01)
@@ -118,5 +156,9 @@ Excluded: none.
 - A-seed-06-insight-1: Estimates are guesses because no one looks at the code first; grounding the estimate in the actual codebase fixes that. [inferred] (seed-06)
 - A-seed-07-insight-1: Near-instant, near-free inference unlocks always-on, per-event AI uses impossible at today's latency and cost. (seed-07)
 - A-seed-08-insight-1: The words are fine; delivery is the problem, so re-performing speech with more life, word timing held, avoids re-recording or re-editing video. [inferred] (seed-08)
+- A-seed-09-insight-1: AI made social-engineering attacks cheap and continuous, so authorised testing has to be cheap and continuous too. (seed-09)
+- A-seed-09-insight-2: A company's AI agents are now social-engineering targets alongside its staff, so testing both with one engine may be a real edge. (seed-09)
+- A-seed-10-insight-1: Problems on a call are cheapest to fix while it's still happening, and no one else is listening live then. (seed-10)
+- A-seed-11-insight-1: The user's prepared words already exist; the bottleneck is finding them fast, not generating new ones. (seed-11)
 
 <!-- COMPLETE -->

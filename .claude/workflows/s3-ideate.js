@@ -10,7 +10,7 @@ export const meta = {
 }
 // args: { skip, territories: ['T1', ...] (ideate these), assignments: {ideatorId: {territory, track, persona,
 //         cross_territory, tech_card, constraints}} (config/assignments.json .ideators), seeds: [{id, moves}],
-//         pool_exists: bool, seed_lane: bool, run_seed, models? }
+//         pool_exists: bool, seed_lane: bool, lane_tag?: 'late-', run_seed, models? }
 
 const M = Object.assign({ fable: 'claude-fable-5-1', opus: 'claude-opus-5-5', sonnet: 'claude-sonnet-5' }, args.models || {})
 const SKIP = new Set(args.skip || [])
@@ -74,11 +74,12 @@ async function seedLane() {
   const piv = S.filter(s => s.moves.includes('pivot'))
   const jobs = []
   // Both improvers take every seed: two independent improvements per seed, and the report keeps the best.
-  if (imp.length) [1, 2].forEach(k => jobs.push(() => task(`s3-improver-${nn(k)}`, [`outputs/s3-ideate/seed-lane/s3-improver-${nn(k)}.md`], 'sonnet', 'improver',
-    `Seeds: ${imp.map((s, i) => `${s.id} (card id s3-improver-${nn(k)}#${nn(i + 1)})`).join(', ')}.`, { phase: 'Seed lane', effort: 'high' })))
+  const tag = args.lane_tag || ''  // 'late-': seeds released after S3 get their own lane files
+  if (imp.length) [1, 2].forEach(k => jobs.push(() => task(`s3-improver-${tag}${nn(k)}`, [`outputs/s3-ideate/seed-lane/s3-improver-${tag}${nn(k)}.md`], 'sonnet', 'improver',
+    `Seeds: ${imp.map((s, i) => `${s.id} (card id s3-improver-${tag}${nn(k)}#${nn(i + 1)})`).join(', ')}.`, { phase: 'Seed lane', effort: 'high' })))
   // Pivoters split the seeds: about 5 pivots per seed in total.
-  ;[0, 1].map(k => piv.filter((_, i) => i % 2 === k)).forEach((g, k) => g.length && jobs.push(() => task(`s3-pivoter-${nn(k + 1)}`, [`outputs/s3-ideate/seed-lane/s3-pivoter-${nn(k + 1)}.md`], 'sonnet', 'pivoter',
-    `Seeds: ${g.map(s => s.id).join(', ')}. Card ids: s3-pivoter-${nn(k + 1)}#01, #02, ... in order.`, { phase: 'Seed lane', effort: 'high' })))
+  ;[0, 1].map(k => piv.filter((_, i) => i % 2 === k)).forEach((g, k) => g.length && jobs.push(() => task(`s3-pivoter-${tag}${nn(k + 1)}`, [`outputs/s3-ideate/seed-lane/s3-pivoter-${tag}${nn(k + 1)}.md`], 'sonnet', 'pivoter',
+    `Seeds: ${g.map(s => s.id).join(', ')}. Card ids: s3-pivoter-${tag}${nn(k + 1)}#01, #02, ... in order.`, { phase: 'Seed lane', effort: 'high' })))
   const r = await parallel(jobs)
   return r.every(Boolean)
 }
