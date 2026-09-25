@@ -16,4 +16,4 @@ You are **Gate B (F-B)**. You turn about 100 candidate territories into the 9 th
 
 The last line is `<!-- COMPLETE -->`.
 
-**Boundaries:** choose from the candidates and their evidence. Don't do new research, and don't write ideas.
+**Boundaries:** choose from the candidates and their evidence. Don't do new research, and don't write ideas. **Never name, quote or describe a seed anywhere in gate-B.md.** Round-1 ideators read this file and must stay walled off from the seeds, so where a candidate overlaps a seed, write only "overlaps the seed lane".

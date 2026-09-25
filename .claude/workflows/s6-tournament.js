@@ -10,7 +10,8 @@ export const meta = {
 // args: { skip, round, K, run_seed, ideas: [{id, track, cell, elo}] (sorted by id),
 //         prior_verdicts: {judgeTaskId: [{match_id, winner, rationale}]} (json blocks of complete judge files, for resume),
 //         prior_pairs: [[a, b]] (earlier-round matches, never replayed), models? }
-// The primary session builds tournament/r<round>/blind_deck.md (blind cards only) before launching.
+// The primary session builds tournament/r<round>/blind_deck.md with `pipe.py deck` (refuses cards that leak lineage)
+// before launching, and afterwards runs `pipe.py verify-tournament` against this workflow's return value.
 
 const M = Object.assign({ fable: 'claude-fable-5-1', opus: 'claude-opus-5-5', sonnet: 'claude-sonnet-5' }, args.models || {})
 const SKIP = new Set(args.skip || [])
@@ -135,6 +136,6 @@ const eloDoc = { round: R, K, stats: { ideas: table.length, matches: results.len
 // ---- the tournament master writes the files (numbers copied, never recomputed) ----
 const wrote = await task(`s6r${R}-write`, [`${dir}/pairings.json`, `${dir}/elo.json`, `${dir}/leaderboard.md`], 'opus', 'tournament-master',
   `MODE: write, round ${R}. Blind deck (for idea names): ${deckPath}.\nWrite ${dir}/pairings.json with exactly this JSON:\n${JSON.stringify(pairings)}\n\nWrite ${dir}/elo.json with exactly this JSON:\n${JSON.stringify(eloDoc)}\n\nThen write ${dir}/leaderboard.md from elo.json (the top 20 per track in full, then the rest compactly).`,
-  { phase: 'Write', effort: 'low' })
+  { phase: 'Write', effort: 'medium' })
 
 return { calls, failed, skipped, round: R, matches: matches.length, agreed: agree, settled: malformed.length, write_ok: !!wrote, pairings, elo: eloDoc }

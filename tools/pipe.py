@@ -4,9 +4,11 @@
   scan [--delete] [dirs...]    complete/partial outputs (resume); --delete removes partials in outputs/ archive/ tournament/
   assign                       write config/assignments.json from state/run_seed (after Gate B)
   split SURVIVORS FILE...      parse idea cards from FILEs -> archive/ideas/<id>.md + archive/blind/<id>.md
-  deck ROUND ID...             build tournament/r<ROUND>/blind_deck.md from blind cards
+  deck ROUND [--allow=ID,..] ID...  build tournament/r<ROUND>/blind_deck.md; refuses cards that leak lineage
+  leakcheck ID...              exit 1 if any blind card names a seed/persona/territory/track/round (run before S8)
+  verify-tournament ROUND RET  compare tournament master's JSON files with the workflow return RET; fix on mismatch
   jsonblock FILE               print the last ```json block of FILE
-  args STAGE [ROUND]           print the Workflow args JSON for STAGE (s1 s3 s4 s5 s6 s7 s8 s9)
+  args STAGE [ROUND]           print the Workflow args JSON for STAGE (s1 [h1] s3 [pilot] s4 s5 s6 ROUND s7 s8 s9)
   selftest                     run the built-in checks
 """
 import json, os, random, re, sys, glob, statistics
@@ -213,15 +215,52 @@ def card_meta(cid):
     return parse_cards(read(f'archive/ideas/{cid}.md'))[0]['meta']
 
 
-def deck(rnd, ids):
+def leaks(ids):
+    """ids whose blind card names a seed, persona, territory, track or round."""
+    bad = {}
+    for cid in ids:
+        hits = LEAKS.findall(read(f'archive/blind/{cid}.md'))
+        if hits:
+            bad[cid] = sorted({h.lower() for h in hits})
+    return bad
+
+
+def deck(rnd, ids, allow=()):
+    bad = {k: v for k, v in leaks(ids).items() if k not in allow}
+    if bad:
+        raise SystemExit(f'BLIND LEAK, deck not built. Fix these cards (or --allow after reading them): {bad}')
+    caps = {cid: v for cid in ids if (v := cap_violations(read(f'archive/blind/{cid}.md')))}
+    if caps:
+        print(f'WARNING {len(caps)} cards over word caps: {caps}', file=sys.stderr)
     out = [f'# Blind deck, round {rnd}', '', 'Anonymous idea cards. Ids carry no meaning.', '']
     for cid in sorted(ids):
         body = read(f'archive/blind/{cid}.md').replace(MARK, '').strip()
         out += [f'## Card {cid}', '', re.sub(r'^# ', '### ', body, flags=re.M), '']
     path = f'tournament/r{rnd}/blind_deck.md'
+    os.makedirs(p(f'tournament/r{rnd}'), exist_ok=True)
     with open(p(path), 'w') as f:
         f.write('\n'.join(out + [MARK, '']))
     return path
+
+
+def verify_tournament(rnd, ret):
+    """Compare the tournament master's pairings.json/elo.json with the workflow's returned objects;
+    overwrite any file that differs. Also saves the return as the ground-truth record."""
+    fixed = []
+    os.makedirs(p(f'tournament/r{rnd}'), exist_ok=True)
+    for name, key in (('pairings.json', 'pairings'), ('elo.json', 'elo')):
+        path = f'tournament/r{rnd}/{name}'
+        try:
+            got = json.loads(read(path))
+        except (OSError, ValueError):
+            got = None
+        if got != ret[key]:
+            with open(p(path), 'w') as f:
+                json.dump(ret[key], f, indent=1)
+            fixed.append(name)
+    with open(p(f'tournament/r{rnd}/script-return.json'), 'w') as f:
+        json.dump(dict(ret, complete=True), f, indent=1)
+    return fixed
 
 
 # ---------- per-stage Workflow args ----------
@@ -230,13 +269,24 @@ def done_in(*dirs):
     return scan(list(dirs))['done']
 
 
+MOVES = ('improve', 'pivot', 'break down')
+
+
 def seeds():
+    """PROMPT §10: every inputs/seeds/*.md except _TEMPLATE.md is a seed; never drop one silently."""
     out = []
-    for f in sorted(glob.glob(p('inputs/seeds/seed-*.md'))):
-        text = read(f)
-        m = re.search(r'Allowed moves:\s*(.*)', text)
-        moves = [x.strip().lower() for x in (m.group(1) if m else 'improve / pivot / break down').split('/') if x.strip()]
-        out.append({'id': os.path.basename(f)[:-3], 'moves': moves})
+    for f in sorted(glob.glob(p('inputs/seeds/*.md'))):
+        if os.path.basename(f) == '_TEMPLATE.md':
+            continue
+        sid = os.path.basename(f)[:-3]
+        m = re.search(r'Allowed moves:\s*(.*)', read(f), re.I)
+        line = re.sub(r'break\s*-?\s*down', 'break down', (m.group(1) if m else '').lower())
+        moves = [mv for mv in MOVES if mv in line]
+        if not moves:
+            print(f'WARNING {sid}: no recognised Allowed moves in {line!r}; using all three', file=sys.stderr)
+            moves = list(MOVES)
+        out.append({'id': sid, 'moves': moves})
+    print(f'seeds: {[x["id"] for x in out]}', file=sys.stderr)
     return out
 
 
@@ -265,7 +315,10 @@ def prior_json(pattern):
     for f in sorted(glob.glob(p(pattern))):
         rel = os.path.relpath(f, ROOT)
         if is_complete(rel):
-            out[os.path.basename(f)[:-3]] = jsonblock(rel)
+            try:
+                out[os.path.basename(f)[:-3]] = jsonblock(rel)
+            except ValueError:
+                print(f'WARNING {rel}: complete but no json block; its task will rerun', file=sys.stderr)
     return out
 
 
@@ -296,17 +349,23 @@ def finalists():
 
 def stage_args(stage, rnd=None):
     a = {'run_seed': run_seed()}
-    if stage == 's1':
+    if stage == 's1' and rnd == 'h1':  # checkpoint H1: decompose only the seeds added since launch
+        first = json.loads(read('state/manifest.json')).get('seeds_at_launch', [])
+        new = [s for s in seeds() if s['id'] not in first]
+        a.update(skip=done_in('outputs/s2-seeds', 'outputs/s3-ideate/seed-lane'), lenses=[], seeds=new,
+                 seed_card_ids={s['id']: f'I-59{i + 1:02}' for i, s in enumerate(new)})
+    elif stage == 's1':
         a.update(skip=done_in('briefs/s1', 'outputs/s1-discover', 'outputs/s2-seeds', 'outputs/s3-ideate/seed-lane', 'config'), seeds=seeds())
     elif stage == 's3':
         asg = json.loads(read('config/assignments.json'))
         a.update(skip=done_in('briefs/s3', 'outputs/s3-ideate'), assignments=asg['ideators'], seeds=seeds(),
                  pool_exists=is_complete('outputs/s3-ideate/seed-lane/ingredient_pool.md'),
-                 territories=TERRITORIES, seed_lane=True)
+                 territories=['T1'] if rnd == 'pilot' else TERRITORIES, seed_lane=rnd != 'pilot')
     elif stage == 's4':
         raw = sorted(glob.glob(p('outputs/s3-ideate/ideas/*.md')) + glob.glob(p('outputs/s3-ideate/seed-lane/s3-*.md'))
-                     + glob.glob(p('outputs/s2-seeds/seed-*.md')))
+                     + glob.glob(p('outputs/s2-seeds/*.md')))
         raw = [os.path.relpath(f, ROOT) for f in raw]
+        random.Random(run_seed()).shuffle(raw)  # seed originals must not land on the id-block starts
         a.update(skip=done_in('outputs/s4-archive', 'archive'), partitions=[raw[k::4] for k in range(4)],
                  id_blocks=[1001, 2001, 3001, 4001])
     elif stage == 's5':
@@ -365,6 +424,23 @@ def selftest():
         assert card_meta('I-1002')['cell']['buyer'] == 'agents'
         assert parse_list('[a#1, "b#2"]') == ['a#1', 'b#2'] and parse_list('[]') == []
         assert read('archive/blind/I-1001.md').startswith('# Fit Check') and 'lineage' not in read('archive/blind/I-1001.md')
+        os.makedirs(p('tournament/r1'))
+        open(p('archive/blind/I-1003.md'), 'w').write('# Farm seed drill planner\n' + MARK)
+        assert list(leaks(['I-1001', 'I-1002', 'I-1003'])) == ['I-1003']
+        try:
+            deck(1, ['I-1001', 'I-1003']); raise AssertionError('deck must refuse a leaking card')
+        except SystemExit as e:
+            assert 'I-1003' in str(e)
+        assert deck(1, ['I-1001', 'I-1003'], allow=['I-1003']).endswith('blind_deck.md')
+        os.makedirs(p('inputs/seeds'))
+        open(p('inputs/seeds/_TEMPLATE.md'), 'w').write('Allowed moves: improve / pivot / break down')
+        open(p('inputs/seeds/seed-01.md'), 'w').write('Title: x\nAllowed moves: improve, breakdown')
+        open(p('inputs/seeds/our idea.md'), 'w').write('Title: y')
+        assert seeds() == [{'id': 'our idea', 'moves': list(MOVES)}, {'id': 'seed-01', 'moves': ['improve', 'break down']}]
+        os.makedirs(p('tournament/r2'))
+        open(p('tournament/r2/elo.json'), 'w').write('{"ideas": [{"id": "I-1", "elo": 1216}], "complete": true}')
+        ret = {'pairings': {'matches': [], 'complete': True}, 'elo': {'ideas': [{'id': 'I-1', 'elo': 1216.0}], 'complete': True}}
+        assert verify_tournament(2, ret) == ['pairings.json']  # elo.json matched (1216 == 1216.0); missing pairings rewritten
         a1 = assign(7, [f'P{i:02}' for i in range(1, 37)], [f'TC-{i:02}' for i in range(1, 23)], [f'C{i:02}' for i in range(1, 25)])
         a2 = assign(7, [f'P{i:02}' for i in range(1, 37)], [f'TC-{i:02}' for i in range(1, 23)], [f'C{i:02}' for i in range(1, 25)])
         assert a1 == a2 and len(a1) == 36 and len({v['persona'] for v in a1.values()}) == 36
@@ -387,7 +463,15 @@ if __name__ == '__main__':
         w, warn = split(rest[0] if rest[0] != '-' else None, rest[1:])
         print(json.dumps({'written': len(w), 'warnings': warn}, indent=1))
     elif cmd == 'deck':
-        print(deck(rest[0], rest[1:]))
+        allow = next((x.split('=', 1)[1].split(',') for x in rest if x.startswith('--allow=')), [])
+        print(deck(rest[0], [x for x in rest[1:] if not x.startswith('--allow=')], allow))
+    elif cmd == 'leakcheck':
+        bad = leaks(rest)
+        print(json.dumps(bad, indent=1) if bad else f'no leaks in {len(rest)} blind cards')
+        sys.exit(1 if bad else 0)
+    elif cmd == 'verify-tournament':
+        fixed = verify_tournament(rest[0], json.loads(read(rest[1])))
+        print(f'overwrote from script return: {fixed}' if fixed else 'tournament master files match the script return')
     elif cmd == 'jsonblock':
         print(json.dumps(jsonblock(rest[0]), indent=1))
     elif cmd == 'args':
