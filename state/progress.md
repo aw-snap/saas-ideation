@@ -28,3 +28,7 @@
 2026-09-26 | s2_seeds (late) | late seed lane done: seeds 09-11 -> 6 improved + 15 pivots | outputs/s3-ideate/seed-lane
 2026-09-26 | s4_archive | done: 736 raw -> 686 after workers -> 50 cross merges -> 162 survivors (novel 75, balanced 87; 33 protected seed cards); 34/48 cells; dup rate 13.6%; 686 idea + blind cards written; 0 blind leaks among survivors; ~2.37M tokens (proj 2.6M) | archive outputs/s4-archive
 2026-09-26 | s4_archive | holding before S5 at the user's request | state/manifest.json
+2026-09-26 | autonomy | user brief: finish S5-S9 without waiting at H1/H2 (log each pass), list the top 15 as 'awaiting user pick' at H2, then build website/index.html | state/manifest.json
+2026-09-26 | s5_reality | started: 12 quick prior-art hunters + 6 feasibility planners + reality lead over 162 survivors; projected 2.4M tokens | state/manifest.json
+2026-09-26 | s5_reality | launch mistake: run wf_f0b4d183-296 started with placeholder args (14 sonnet agents on empty lists), stopped in seconds, outputs deleted; relaunched correctly as wf_b185695f-c31 | outputs/s5-reality
+2026-09-26 | s5_reality | done: 19/19 agents, 0 failed; 162 -> 126 survivors (61 novel, 65 balanced); 36 cut as direct competitors, 0 for feasibility or legal; 11/11 seed originals kept (5 failed a knock-out); 1.16M tokens (proj 2.4M), 12 min; I-3028 track set to balanced to match its archive cell | outputs/s5-reality
