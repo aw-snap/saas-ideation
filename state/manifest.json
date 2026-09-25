@@ -1,152 +1,207 @@
 {
-  "pipeline": "running",
-  "current_stage": "pilot",
-  "run_seed": 498282322,
-  "fable_available": true,
-  "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
-  "stages": {
-    "setup": "done",
-    "gate_A": "done",
-    "s1_discover": "done",
-    "s2_seeds": "done",
-    "gate_B": "done",
-    "pilot": "pending",
-    "s3_ideate": "pending",
-    "s4_archive": "pending",
-    "s5_reality": "pending",
-    "s6_tourn_r1": "pending",
-    "human_mid": "pending",
-    "gate_C": "pending",
-    "s7_evolve": "pending",
-    "s6_tourn_r2": "pending",
-    "s8_final": "pending",
-    "gate_D": "pending",
-    "s9_report": "pending",
-    "human_rerank": "pending"
+ "pipeline": "running",
+ "current_stage": "pilot",
+ "run_seed": 498282322,
+ "fable_available": true,
+ "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
+ "stages": {
+  "setup": "done",
+  "gate_A": "done",
+  "s1_discover": "done",
+  "s2_seeds": "done",
+  "gate_B": "done",
+  "pilot": "awaiting_user",
+  "s3_ideate": "pending",
+  "s4_archive": "pending",
+  "s5_reality": "pending",
+  "s6_tourn_r1": "pending",
+  "human_mid": "pending",
+  "gate_C": "pending",
+  "s7_evolve": "pending",
+  "s6_tourn_r2": "pending",
+  "s8_final": "pending",
+  "gate_D": "pending",
+  "s9_report": "pending",
+  "human_rerank": "pending"
+ },
+ "tasks": {
+  "s1-cartographer-screen-work-briefs": "done",
+  "s1-cartographer-screen-work": "done",
+  "s1-cartographer-tech-unlocks-briefs": "done",
+  "s1-cartographer-tech-unlocks": "done",
+  "s1-cartographer-overlooked-briefs": "done",
+  "s1-cartographer-overlooked": "done",
+  "s1-cartographer-weak-signals-briefs": "done",
+  "s1-cartographer-weak-signals": "done",
+  "s1-scout-screen-work-01": "done",
+  "s1-scout-screen-work-02": "done",
+  "s1-scout-screen-work-03": "done",
+  "s1-scout-screen-work-04": "done",
+  "s1-scout-screen-work-05": "done",
+  "s1-scout-tech-unlocks-01": "done",
+  "s1-scout-tech-unlocks-02": "done",
+  "s1-scout-tech-unlocks-03": "done",
+  "s1-scout-tech-unlocks-04": "done",
+  "s1-scout-tech-unlocks-05": "done",
+  "s1-scout-overlooked-01": "done",
+  "s1-scout-overlooked-02": "done",
+  "s1-scout-overlooked-03": "done",
+  "s1-scout-overlooked-04": "done",
+  "s1-scout-overlooked-05": "done",
+  "s1-scout-weak-signals-01": "done",
+  "s1-scout-weak-signals-02": "done",
+  "s1-scout-weak-signals-03": "done",
+  "s1-scout-weak-signals-04": "done",
+  "s1-scout-weak-signals-05": "done",
+  "s2-seed-lead": "done",
+  "s2-decomposer-01": "done",
+  "s2-decomposer-02": "done",
+  "s2-ingredient-pool": "done",
+  "s3-lead-T1-briefs": "done",
+  "s3-lead-T1-dossier": "done",
+  "s3-pain-T1-01": "done",
+  "s3-pain-T1-02": "done",
+  "s3-lead-T3-briefs": "done",
+  "s3-lead-T3-dossier": "done",
+  "s3-pain-T3-01": "done",
+  "s3-pain-T3-02": "done",
+  "s3-lead-T4-briefs": "done",
+  "s3-lead-T4-dossier": "done",
+  "s3-pain-T4-01": "done",
+  "s3-pain-T4-02": "done",
+  "s3-lead-T8-briefs": "done",
+  "s3-lead-T8-dossier": "done",
+  "s3-pain-T8-01": "done",
+  "s3-pain-T8-02": "done",
+  "s3-lead-T9-briefs": "done",
+  "s3-lead-T9-dossier": "done",
+  "s3-pain-T9-01": "done",
+  "s3-pain-T9-02": "done",
+  "s3-ideator-novel-T1-01-r1": "done",
+  "s3-ideator-novel-T1-01-r2": "done",
+  "s3-ideator-novel-T1-01-r3": "done",
+  "s3-ideator-novel-T1-02-r1": "done",
+  "s3-ideator-novel-T1-02-r2": "done",
+  "s3-ideator-novel-T1-02-r3": "done",
+  "s3-ideator-balanced-T1-01-r1": "done",
+  "s3-ideator-balanced-T1-01-r2": "done",
+  "s3-ideator-balanced-T1-01-r3": "done",
+  "s3-ideator-balanced-T1-02-r1": "done",
+  "s3-ideator-balanced-T1-02-r2": "done",
+  "s3-ideator-balanced-T1-02-r3": "done"
+ },
+ "agent_calls": {
+  "fable": 4,
+  "opus": 21,
+  "sonnet": 45
+ },
+ "claude_version": "2.1.280",
+ "models": {
+  "fable": "claude-fable-5-1",
+  "opus": "claude-opus-5-5",
+  "sonnet": "claude-sonnet-5"
+ },
+ "seeds_at_launch": [
+  "seed-01",
+  "seed-02",
+  "seed-03",
+  "seed-04",
+  "seed-05",
+  "seed-06",
+  "seed-07",
+  "seed-08"
+ ],
+ "agent_calls_by_stage": {
+  "smoke": {
+   "fable": 1,
+   "opus": 1,
+   "sonnet": 1
   },
-  "tasks": {
-    "s1-cartographer-screen-work-briefs": "done",
-    "s1-cartographer-screen-work": "done",
-    "s1-cartographer-tech-unlocks-briefs": "done",
-    "s1-cartographer-tech-unlocks": "done",
-    "s1-cartographer-overlooked-briefs": "done",
-    "s1-cartographer-overlooked": "done",
-    "s1-cartographer-weak-signals-briefs": "done",
-    "s1-cartographer-weak-signals": "done",
-    "s1-scout-screen-work-01": "done",
-    "s1-scout-screen-work-02": "done",
-    "s1-scout-screen-work-03": "done",
-    "s1-scout-screen-work-04": "done",
-    "s1-scout-screen-work-05": "done",
-    "s1-scout-tech-unlocks-01": "done",
-    "s1-scout-tech-unlocks-02": "done",
-    "s1-scout-tech-unlocks-03": "done",
-    "s1-scout-tech-unlocks-04": "done",
-    "s1-scout-tech-unlocks-05": "done",
-    "s1-scout-overlooked-01": "done",
-    "s1-scout-overlooked-02": "done",
-    "s1-scout-overlooked-03": "done",
-    "s1-scout-overlooked-04": "done",
-    "s1-scout-overlooked-05": "done",
-    "s1-scout-weak-signals-01": "done",
-    "s1-scout-weak-signals-02": "done",
-    "s1-scout-weak-signals-03": "done",
-    "s1-scout-weak-signals-04": "done",
-    "s1-scout-weak-signals-05": "done",
-    "s2-seed-lead": "done",
-    "s2-decomposer-01": "done",
-    "s2-decomposer-02": "done",
-    "s2-ingredient-pool": "done"
+  "gate_A": {
+   "fable": 2,
+   "opus": 0,
+   "sonnet": 0
   },
-  "agent_calls": {
-    "fable": 4,
-    "opus": 11,
-    "sonnet": 23
+  "s1_discover+s2_seeds": {
+   "fable": 0,
+   "opus": 10,
+   "sonnet": 22
   },
-  "claude_version": "2.1.280",
-  "models": {
-    "fable": "claude-fable-5-1",
-    "opus": "claude-opus-5-5",
-    "sonnet": "claude-sonnet-5"
+  "gate_B": {
+   "fable": 1,
+   "opus": 0,
+   "sonnet": 0
   },
-  "seeds_at_launch": [
-    "seed-01",
-    "seed-02",
-    "seed-03",
-    "seed-04",
-    "seed-05",
-    "seed-06",
-    "seed-07",
-    "seed-08"
-  ],
-  "agent_calls_by_stage": {
-    "smoke": {
-      "fable": 1,
-      "opus": 1,
-      "sonnet": 1
-    },
-    "gate_A": {
-      "fable": 2,
-      "opus": 0,
-      "sonnet": 0
-    },
-    "s1_discover+s2_seeds": {
-      "fable": 0,
-      "opus": 10,
-      "sonnet": 22
-    },
-    "gate_B": {
-      "fable": 1,
-      "opus": 0,
-      "sonnet": 0
-    }
+  "pilot_s3_T1": {
+   "fable": 0,
+   "opus": 10,
+   "sonnet": 22
+  }
+ },
+ "budget_caps_3x": {
+  "fable": 12,
+  "opus": 60,
+  "sonnet": 360
+ },
+ "notes": [
+  "args.skip carries complete output paths (tools/pipe.py scan); each script maps its tasks to output files.",
+  "S3 ideator output is one file per round: outputs/s3-ideate/ideas/<ideator>-r<1..3>.md (about 18 ideas across the 3).",
+  "Custom agent types need a registry reload before the first real workflow (smoke test: 'agent type not found')."
+ ],
+ "gates": {
+  "A": {
+   "verdict": "APPROVED",
+   "loops": 2,
+   "file": "gates/gate-A.md",
+   "loop1": "gates/gate-A-loop1.md (CHANGES: 3 majors fixed)"
   },
-  "budget_caps_3x": {
-    "fable": 12,
-    "opus": 60,
-    "sonnet": 360
+  "B": {
+   "verdict": "APPROVED",
+   "loops": 1,
+   "file": "gates/gate-B.md",
+   "territories": {
+    "T1": "Payer-portal grind at small medical practices",
+    "T2": "Invoice intake and the e-invoicing switchover at small firms",
+    "T3": "Locked-in vertical systems of record with API tolls",
+    "T4": "Mandated reporting into no-API government portals by tiny organizations",
+    "T5": "Security evidence and compliance chores in organizations with no IT staff",
+    "T6": "Agents versus the walled web",
+    "T7": "Verifying and triaging AI-generated submissions",
+    "T8": "Proxy admin for an aging parent",
+    "T9": "Confidential local AI for solo regulated professionals"
+   },
+   "computer_centric": 9,
+   "axes": "buyer(4) x track(2) x capability(6: agent-infra, local-private, screen-agent, verifier, extractor, drafter-dialogue)",
+   "minors": [
+    "T9 demand evidence thin",
+    "T1/T4 closest pair",
+    "few first-person practitioner quotes pool-wide"
+   ]
+  }
+ },
+ "web_search": {
+  "cap_per_session": 1500,
+  "env_var": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
+  "used_this_session": 350,
+  "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart); cap 1500 confirmed live 2026-09-25 (search after 200 succeeded); pilot miners used 149"
+ },
+ "next_action": "H0: waiting for the user to confirm the full S3 run. On yes: python3 tools/pipe.py args s3 -> launch .claude/workflows/s3-ideate.js (T1 ideators and T1/T3/T4/T8/T9 dossiers skip as complete).",
+ "pilot": {
+  "run_id": "wf_974f6d69-e8a",
+  "subagent_tokens": 1515946,
+  "duration_min": 16.3,
+  "agents": 32,
+  "failed": 0,
+  "ideas": 72,
+  "cards_over_cap": 14,
+  "searches": 149,
+  "token_split_by_input": {
+   "pain_miners": 0.52,
+   "territory_leads": 0.16,
+   "ideators": 0.32
   },
-  "notes": [
-    "args.skip carries complete output paths (tools/pipe.py scan); each script maps its tasks to output files.",
-    "S3 ideator output is one file per round: outputs/s3-ideate/ideas/<ideator>-r<1..3>.md (about 18 ideas across the 3).",
-    "Custom agent types need a registry reload before the first real workflow (smoke test: 'agent type not found')."
-  ],
-  "gates": {
-    "A": {
-      "verdict": "APPROVED",
-      "loops": 2,
-      "file": "gates/gate-A.md",
-      "loop1": "gates/gate-A-loop1.md (CHANGES: 3 majors fixed)"
-    },
-    "B": {
-      "verdict": "APPROVED",
-      "loops": 1,
-      "file": "gates/gate-B.md",
-      "territories": {
-        "T1": "Payer-portal grind at small medical practices",
-        "T2": "Invoice intake and the e-invoicing switchover at small firms",
-        "T3": "Locked-in vertical systems of record with API tolls",
-        "T4": "Mandated reporting into no-API government portals by tiny organizations",
-        "T5": "Security evidence and compliance chores in organizations with no IT staff",
-        "T6": "Agents versus the walled web",
-        "T7": "Verifying and triaging AI-generated submissions",
-        "T8": "Proxy admin for an aging parent",
-        "T9": "Confidential local AI for solo regulated professionals"
-      },
-      "computer_centric": 9,
-      "axes": "buyer(4) x track(2) x capability(6: agent-infra, local-private, screen-agent, verifier, extractor, drafter-dialogue)",
-      "minors": [
-        "T9 demand evidence thin",
-        "T1/T4 closest pair",
-        "few first-person practitioner quotes pool-wide"
-      ]
-    }
-  },
-  "web_search": {
-    "cap_per_session": 1500,
-    "env_var": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
-    "used_this_session": 200,
-    "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart)"
-  },
-  "next_action": "Restart the session so CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION=1500 takes effect. Then pilot (H0): `python3 tools/pipe.py args s3 pilot` -> launch .claude/workflows/s3-ideate.js (T1 ideates; dossiers for T1, T3, T4, T8, T9). Report tokens, idea count and 3 sample cards, then STOP for the user to confirm the full run."
+  "projected_full_s3_tokens": 4900000,
+  "stop_threshold_tokens": 9800000,
+  "projection_basis": "remaining S3 = 4 more dossiers (0.8 x pilot pain+lead share) + 32 ideators (8 x pilot ideator share) + seed lane (~4 ideator-round equivalents) ~ 3.2 x pilot"
+ }
 }
