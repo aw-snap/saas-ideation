@@ -7,7 +7,7 @@ export const meta = {
     { title: 'Seeds', detail: 'seed lead normalizes -> 2 decomposers -> seed lead rebuilds the ingredient pool' },
   ],
 }
-// args: { skip: [complete output paths], seeds: [{id, moves}], lenses?: [..] (default all 4; [] = seeds only),
+// args: { skip: [complete output paths], seeds: [{id, moves}], lenses?: [..] (default all 4; [] = seeds only), note?: extra seed-lead normalize instruction,
 //         seed_card_ids?: {seedId: 'I-59nn'} (new seeds at H1 get final card ids), run_seed, models? }
 
 const M = Object.assign({ fable: 'claude-fable-5-1', opus: 'claude-opus-5-5', sonnet: 'claude-sonnet-5' }, args.models || {})
@@ -49,7 +49,7 @@ async function seedBranch() {
   if (!SEEDS.length) return true
   const ids = args.seed_card_ids || {}
   need(await task('s2-seed-lead', SEEDS.map(s => `outputs/s2-seeds/${s.id}.md`), 'opus', 'seed-lead',
-    `MODE: normalize. Seeds (input -> output, idea-card id, allowed moves):\n${SEEDS.map(s => `- inputs/seeds/${s.id}.md -> outputs/s2-seeds/${s.id}.md, card id ${ids[s.id] || s.id}, allowed: ${s.moves.join(' / ')}`).join('\n')}`,
+    `MODE: normalize. Seeds (input -> output, idea-card id, allowed moves):\n${SEEDS.map(s => `- inputs/seeds/${s.id}.md -> outputs/s2-seeds/${s.id}.md, card id ${ids[s.id] || s.id}, allowed: ${s.moves.join(' / ')}`).join('\n')}${args.note ? '\n' + args.note : ''}`,
     { phase: 'Seeds', effort: 'high' }), 'seed lead failed')
   const bd = SEEDS.filter(s => s.moves.includes('break down'))  // "improve" alone means never decompose
   if (!bd.length) return true

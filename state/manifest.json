@@ -92,8 +92,8 @@
  },
  "agent_calls": {
   "fable": 4,
-  "opus": 21,
-  "sonnet": 45
+  "opus": 23,
+  "sonnet": 47
  },
  "claude_version": "2.1.280",
  "models": {
@@ -136,6 +136,11 @@
    "fable": 0,
    "opus": 10,
    "sonnet": 22
+  },
+  "seed_refresh_04_05_08": {
+   "fable": 0,
+   "opus": 2,
+   "sonnet": 2
   }
  },
  "budget_caps_3x": {
@@ -185,7 +190,7 @@
   "used_this_session": 350,
   "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart); cap 1500 confirmed live 2026-09-25 (search after 200 succeeded); pilot miners used 149"
  },
- "next_action": "Paused by the user at H0 (2026-09-25). On resume: confirm with the user that the full S3 run should start, then python3 tools/pipe.py args s3 -> launch .claude/workflows/s3-ideate.js (T1 ideators and T1/T3/T4/T8/T9 dossiers skip as complete).",
+ "next_action": "H0: seeds refreshed; waiting for the user to confirm the full S3 run. On yes: python3 tools/pipe.py args s3 -> launch .claude/workflows/s3-ideate.js (T1 ideators and T1/T3/T4/T8/T9 dossiers skip as complete).",
  "pilot": {
   "run_id": "wf_974f6d69-e8a",
   "subagent_tokens": 1515946,
@@ -204,5 +209,17 @@
   "stop_threshold_tokens": 9800000,
   "projection_basis": "remaining S3 = 4 more dossiers (0.8 x pilot pain+lead share) + 32 ideators (8 x pilot ideator share) + seed lane (~4 ideator-round equivalents) ~ 3.2 x pilot",
   "user_answer": "Pause here (2026-09-25): stop after the pilot; resume later"
+ },
+ "seed_refresh": {
+  "date": "2026-09-25",
+  "run_id": "wf_aceb012c-134",
+  "seeds": [
+   "seed-04",
+   "seed-05",
+   "seed-08"
+  ],
+  "why": "user (via another session) fleshed out these inputs after S2 ran; [+] lines are Claude additions made at the user request, seed-08 audience line is the user own",
+  "result": "seed cards re-normalized with [+] provenance in ## Seed card only; decomposed with web search (seed-04 adjacent-exists, seed-05 direct-competitor, seed-08 adjacent-exists); pool rebuilt, 100 atoms",
+  "note": "the edits were swept into commit 848b1c0 by git add -A; commits now stage explicit paths only"
  }
 }

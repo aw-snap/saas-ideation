@@ -15,3 +15,4 @@
 2026-09-25 | pilot | done: 32/32 agents, 0 failed; 72 cards from 4 T1 ideators (18 each), dossiers T1 T3 T4 T8 T9; 1.52M subagent tokens, 16 min, 149 searches; full S3 projected ~4.9M | outputs/s3-ideate briefs/s3
 2026-09-25 | pilot | H0: waiting for user to confirm the full run | state/manifest.json
 2026-09-25 | pilot | H0 answer: user chose "Pause here"; pipeline paused before full S3 | state/manifest.json
+2026-09-25 | s2_seeds | refresh: seeds 04/05/08 revised by the user after S2 (edits had been swept into 848b1c0); re-normalized, re-decomposed with search, pool rebuilt (100 atoms); 4 calls, 118k tokens | outputs/s2-seeds outputs/s3-ideate/seed-lane

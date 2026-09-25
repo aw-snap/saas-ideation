@@ -2,43 +2,33 @@
 
 ## Atoms
 
-**Audience**
-- A-seed-08-aud-1: People who record narrated screen content, tutorials, demos, or lectures with on-screen pointing. `[inferred]`
-- A-seed-08-aud-2: Prosumer creators, educators, or corporate trainers whose speech is monotone or filler-heavy. `[inferred]` gap, unstated by group.
-
-**Pain**
-- A-seed-08-pain-1: Monotone, filler-heavy, or hard-to-follow speech is unpleasant to listen to and hard to understand.
-
-**Mechanism**
-- A-seed-08-mech-1: Audio in, audio out: mostly the same audio, regenerated with more expressive, less monotone delivery.
-- A-seed-08-mech-2: Filler words ("ummm," "ahhhh") are replaced with clean pauses while every word stays at its original time position.
-- A-seed-08-mech-3: Accent can be kept or changed; later version takes text as extra context to steer content, not just delivery.
-
-**Enabling tech**
-- A-seed-08-tech-1: Audio-to-audio (speech-to-speech) generative models with control over prosody and word-level timing. `[inferred]`
-
-**Business model**
-- A-seed-08-biz-1: Not stated; no pricing, buyer, or unit specified. `[inferred]` gap.
-
-**Demo moment**
-- A-seed-08-demo-1: Play a monotone, filler-filled clip, then the same clip perfectly in sync, sounding lively. `[inferred]`
-
-**Core insight**
-- A-seed-08-insight-1: Keep the words and their timing, change only the delivery, so the enhanced track is a drop-in replacement for the original. `[inferred]`
+- A-seed-08-aud-1: Universities, for recorded lectures and course videos, with lecturers opting in per recording.
+- A-seed-08-aud-2: Students, either watching lectures or enhancing their own recorded presentations.
+- A-seed-08-pain-1: Monotone or filler-heavy lecture audio is unpleasant and hard to learn from.
+- A-seed-08-pain-2: Re-recording takes lecturers hours; manually cutting "ums" breaks sync with slides or screen recordings.
+- A-seed-08-mech-1: Audio-to-audio: takes spoken audio, returns the same words more expressively, monotone to enjoyable.
+- A-seed-08-mech-2: Replaces filler sounds ("umm", "ahhh") with clean pauses while keeping or changing accent.
+- A-seed-08-mech-3: Holds every word's original time position so output drops straight onto the source video without re-syncing.
+- A-seed-08-mech-4: Per-section expressiveness slider, original audio always one click away; starts as upload-and-download, live later.
+- A-seed-08-tech-1: Expressive speech-to-speech / voice-conversion model with word-level timing alignment. `[inferred]`, untested whether current models hold timing while changing emotion.
+- A-seed-08-biz-1: Department or campus licence for universities; low-cost student subscription.
+- A-seed-08-biz-2: API that lecture-capture platforms can embed.
+- A-seed-08-demo-1: Monotone, "um"-filled lecture clip with slides, then the same clip re-audio'd, in sync and lively.
+- A-seed-08-insight-1: The words are fine; only delivery is the problem, so re-performing speech with more life while holding word timing fixes it without re-recording or re-editing video. `[inferred]`
 
 ## Prior art
 
-Live web search was unavailable this session (quota exhausted before any query returned results), so this check draws on prior general knowledge rather than a fresh search, and is weaker than usual.
+- ElevenLabs Speech to Speech (Voice Changer) — converts recorded voice to another voice while preserving the original performance: timing, pacing, pauses and emotion carry over; optional style exaggeration for more expressiveness. https://elevenlabs.io/blog/speech-to-speech
+- Descript — automatically detects and removes filler words ("um", "uh") from audio/video via transcript editing, explicitly used for lecture/screen-recording cleanup. https://www.descript.com/tools/remove-filler-from-audio
+- Adobe Podcast Enhance Speech — cleans up noise/quality in recorded speech; filler-word removal is still an open feature request, not shipped. https://www.buildfastwithai.com/ai-tools/adobe-podcast, https://community.adobe.com/announcements-513/enhance-speech-v2-update-1498639
+- Sanas — real-time accent conversion for speech `[unverified, not searched directly; named in the seed's own open questions]`.
 
-- ElevenLabs offers a "Speech to Speech" feature (elevenlabs.io) that converts a source recording's voice/delivery while keeping content, aimed at voice/style conversion; it is not specifically marketed as a monotone-to-expressive, filler-to-pause, word-timing-locked enhancer, but the underlying mechanism (audio-to-audio regeneration) is close. Verdict component: **adjacent-exists**.
-- Descript's "Studio Sound" and Adobe Podcast's "Enhance Speech" clean up noise/room acoustics from a recording but do not change delivery expressiveness or remove filler words with emotion control; different mechanism, same broad "make my recording sound better" niche. Verdict component: **adjacent-exists**.
-- Sanas (sanas.ai) does real-time accent conversion for call-center speech, keeping words while changing delivery/accent live — close to the "accent can be kept or changed" atom, though for a different audience (contact centers, not screen-recording creators) and without the emotion/filler/word-timing feature set. Verdict component: **adjacent-exists**.
-- Overall verdict: **adjacent-exists** — no single recalled product does monotone-to-expressive plus filler-to-pause plus word-level timing lock together, but each piece (voice conversion, noise/quality cleanup, real-time accent conversion) has an existing adjacent product; unverified this session whether a combined product already exists.
+**Verdict: adjacent-exists.** ElevenLabs Speech-to-Speech already preserves timing/pacing while allowing expressiveness/voice changes, and Descript already strips filler words with lecture use cases explicitly named — but no single found product combines timing-locked re-expression (monotone-to-lively) with filler-to-pause replacement in one lecture-sync pass; the seed's specific bundle looks unclaimed even though its parts exist separately.
 
 ## Weakest points
 
-- Prior-art check is unverified this session; the combination is plausible but each individual capability (voice conversion, accent conversion, audio cleanup) already ships elsewhere, raising fragmentation/differentiation risk.
-- No confirmation that current speech-to-speech models can hold strict word-level timing while also inserting emotion and swapping fillers for pauses — this is flagged as an open technical assumption in the seed itself.
-- Voice-cloning/deepfake consent risk, especially for accent-changing, is unaddressed, and business model/buyer are entirely unstated.
+- The core technical bet — holding word-level timing while re-performing emotion — is explicitly untested by the group, and ElevenLabs' existing timing-preserving voice conversion suggests competitors are close to this already.
+- Descript already solves filler-removal-with-lecture-sync via transcript editing, which may satisfy much of the pain without needing an expressive re-performance model at all.
+- No evidence yet that monotone delivery measurably hurts learning, nor that universities have a budget owner (teaching-and-learning vs. accessibility vs. media services) willing to buy this.
 
 <!-- COMPLETE -->
