@@ -1,0 +1,48 @@
+### Balanced #3: Screen Agent Drafts Session Notes (I-4501), overall #5, tier B
+
+- **Lineage / cell:** ai-native; prosumer\|local-private\|balanced; T9. [Card](../archive/ideas/I-4501.md)
+  - Gate D (D.1) pairs it with I-2061 (#1) and recommends merging the two: ground the note first, then let this idea's screen agent type it into the EHR.
+  - No competitor was found for the GUI-agent half.
+- **One-liner:** A local model transcribes therapy sessions, then a screen agent types the note directly into the desktop EHR.
+- **Niche:** Solo therapists with a 25–30 client caseload who draft SOAP notes in legacy desktop clinical-documentation software that has no export API.
+- **Pain and evidence:**
+  - Therapists spend 10–20 hours a week on documentation, and 60–70% of them document outside work hours ([T9 dossier](../outputs/s3-ideate/pain/T9-dossier.md), P6; the dossier calls this a colour source).
+  - Incumbent scribes fabricate session content (T9 P7), so every note still has to be re-read.
+  - With a desktop EHR, the therapist also has to re-type the note by hand.
+- **How it works:**
+  - A local speech model transcribes the session offline, and a local language model drafts the SOAP note.
+  - A local GUI-agent model then opens the desktop EHR and types in each field directly, because the software has no API.
+  - The clinician reviews the note before it is saved.
+- **Tech unlock:**
+  - Open-weight GUI-grounding models such as UI-TARS (TC-05, open weights, "moving toward production") click and type in desktop apps locally.
+  - UI-TARS runs alongside on-device speech and language models, so there is no cloud call ([s5-planner-04](../outputs/s5-reality/feasibility/s5-planner-04.md)).
+- **Prior art:**
+  - Quick verdict: adjacent-exists ([s5-hunter-04](../outputs/s5-reality/prior-art/s5-hunter-04.md)). Deep verdict: adjacent-exists ([s8-hunter-09](../outputs/s8-final/prior-art-deep/s8-hunter-09.md)).
+  - Cloud scribes push notes only into browser-based EHRs:
+    - [Freed AI](https://www.getfreed.ai/) with one click.
+    - [Upheal](https://www.upheal.io/ai-clinical-notes/ai-progress-notes/ai-soap-notes) through a browser extension.
+    - [SOAP Note Buddy](https://chromewebstore.google.com/detail/soap-note-buddy-ai-scribe/ejedinkdbbimibapobjeodkocaeokepj), found by the quick hunt, the same way.
+  - Fully local drafting exists, but it ends in a file the clinician copies by hand: [offline-medical-scribe](https://github.com/harishkotra/offline-medical-scribe) and the [Local AI Master therapist guide](https://localaimaster.com/blog/local-ai-therapists).
+  - No local GUI agent was found that types into a legacy desktop EHR with no API.
+- **Pricing:**
+  - A monthly subscription per clinician, priced below cloud AI scribes. The card gives no figure.
+  - For reference, the T9 dossier puts the incumbents Mentalyc and Upheal at $19.99–$119.99 a month.
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - A team-built mock desktop EHR with a stable layout: a patient list and a SOAP note form.
+    - Local STT on a recorded mock session, using Kyutai STT (TC-31) or Mistral Voxtral (TC-32). gpt-oss-20b drafts the SOAP note.
+    - UI-TARS opens the mock EHR, finds the patient and types in each field, with the cursor visible on screen.
+    - A confirmation overlay where the clinician approves each field before it is written. The agent never clicks save by itself. This is the red team's fix.
+    - Wi-Fi is off for the whole demo.
+    - Following Gate D, I-2061's timestamp flagging runs first, so only grounded text gets typed in.
+  - **Out of scope:** Typing into a real legacy EHR. The [S5 audit](../outputs/s5-reality/feasibility/s5-planner-04.md) says UI-TARS-class grounding on an arbitrary real EHR is not yet reliable. That makes it an unproven capability, not just a matter of build effort.
+  - Feasibility is `risky` for that reason only. The transcribe-and-draft half is solid.
+- **Demo moment:** Play a mock session and watch the cursor open the EHR and fill in the note fields by itself, with Wi-Fi disabled throughout.
+- **Red team's best objection (serious):** Cloud scribes already push notes into browser EHRs, which leaves legacy desktop EHRs as the only gap. GUI-grounding accuracy on exact clinical-record fields is unproven. A click into the wrong patient's field would be a safety and liability incident, not a UX bug. ([s8-redteam-01](../outputs/s8-final/red-team/s8-redteam-01.md))
+  - **Fix:** Until GUI-grounding accuracy has been measured independently on real EHR screens, require the clinician to confirm each field before any write to the EHR. Never auto-submit.
+- **Scores:** 6 · 8 · 8 · 7 · 6 · 8 · 4 · 7.
+  - Judge totals [70.5, 70.0, 68.3], median 70.0, spread 2.2.
+  - Elo 1245.7 → 1261.8, consistency 62, feasibility risky.
+  - It was polarizing in round 2 alone (50%). The merged consistency figure clears the flag (Gate D A.4).
+
+<!-- COMPLETE -->

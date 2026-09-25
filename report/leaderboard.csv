@@ -1,0 +1,31 @@
+rank,track,id,name,elo,rubric,tier,consistency,polarizing,coverage_badge,lineage,prior_art_verdict
+1,balanced,I-2061,Grounded Notes With Timestamp Citations,1281.9,70.0,B,88,false,true,ai-native,adjacent-exists
+2,balanced,I-4546,72-Hour Appeal Sprint,1281.1,73.9,B,88,false,true,ai-native,adjacent-exists
+3,novel,I-4051,DMS Ransomware Shadow Continuity,1267.4,74.5,B,88,false,true,ai-native,adjacent-exists
+4,novel,I-2052,Bounty Passport,1262.9,69.2,B,100,false,true,ai-native,adjacent-exists
+5,balanced,I-4501,Screen Agent Drafts Session Notes,1261.8,70.0,B,62,false,false,ai-native,adjacent-exists
+6,balanced,I-6001,Continuous authorised social-engineering testing,1253.8,66.3,B,62,false,true,seed-original,adjacent-exists (S5 quick: direct-competitor)
+7,novel,I-3093,Privileged Cite Bench,1247.0,66.9,B,75,false,false,seed-atom-hybrid,adjacent-exists
+8,balanced,I-2559,90-Day Reinstatement Filer,1241.3,69.0,B,75,false,false,ai-native,adjacent-exists
+9,novel,I-5101,Linked Call-and-Statement Alert,1223.6,67.3,B,75,false,true,ai-native,adjacent-exists
+10,balanced,I-4005,POA Packet Builder,1222.1,66.3,B,88,false,true,ai-native,adjacent-exists
+11,novel,I-2550,Medicaid Renewal Mail Guardian,1209.5,65.3,B,75,false,true,ai-native,adjacent-exists
+12,novel,I-2067,AI Voice-Clone Scam Call Guardian,1289.5,64.5,below-bar (borderline),100,false,true,ai-native,adjacent-exists
+13,novel,I-1001,Independent Completion Witness,1276.4,61.9,below-bar,86,false,true,ai-native,adjacent-exists
+14,novel,I-4525,Callback Verifier for Vendor Payments,1274.1,64.2,below-bar (borderline),100,false,true,ai-native,adjacent-exists
+15,novel,I-3529,Screen-Side Cite Bailiff,1269.7,62.2,below-bar,88,false,true,ai-native,adjacent-exists
+16,balanced,I-1508,Stop the Wire Before It Sends,1259.4,62.9,below-bar,100,false,true,ai-native,adjacent-exists (S5 quick: direct-competitor)
+17,balanced,I-3088,Vendor Hold-Queue Call Agent,1258.7,61.9,below-bar,78,false,true,ai-native,adjacent-exists
+18,balanced,I-2519,The Compliance Portal Copilot,1255.6,59.0,below-bar,100,false,true,ai-native,adjacent-exists
+19,balanced,I-1534,PA Phone Call Copilot,1252.7,62.2,below-bar,75,false,true,ai-native,adjacent-exists
+20,balanced,I-1022,Rejection-Proof Renewal Filer,1250.0,61.4,below-bar,62,false,true,ai-native,adjacent-exists
+21,balanced,I-1516,Console-Checked Cyber Insurance Answers,1244.6,64.9,below-bar (borderline),88,false,true,ai-native,adjacent-exists
+22,novel,I-1564,"Draft From Case Files, Offline",1244.5,64.6,below-bar (borderline),88,false,false,ai-native,adjacent-exists
+23,novel,I-2053,Summary Reweigh Desk,1244.2,64.4,below-bar (borderline),75,false,true,ai-native,adjacent-exists
+24,novel,I-4511,Proof Receipts for Proxy Agents,1243.9,57.9,below-bar,100,false,true,seed-atom-hybrid,adjacent-exists
+25,novel,I-2547,Multi-Institution Proxy Agent,1232.7,62.6,below-bar,88,false,true,ai-native,adjacent-exists
+26,novel,I-3095,On-Prem Exploit Bench,1228.1,64.1,below-bar (borderline),88,false,true,ai-native,adjacent-exists
+27,novel,I-1063,Rate-Con Learned From One Build,1225.3,52.7,below-bar,100,false,true,ai-native,adjacent-exists
+28,balanced,I-5203,Scope Gate for Your Own Agent,1215.6,55.6,below-bar,100,false,true,ai-native,adjacent-exists
+29,balanced,I-5207,Matter-Billed Agent Run Meter,1214.2,59.2,below-bar,100,false,true,ai-native,adjacent-exists
+30,balanced,I-3541,Lay of the Land,1208.8,59.5,below-bar,88,false,false,seed-original,adjacent-exists

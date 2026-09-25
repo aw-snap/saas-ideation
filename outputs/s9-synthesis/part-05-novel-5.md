@@ -1,0 +1,44 @@
+### Novel #5: Medicaid Renewal Mail Guardian (I-2550), overall #11, tier B
+
+- **Lineage / cell:** ai-native; B2C\|extractor\|novel; T8. It is one of the nine top-30 ideas in the T8 elder-proxy cluster (Gate D D.6). [Card](../archive/ideas/I-2550.md)
+- **One-liner:** Catches a parent's Medicaid renewal packet the day it arrives, before the 30-day clock lapses.
+- **Niche:** Adult children whose parent's Medicaid renewal mail goes to the parent's address, not theirs.
+- **Pain and evidence:**
+  - 69% of Medicaid unwinding disenrollments were procedural rather than eligibility-based (September 2024) ([CBPP](https://www.cbpp.org/research/health/unwinding-watch-tracking-medicaid-coverage-as-pandemic-protections-end)).
+  - Long-term-care recipients typically get 30 days to answer a renewal packet, and it is often mailed to the parent rather than the proxy ([Medicaid.gov](https://www.medicaid.gov/sites/default/files/2023-12/considerations-for-procedural-termination-strategies.pdf); [T8 dossier](../outputs/s3-ideate/pain/T8-dossier.md), P1).
+- **How it works:**
+  - The agent reads a photo of the parent's mail, or a forwarded scan.
+  - It picks renewal packets out of the junk mail, extracts the deadline and the list of required documents, and pre-fills the response from information the family has already stored in the app.
+  - Gate D (C.3) adds [USPS Informed Delivery](https://faq.usps.com/s/article/Informed-Delivery-The-Basics) as the trigger. This free daily email shows grayscale images of the address side of up to 10 incoming letters. The adult child therefore learns on the day it arrives that an envelope from the state agency has come.
+  - Informed Delivery shows envelopes only, so someone still has to photograph or scan the contents.
+- **Tech unlock:** Mistral OCR 3 (TC-30) costs under a cent per page, so reading every piece of a parent's mail is affordable. The S5 audit lists it as production ([s5-planner-05](../outputs/s5-reality/feasibility/s5-planner-05.md)).
+- **Prior art:**
+  - Quick verdict: adjacent-exists ([s5-hunter-11](../outputs/s5-reality/prior-art/s5-hunter-11.md)). Deep verdict: adjacent-exists ([s8-hunter-03](../outputs/s8-final/prior-art-deep/s8-hunter-03.md)).
+  - Virtual mailboxes OCR-scan mail, but only after it is redirected to their facility: [PostScan Mail](https://apps.apple.com/us/app/postscan-mail/id1276114355), [Earth Class Mail](https://apps.apple.com/us/app/earth-class-mail-mailbox-scan/id1484077329) and [Anytime Mailbox](https://anytimemailbox.com). None of them spots renewal packets, reads deadlines or pre-fills a response.
+  - The quick hunt found only a generic OCR reminder app, [RenewalKit](https://apps.apple.com/us/app/remind-me-with-ocr-renewalkit/id6758590671).
+  - Two nearby products knocked out other ideas in S5 ([survivors.md](../outputs/s5-reality/survivors.md)). Neither I-2550 hunt assessed them.
+    - [Sortbox](https://sortyourbox.com) reads a photo of a letter and states what is owed and when. It knocked out I-4549.
+    - [HeyMedicaid](https://heymedicaid.med/) reads photographed documents, auto-fills the application and handles renewal reminders. It knocked out I-4032 and I-4545.
+  - HeyMedicaid overlaps I-2550's pre-fill step. What I-2550 still has on its own is catching the packet at the parent's address on the day it arrives.
+- **Pricing:** $12 a month per enrolled parent, bundled with mail-forwarding partners.
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - An inbox that takes the parent's Informed Delivery email, forwarded to the app. It flags envelopes from the state Medicaid agency and alerts the adult child.
+    - Upload of a photo or scan of the opened packet. Mistral OCR 3 classifies it as a renewal packet or junk, then extracts the deadline and the list of required documents.
+    - A family profile (income, address, household) that pre-fills the response form. Each pre-filled answer is shown beside the stored field it came from.
+    - A "due in N days, needs X" push to the adult child, with a countdown.
+  - **Out of scope:**
+    - Deals with mail-forwarding partners. These are business agreements, not build tasks.
+    - Filing the renewal in a state portal. I-2559 and I-1022 cover that step, and so does HeyMedicaid.
+    - Packet formats beyond the one or two sample types that the [S5 audit](../outputs/s5-reality/feasibility/s5-planner-05.md) scopes for the demo.
+  - The core AI loop (classify, then extract) runs for real, as the Novel track requires. Feasibility is `yes`.
+- **Demo moment:** Photograph a sample renewal packet. The agent returns "due in 22 days, needs proof of income."
+- **Red team's best objection (manageable):** The idea depends on the parent, not the tech-savvy adult child, photographing their own mail. That weakens onboarding for the group least likely to take up a new app. ([s8-redteam-03](../outputs/s8-final/red-team/s8-redteam-03.md))
+  - **Fix:** Partner with mail-forwarding services, so that the mail reaches the child's scanner automatically.
+  - Gate D (C.3) says Informed Delivery answers the objection for detection, because the child sees the envelope without the parent doing anything. Someone still has to open and photograph the packet.
+- **Scores:** 6 · 7 · 8 · 6 · 8 · 6 · 3 · 7.
+  - Judge totals [65.3, 62.8, 65.3], median 65.3, spread 2.5. That clears the bar by 0.3.
+  - Elo 1186.4 → 1209.5. It is the lowest-Elo novel pick, 15th of the 15 eligible novel ideas (Gate D A.1).
+  - Consistency 75, feasibility yes.
+
+<!-- COMPLETE -->

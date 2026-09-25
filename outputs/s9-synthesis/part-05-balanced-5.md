@@ -1,0 +1,48 @@
+### Balanced #5: 90-Day Reinstatement Filer (I-2559), overall #8, tier B
+
+- **Lineage / cell:** ai-native; B2C\|screen-agent\|balanced; T8. [Card](../archive/ideas/I-2559.md)
+  - Gate D (D.2) calls it the weaker twin of I-4546 on every signal. It has the same buyer and cell, and the same loop: photograph the notice, OCR it, file in the portal, confirm.
+  - Unlike I-4546, it has no coverage badge.
+  - Present it as a feature of I-4546's product, and demo I-4546.
+- **One-liner:** Uploads a Medicaid termination notice and files the reinstatement request in the state portal before signup finishes.
+- **Niche:** Families whose parent has already lost long-term-care Medicaid over paperwork, and who are racing a 90-day reinstatement window most people don't know exists.
+- **Pain and evidence:**
+  - 69% of unwinding disenrollments were procedural rather than eligibility-based ([CBPP](https://www.cbpp.org/research/health/unwinding-watch-tracking-medicaid-coverage-as-pandemic-protections-end); [T8 dossier](../outputs/s3-ideate/pain/T8-dossier.md), P1).
+  - The dossier lists reinstatement within 90 days as a workaround available in some states.
+  - The card says the path is "only available in some states". Gate D notes that the federal reconsideration-period rule for procedural terminations may make it broader `[unverified]`. Fact-check this before the pitch.
+- **How it works:**
+  - The proxy photographs the termination notice at signup.
+  - The agent reads the case number and termination date, and checks the state's reinstatement rule.
+  - It fills in the state portal's reinstatement request with the extracted case data and submits it.
+  - It returns a tracking number before onboarding ends.
+- **Tech unlock:** Mistral OCR 3 (TC-30) extracts the case number from the notice. Skyvern (TC-07) files the state reinstatement form, which has no API ([s5-planner-06](../outputs/s5-reality/feasibility/s5-planner-06.md)). I-4546 uses the same stack.
+- **Prior art:**
+  - Quick verdict: clear ([s5-hunter-12](../outputs/s5-reality/prior-art/s5-hunter-12.md)). That hunt found only government and legal pages explaining the reinstatement rule.
+  - Deep verdict: adjacent-exists ([s8-hunter-04](../outputs/s8-final/prior-art-deep/s8-hunter-04.md)).
+  - [Fortuna Health](https://www.ycombinator.com/companies/fortuna-health) (YC, "TurboTax for Medicaid") serves the same consumer niche of families dropped from Medicaid over paperwork. It focuses on renewal and enrollment guidance.
+  - [Skyvern](https://www.skyvern.com/blog/medicaid-enrollment-automation/) fills state Medicaid portals from case data. It is sold to caseworkers and organizations for new applications.
+  - S5 knocked out two neighbouring ideas because automated Medicaid portal filing is already live ([survivors.md](../outputs/s5-reality/survivors.md), [s5-hunter-11](../outputs/s5-reality/prior-art/s5-hunter-11.md), [s5-hunter-12](../outputs/s5-reality/prior-art/s5-hunter-12.md)):
+    - I-4032, cut on Skyvern and [Droidal](https://droidal.com/enrollment-ai-agent/), which fill and submit Medicaid applications.
+    - I-4545, cut on [HeyMedicaid](https://heymedicaid.med/), which auto-fills renewals and sends reminders.
+  - Reinstatement after a termination is the part no one was found filing.
+- **Pricing:** $49 per filing, refunded if the state has no reinstatement path.
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - Upload of a sample termination notice. Mistral OCR 3 extracts the case number and termination date.
+    - A small rules table for one or two demo states. It answers two questions: is a reinstatement path open, and how many days are left in the window?
+    - Skyvern fills and submits the reinstatement request in a team-built mock state portal, and returns a tracking number.
+    - A refund branch for when the state has no reinstatement path.
+    - If it is demoed inside I-4546's product, as Gate D suggests, one upload screen sends a termination notice here and a denial letter to the appeal flow.
+  - **Out of scope:**
+    - Real state Medicaid portals. They can't be accessed or tested in 48 h ([S5 audit](../outputs/s5-reality/feasibility/s5-planner-06.md)), and real filing raises portal terms and MFA issues (Gate D B.5).
+    - A rules table for all 50 states.
+  - Feasibility is `yes` against the mock portal.
+- **Demo moment:** A photographed termination letter yields a case number and then a filed reinstatement confirmation, both within one minute.
+- **Red team's best objection (serious):** Fortuna Health already serves families dropped from Medicaid over paperwork, and Skyvern already files state portal forms that have no API. The idea recombines the mechanisms of two live products for a narrow moment: a family that has already lost coverage, is inside the 90-day window, and lives in a state with a reinstatement path. ([s8-redteam-04](../outputs/s8-final/red-team/s8-redteam-04.md))
+  - **Fix:** Partner with or sell into Fortuna Health's funnel instead of competing for the same point where consumers discover the product. Own only the reinstatement step.
+- **Scores:** 6 · 7 · 8 · 7 · 6 · 8 · 4 · 7.
+  - Judge totals [71.7, 60.0, 69.0], median 69.0, spread 11.7.
+  - This is the second-widest spread in the set, so Gate D (A.3) treats the band placement as soft. The mean of 66.9 still clears 65.
+  - Elo 1217.7 → 1241.3, 11th of the 15 eligible balanced ideas by Elo. Consistency 75, feasibility yes.
+
+<!-- COMPLETE -->

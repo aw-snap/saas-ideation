@@ -1,6 +1,6 @@
 {
-  "pipeline": "running",
-  "current_stage": "s9_report",
+  "pipeline": "done",
+  "current_stage": "done",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -21,8 +21,8 @@
     "s6_tourn_r2": "done",
     "s8_final": "done",
     "gate_D": "done",
-    "s9_report": "pending",
-    "human_rerank": "pending"
+    "s9_report": "done",
+    "human_rerank": "passed without user input (awaiting user pick in report/FINAL_PICK.md)"
   },
   "tasks": {
     "s1-cartographer-screen-work-briefs": "done",
@@ -287,7 +287,7 @@
   },
   "agent_calls": {
     "fable": 7,
-    "opus": 40,
+    "opus": 51,
     "sonnet": 261
   },
   "claude_version": "2.1.280",
@@ -378,6 +378,9 @@
     },
     "gate_D": {
       "fable": 2
+    },
+    "s9_report": {
+      "opus": 11
     }
   },
   "budget_caps_3x": {
@@ -467,7 +470,7 @@
     "used": 725,
     "count_note": "2026-09-26: +20 (aborted S5 launch) +195 (S5) +48 (S7) counted from agent transcripts; ~780 left for S8"
   },
-  "next_action": "S5 running: .claude/workflows/s5-reality.js over 162 survivors -> S6 r1 -> H1 (auto-pass) -> Gate C -> S7 -> S6 r2 -> S8 -> Gate D -> S9 -> H2 (auto) -> website",
+  "next_action": "Done. Awaiting the user's pick of 3 from the top 15 (report/FINAL_PICK.md).",
   "pilot": {
     "run_id": "wf_974f6d69-e8a",
     "subagent_tokens": 1515946,
@@ -779,5 +782,36 @@
     ],
     "scorecards_file": "outputs/s8-final/scorecards.json (script return)",
     "deviation": "Only 11 of 60 finalists reached 65 (tier B; none A/S). Applying 'drop below 65' literally leaves 11 ideas, short of the ~30 the brief and the user's website need. report/scorecards.json ranks the top 30 as the best 15 non-knocked-out ideas per track by round-2 Elo, ordered by rubric band (B first, then below 65), then Elo; the 19 below-65 ideas are ranked but flagged below_bar and must be labelled so in the report. Tier thresholds were not changed."
+  },
+  "s9": {
+    "run": "wf_cc07e6ac-42c",
+    "notes": "S9 script now takes args.notes (primary-session context: final top 30 section, 65-bar deviation, Gate D carry-over, seed notes)",
+    "attempt1": {
+      "run": "wf_cc07e6ac-42c",
+      "tokens": 327331,
+      "result": "leaderboard.csv written; REPORT.md Write refused by the harness guard 'Subagents should return findings as text, not write report files'; the draft was truncated mid-section-5 (classifier stop). Sections 1-4 plus the first 2 full cards were kept as outputs/s9-synthesis/part-00-sections-1-to-5-novel-2.md"
+    },
+    "attempt2": {
+      "run": "wf_65d7b122-ea3",
+      "mode": "parts: 6 synthesis-editor agents write outputs/s9-synthesis/part-*.md; I-6001/seed-09 and I-5101 isolated with framing notes; the primary session concatenates into report/REPORT.md",
+      "result": "5 of 6 part agents stopped at the session usage limit; part-05-novel-4 and part-07-stats complete (novel-4 finished writing before its agent stopped)",
+      "tokens": 1089949
+    },
+    "attempt3": {
+      "run": "wf_6b6e41c2-8ac",
+      "tokens": 852997,
+      "result": "4/4 parts complete"
+    },
+    "assembled": "report/REPORT.md concatenated by the primary session from outputs/s9-synthesis/part-*.md (13 parts, 134.7k chars); report/leaderboard.csv from attempt 1 (30 rows, top30 order); checks: report top-30 order == scorecards top30 == leaderboard.csv, names match cards"
+  },
+  "h2": {
+    "date": "2026-09-26",
+    "status": "passed without user input (user autonomy brief)",
+    "file": "report/FINAL_PICK.md lists the top 15 as 'awaiting user pick'; no final 3 chosen"
+  },
+  "website": {
+    "file": "website/index.html",
+    "source": "built from website-mockup/index.html (untouched): 30 cards in REPORT.md order, text from REPORT.md and archive cards, one demo per concept (I-4546 'Concrete example', I-2052 'Abstract example')",
+    "verified": "headless Chromium (Playwright core + /usr/bin/chromium): all 30 demos reach their result state at 1280 and 390 px; no console errors; no horizontal scroll; touch targets >= 44 px; focus ring #3f65b8 >= 3:1 on white/peach/tint"
   }
 }

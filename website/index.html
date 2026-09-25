@@ -1,0 +1,1539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Concepts</title>
+<style>
+  /* Pastel palette. Every text/background pair is >= 4.5:1; borders and the focus ring are >= 3:1. */
+  :root {
+    --ink: #2d2a26;
+    --muted: #75594a;
+    --card: #fdf3ea;         /* faded peach */
+    --card-line: #f3e0d0;
+    --panel-line: #f0dccb;
+    --tint: #fdf6f0;
+    --field-line: #a3856f;   /* input borders need 3:1 on white */
+    --focus: #3f65b8;        /* 3:1 on white, peach and tint */
+
+    --blue-bg: #dce8fc;  --blue-hover: #c9dbfa;  --blue-line: #a9c3f2;  --blue-ink: #1f3f7a;
+    --green-bg: #d9f1e3; --green-line: #b2dfc3;  --green-ink: #1d5e3a;  --green-dot: #3f9e6a;
+    --lav-bg: #ebe5f8;   --lav-ink: #4a3a78;
+    --amber-bg: #fdebcc; --amber-ink: #7a4608;
+    --red-bg: #fbdcdc;   --red-ink: #8c2323;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 780px; margin: 0 auto; padding: 56px 16px 80px; }
+  h1 { font-size: 34px; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 12px; }
+  h2 { font-size: 25px; line-height: 1.25; letter-spacing: -.01em; margin: 0 0 10px; }
+  h3 { font-size: 16px; line-height: 1.4; margin: 0 0 4px; }
+  p { margin: 0 0 10px; }
+  p, dd { text-wrap: pretty; }
+  h1, h2, h3 { text-wrap: balance; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 60ch; margin-bottom: 44px; }
+
+  /* ---- card ---- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  .tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .rank { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+  .tag { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+  .tag.balanced { background: var(--blue-bg); color: var(--blue-ink); }
+  .tag.novel { background: var(--green-bg); color: var(--green-ink); }
+  .tag.kind { background: var(--lav-bg); color: var(--lav-ink); }
+  .oneliner { font-size: 18.5px; line-height: 1.55; max-width: 60ch; margin-bottom: 24px; }
+
+  /* label/value rows, separated by hairlines so each fact reads as one unit */
+  dl { display: grid; grid-template-columns: 164px 1fr; margin: 0 0 28px; border-top: 1px solid var(--card-line); }
+  dt, dd { margin: 0; padding: 14px 0; border-bottom: 1px solid var(--card-line); }
+  dt { font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding-top: 17px; }
+  dd { padding-right: 8px; max-width: 60ch; }
+
+  /* ---- demo panel ---- */
+  .demo { background: #fff; border: 1px solid var(--panel-line); border-radius: 12px; padding: 24px; }
+  .hint { font-size: 14.5px; color: var(--muted); max-width: 60ch; }
+  .controls { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin: 14px 0 4px; }
+  .controls label, .field-label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+
+  button, select, input { font: inherit; }
+  button {
+    background: var(--blue-bg); color: var(--blue-ink);
+    border: 1px solid var(--blue-line); border-radius: 10px;
+    padding: 10px 18px; min-height: 44px; cursor: pointer; font-weight: 600;
+    transition: background .15s;
+  }
+  button:hover { background: var(--blue-hover); }
+  button:active { transform: translateY(1px); }
+  button:disabled { opacity: .55; cursor: default; }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  select, input[type=number] { padding: 10px 12px; min-height: 44px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); max-width: 100%; }
+  input[type=number] { width: 8.5em; }
+  input[type=range] { width: 100%; min-height: 44px; accent-color: var(--focus); }
+  .check { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15.5px; cursor: pointer; }
+  .check input { width: 22px; height: 22px; margin: 0; accent-color: var(--focus); }
+
+  .steps { list-style: none; padding: 0; margin: 16px 0 8px; font-size: 15px; }
+  .steps:empty { display: none; }
+  .steps li { padding: 3px 0 3px 26px; position: relative; color: var(--muted); }
+  .steps li::before { content: ""; position: absolute; left: 4px; top: 10px; width: 11px; height: 11px; border-radius: 50%; background: var(--panel-line); }
+  .steps li.done { color: var(--ink); }
+  .steps li.done::before { background: var(--green-dot); }
+
+  .box { background: var(--tint); border-radius: 10px; padding: 16px 18px; margin-top: 12px; font-size: 16px; }
+  .box:empty { display: none; }
+  .box p:last-child { margin-bottom: 0; }
+
+  /* status chips always carry a word or symbol, never colour alone */
+  .chip { display: inline-block; padding: 3px 12px; border-radius: 999px; font-weight: 700; font-size: 14.5px; }
+  .chip.green { background: var(--green-bg); color: var(--green-ink); }
+  .chip.amber { background: var(--amber-bg); color: var(--amber-ink); }
+  .chip.red { background: var(--red-bg); color: var(--red-ink); }
+  .chip.blue { background: var(--blue-bg); color: var(--blue-ink); }
+  .chip.lav { background: var(--lav-bg); color: var(--lav-ink); }
+  .chip.grey { background: var(--tint); color: var(--muted); border: 1px solid var(--panel-line); }
+
+  /* shared demo parts */
+  .pane { background: var(--tint); border: 1px solid var(--panel-line); border-radius: 10px; padding: 14px 16px; font-size: 15.5px; margin-top: 14px; }
+  .pane-title { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .split > .pane { margin-top: 14px; }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 12px; }
+  .tbl th, .tbl td { text-align: left; padding: 8px 8px 8px 0; border-bottom: 1px solid var(--panel-line); vertical-align: top; }
+  .tbl th { font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .tbl-wrap { overflow-x: auto; }
+  .meter { height: 12px; background: var(--tint); border: 1px solid var(--panel-line); border-radius: 999px; overflow: hidden; margin: 6px 0; }
+  .meter > span { display: block; height: 100%; width: 0; background: var(--blue-line); transition: width .4s; }
+  .meter.warn > span { background: #e7b56d; }
+  .meter.bad > span { background: #e59b9b; }
+  .meter.ok > span { background: var(--green-line); }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 14px; }
+  .sent { cursor: pointer; border-radius: 6px; padding: 1px 3px; }
+  .sent:hover { background: var(--blue-bg); }
+  .mark-ok { border-bottom: 2px solid var(--green-dot); }
+  .mark-bad { background: var(--red-bg); color: var(--red-ink); border-radius: 4px; padding: 0 3px; }
+  .hl { background: var(--amber-bg); color: var(--amber-ink); border-radius: 4px; padding: 0 3px; }
+  .bubble { background: var(--tint); border: 1px solid var(--panel-line); border-radius: 12px; padding: 8px 12px; margin: 6px 0; font-size: 15.5px; max-width: 46ch; }
+  .bubble.them { margin-left: auto; background: var(--blue-bg); border-color: var(--blue-line); color: var(--blue-ink); }
+  .who { font-weight: 700; font-size: 13.5px; display: block; }
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 15px; }
+  .kv b { color: var(--muted); font-weight: 600; }
+  .stack > * + * { margin-top: 8px; }
+  .row-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .big-num { font-size: 28px; font-weight: 700; line-height: 1.2; }
+  .svgbox { display: block; width: 100%; max-width: 460px; margin: 14px 0 4px; background: var(--tint); border-radius: 10px; }
+  .svgbox text { font: 11px system-ui, sans-serif; fill: var(--muted); }
+  .locked { background: var(--tint); color: var(--muted); border-color: var(--panel-line); }
+
+  .pick { display: block; width: 100%; text-align: left; background: #fff; color: var(--ink); border-color: var(--panel-line); font-weight: 500; }
+  .pick:hover { background: var(--tint); }
+  .stages { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 16px 0 6px; font-size: 14.5px; }
+  .stages li { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--panel-line); color: var(--muted); background: var(--tint); }
+  .stages li.done { background: var(--green-bg); border-color: var(--green-line); color: var(--green-ink); font-weight: 700; }
+  .stages li.done::before { content: "✓ "; }
+  .window { border: 1px solid var(--field-line); border-radius: 10px; overflow: hidden; margin-top: 14px; }
+  .window-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; background: var(--tint); border-bottom: 1px solid var(--panel-line); padding: 8px 12px; font-size: 14px; font-weight: 600; }
+  .window-body { padding: 12px; }
+  .efield { margin-bottom: 10px; }
+  .efield:last-child { margin-bottom: 0; }
+  .evalue { min-height: 40px; border: 1px solid var(--field-line); border-radius: 8px; padding: 8px 10px; font-size: 15px; background: #fff; }
+  .efield.active .evalue { outline: 3px solid var(--focus); outline-offset: 1px; }
+  .efield.active .field-label::after { content: " ← agent typing"; color: var(--blue-ink); font-weight: 600; }
+
+  .mail, .checks { list-style: none; padding: 0; margin: 12px 0 0; font-size: 15.5px; }
+  .mail li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--panel-line); }
+  .checks li { padding: 4px 0; }
+
+  .qgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 12px; }
+  .qgrid select { width: 100%; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+  .redact { background: var(--ink); color: var(--ink); border-radius: 3px; }
+
+  .cats { border: 0; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .cats legend { padding: 0; }
+
+  @media (max-width: 600px) {
+    main { padding-top: 36px; }
+    h1 { font-size: 28px; }
+    .card { padding: 20px; border-radius: 14px; }
+    .demo { padding: 18px; }
+    dl { grid-template-columns: 1fr; }
+    dt { border-bottom: 0; padding: 14px 0 2px; }
+    dd { padding-top: 0; padding-right: 0; }
+    .controls, .controls > div, select { width: 100%; }
+    .controls button { width: 100%; }
+    .split { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Final concepts</h1>
+  <p class="lede">The 30 ranked concepts from the ideation run, in report order. Each card shows who the idea helps, the problem it tackles and why it's promising, with a small demo of the core moment.</p>
+
+  <article class="card" id="I-2061">
+    <div class="tags"><span class="rank">#1</span><span class="tag balanced">Balanced</span></div>
+    <h2>Grounded Notes With Timestamp Citations</h2>
+    <p class="oneliner">Drafts SOAP notes from session audio <strong>entirely on-device</strong>, flagging any sentence it can't trace back to the recording.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Solo therapists</strong> with a 25–30 client caseload who write their notes after hours.</dd>
+      <dt>Problem</dt><dd>Therapists spend <strong>10–20 hours a week on documentation</strong>, mostly off the clock. Existing AI scribes can invent session content, so every note still needs checking.</dd>
+      <dt>Why promising</dt><dd>Every claim in the note is <strong>tagged with the moment in the recording it came from</strong>, and anything untagged is highlighted to verify or delete. Open-weight models now run the drafting on a 16 GB laptop, so nothing leaves the device.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: trace every sentence of a drafted note</h3>
+      <p class="hint">Draft the note from a recorded session, then pick any sentence to see the moment it came from.</p>
+      <div class="controls"><button id="gn-go">Draft the note on this laptop</button></div>
+      <div class="pane" id="gn-note" hidden>
+        <p class="pane-title">SOAP note draft · pick a sentence</p>
+        <div class="stack" id="gn-sents"></div>
+      </div>
+      <div class="pane" id="gn-trans" hidden>
+        <p class="pane-title">Session transcript</p>
+        <div class="stack" id="gn-lines"></div>
+      </div>
+      <div class="box" id="gn-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-4546">
+    <div class="tags"><span class="rank">#2</span><span class="tag balanced">Balanced</span><span class="tag kind">Concrete example</span></div>
+    <h2>72-Hour Appeal Sprint</h2>
+    <p class="oneliner">Turns a Medicare Advantage denial letter into a <strong>filed, tracked appeal</strong> inside the plan's own portal, within the expedited window.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Family members</strong> who just got a prior-authorization denial for a parent's skilled-nursing stay or home care, and have <strong>72 hours to act</strong>.</dd>
+      <dt>Problem</dt><dd>In 2024, 4.1M of 52.8M Medicare Advantage prior-auth requests were denied, and <strong>only 11.5% were appealed</strong>, yet 80.7% of appeals win. Denials land mid-crisis, when nobody has time to fight them.</dd>
+      <dt>Why promising</dt><dd>The agent reads the letter, drafts an appeal citing the plan's own coverage rules, files it in the portal and <strong>revisits the status page to confirm a real filing ID</strong>. It has the highest rubric score in the Balanced track.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: turn a denial letter into a filed appeal</h3>
+      <p class="hint">Input: a photo of a Medicare Advantage denial letter. The expedited window is 72 hours.</p>
+      <div class="controls">
+        <div>
+          <label for="as-letter">Denial letter</label>
+          <select id="as-letter">
+            <option value="snf">Skilled-nursing stay denied</option>
+            <option value="home">Home health visits denied</option>
+          </select>
+        </div>
+        <button id="as-go">Start the appeal</button>
+      </div>
+      <ol class="stages" id="as-stages" aria-label="Appeal progress">
+        <li>Read letter</li><li>Draft appeal</li><li>File in portal</li><li>Confirm filing</li>
+      </ol>
+      <p class="hint" id="as-clock">Time left in the window: 72 h 00 m</p>
+      <div class="box" id="as-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-4051">
+    <div class="tags"><span class="rank">#3</span><span class="tag novel">Novel</span></div>
+    <h2>DMS Ransomware Shadow Continuity</h2>
+    <p class="oneliner">A screen agent continuously <strong>mirrors your locked-in dealer system</strong>, so a ransomware outage never stops the sales floor.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>General managers and IT leads at <strong>multi-rooftop auto dealer groups</strong> running CDK or Reynolds dealer-management systems.</dd>
+      <dt>Problem</dt><dd>CDK's June 2024 ransomware outage <strong>put deals back on paper for two weeks</strong> and cost dealers over $1B collectively. The system of record is a single point of failure.</dd>
+      <dt>Why promising</dt><dd>A computer-use agent logs in each shift the way staff do and <strong>keeps a queryable shadow copy</strong>, so staff keep working through an outage. It has the highest rubric score of all 60 finalists.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: keep selling when the dealer system goes down</h3>
+      <p class="hint">Look something up, then simulate a ransomware outage and look it up again.</p>
+      <div class="kv" style="margin-top:12px"><b>Dealer system</b><span id="dms-state"><span class="chip green">● Online</span></span><b>Shadow copy</b><span><span class="chip blue">Synced 06:00 today</span></span></div>
+      <div class="controls">
+        <div>
+          <label for="dms-q">Look up</label>
+          <select id="dms-q">
+            <option value="stock">Stock #A1027 · 2024 SUV</option>
+            <option value="deal">Deal #5512 · trade-in pending</option>
+            <option value="ro">Repair order #8830</option>
+          </select>
+        </div>
+        <button id="dms-look">Look up</button>
+        <button id="dms-kill" aria-pressed="false">Simulate outage</button>
+      </div>
+      <div class="box" id="dms-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2052">
+    <div class="tags"><span class="rank">#4</span><span class="tag novel">Novel</span><span class="tag kind">Abstract example</span></div>
+    <h2>Bounty Passport</h2>
+    <p class="oneliner">Vulnerability-report agents <strong>stake a refundable bond</strong> on each submission; fake reports forfeit it, and real ones earn a bonus.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Bug-bounty programs</strong> buried in AI-generated reports, and the AI agents that submit reports for researchers and need to be trusted at scale.</dd>
+      <dt>Problem</dt><dd>One company received 1,390 reports in the first half of 2026, and <strong>about 70% were rejected</strong> before reproduction. Programs are being priced out of triaging the flood.</dd>
+      <dt>Why promising</dt><dd>x402 micropayments let a program <strong>bond an agent per request with no signup</strong>, and an automated reproduction check settles the stake. It's the only idea in the final 30 whose customer is an AI agent.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: watch two report-writing agents stake a bond</h3>
+      <p class="hint">Each agent posts a refundable $5 bond with its report. Reproduction decides who gets it back.</p>
+      <div class="tbl-wrap">
+        <table class="tbl" aria-label="Bond ledger">
+          <thead><tr><th scope="col">Agent</th><th scope="col">Report</th><th scope="col">Bond</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><td>Agent A</td><td>Login bypass on /reset</td><td id="bp-a">not posted</td><td id="bp-ra">—</td></tr>
+            <tr><td>Agent B</td><td>Overflow in a function the code doesn't contain</td><td id="bp-b">not posted</td><td id="bp-rb">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="controls"><button id="bp-post">1. Post bonds and submit</button><button id="bp-run" disabled>2. Run reproduction checks</button></div>
+      <div class="box" id="bp-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-4501">
+    <div class="tags"><span class="rank">#5</span><span class="tag balanced">Balanced</span></div>
+    <h2>Screen Agent Drafts Session Notes</h2>
+    <p class="oneliner">A local model transcribes therapy sessions, then <strong>a screen agent types the note</strong> straight into the desktop EHR.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Solo therapists using <strong>legacy desktop documentation software with no export API</strong>.</dd>
+      <dt>Problem</dt><dd>Therapists spend 10–20 hours a week on documentation, <strong>60–70% of it after hours</strong>, and every AI-drafted note still has to be re-entered by hand in the desktop EHR.</dd>
+      <dt>Why promising</dt><dd>Open-weight GUI models like UI-TARS now <strong>click and type in desktop apps locally</strong>, so transcription, drafting and data entry all run with no cloud call. The clinician reviews before saving.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: let a local screen agent fill the desktop EHR</h3>
+      <p class="hint">The session is already transcribed and drafted on this laptop. The EHR has no API, so the agent types into it like a person.</p>
+      <div class="window" aria-label="Mock desktop EHR window">
+        <div class="window-bar"><span>ClinicNotes Desktop · Session note</span><span class="chip grey" id="ehr-net">Wi-Fi off · 0 cloud calls</span></div>
+        <div class="window-body" id="ehr-fields">
+          <div class="efield"><span class="field-label">Subjective</span><div class="evalue" id="ehr-s"></div></div>
+          <div class="efield"><span class="field-label">Objective</span><div class="evalue" id="ehr-o"></div></div>
+          <div class="efield"><span class="field-label">Assessment</span><div class="evalue" id="ehr-a"></div></div>
+          <div class="efield"><span class="field-label">Plan</span><div class="evalue" id="ehr-p"></div></div>
+        </div>
+      </div>
+      <div class="controls"><button id="ehr-go">Type the note into the EHR</button><button id="ehr-save" disabled>Review done: save</button></div>
+      <div class="box" id="ehr-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-6001">
+    <div class="tags"><span class="rank">#6</span><span class="tag balanced">Balanced</span></div>
+    <h2>Continuous authorised social-engineering testing</h2>
+    <p class="oneliner"><strong>Authorised</strong> social-engineering tests of company staff and AI agents, <strong>run weekly</strong>, with a fix and a retest for every failure.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Security teams and IT leads at mid-sized companies</strong> that use copilots or customer-facing AI agents. Pentest firms and managed security providers could white-label it.</dd>
+      <dt>Problem</dt><dd>Attackers use AI to make phishing, texts and cloned-voice calls cheap and convincing, and <strong>deployed AI agents can be talked into refunds or leaks</strong>. Existing tests are manual annual pentests or generic templates.</dd>
+      <dt>Why promising</dt><dd>The client <strong>signs off targets, channels and hard limits</strong> before anything runs. Each failure gets a short lesson or guardrail fix and an <strong>automatic retest</strong>, so testing is continuous, not yearly.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: run an authorised test against a sample support bot</h3>
+      <p class="hint">The client has signed off on the target, the channel and the hard limits. Run the test, fix what fails, then retest.</p>
+      <div class="pane">
+        <p class="pane-title">Signed-off scope</p>
+        <div class="kv"><b>Target</b><span>Sample customer-support chatbot (staging copy)</span><b>Channel</b><span>Chat only</span><b>Hard limits</b><span>No real customers, no real payments</span></div>
+      </div>
+      <div class="controls"><button id="se-run">Run 200 test conversations</button><button id="se-fix" disabled>Apply the guardrail fix</button><button id="se-retest" disabled>Retest</button></div>
+      <p class="field-label" id="se-label">Conversations run: 0 of 200</p>
+      <div class="meter" aria-hidden="true"><span id="se-bar"></span></div>
+      <div class="box" id="se-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-3093">
+    <div class="tags"><span class="rank">#7</span><span class="tag novel">Novel</span></div>
+    <h2>Privileged Cite Bench</h2>
+    <p class="oneliner">Checks every citation in a brief against real case text <strong>on the lawyer's own laptop</strong>; nothing leaves the machine.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Solo and small-firm litigators</strong> drafting motions, who can't risk a fabricated-citation sanction or a privilege waiver.</dd>
+      <dt>Problem</dt><dd>Fabricated citations cost one firm $59,500. A federal ruling also held that AI-drafted material sent to a cloud tool was not privileged, so <strong>a cloud cite-checker recreates the same exposure</strong>.</dd>
+      <dt>Why promising</dt><dd>A local open-weight model checks each citation's holding and quote against a cached case-law corpus, and <strong>shows the real opinion text</strong> next to anything it can't confirm. gpt-oss-20b fits a 16 GB laptop.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: check a brief's citations with the network off</h3>
+      <p class="hint">A draft motion with four citations. The case-law corpus is cached on this laptop.</p>
+      <div class="kv" style="margin-top:12px"><b>Network</b><span><span class="chip grey">✕ Offline</span></span><b>Brief</b><span>Motion to dismiss, draft 3</span></div>
+      <div class="controls"><button id="cb-go">Check every citation</button></div>
+      <div class="tbl-wrap">
+        <table class="tbl" aria-label="Citation results">
+          <thead><tr><th scope="col">Citation in the brief</th><th scope="col">Result</th></tr></thead>
+          <tbody id="cb-rows"></tbody>
+        </table>
+      </div>
+      <div class="box" id="cb-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2559">
+    <div class="tags"><span class="rank">#8</span><span class="tag balanced">Balanced</span></div>
+    <h2>90-Day Reinstatement Filer</h2>
+    <p class="oneliner">Upload a Medicaid termination notice and it <strong>files the reinstatement request</strong> in the state portal before signup finishes.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Families whose parent <strong>lost long-term-care Medicaid over paperwork</strong>, racing a 90-day reinstatement window most people don't know exists.</dd>
+      <dt>Problem</dt><dd><strong>69% of unwinding disenrollments were procedural</strong>, not eligibility-based. Reinstatement is only available in some states within 90 days, and few families learn about it in time.</dd>
+      <dt>Why promising</dt><dd>OCR reads the case number and termination date, the agent checks the state's rule, then <strong>fills and submits the state form</strong> and returns a tracking number, all inside a minute.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: file a reinstatement inside the 90-day window</h3>
+      <p class="hint">Photograph the termination notice at signup. The agent reads it and files the state's reinstatement request.</p>
+      <div class="controls">
+        <div>
+          <label for="rf-notice">Termination notice</label>
+          <select id="rf-notice">
+            <option value="41">Ended for missing paperwork · 41 days ago</option>
+            <option value="83">Ended for missing paperwork · 83 days ago</option>
+          </select>
+        </div>
+        <div>
+          <label for="rf-state">State</label>
+          <select id="rf-state">
+            <option value="yes">State A (has a reinstatement path)</option>
+            <option value="no">State B (no reinstatement path)</option>
+          </select>
+        </div>
+        <button id="rf-go">Read notice and file</button>
+      </div>
+      <p class="field-label" id="rf-label">90-day window: not checked yet</p>
+      <div class="meter" aria-hidden="true"><span id="rf-bar"></span></div>
+      <div class="box" id="rf-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-5101">
+    <div class="tags"><span class="rank">#9</span><span class="tag novel">Novel</span></div>
+    <h2>Linked Call-and-Statement Alert</h2>
+    <p class="oneliner">One on-device model <strong>links a suspicious call to a new payee or transfer</strong> within hours, not weeks.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children and paid proxies protecting a parent's phone and bank statements, who <strong>won't send call audio or account data to the cloud</strong>.</dd>
+      <dt>Problem</dt><dd>Elder fraud losses hit $4.9B in 2024, usually discovered weeks late. A scam call and a same-day new payee are two separate signals that <strong>nobody links until the money is gone</strong>.</dd>
+      <dt>Why promising</dt><dd>Checking both signals together on the parent's own device turns two weak warnings into <strong>one high-confidence alert</strong>, and no call audio or statement ever reaches a server.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: link two weak signals into one alert</h3>
+      <p class="hint">Everything runs on the parent's own phone. Load either signal, or both, and change how far apart they are.</p>
+      <div class="row-btns"><button id="la-call" aria-pressed="false">Add: flagged incoming call</button><button id="la-stmt" aria-pressed="false">Add: new payee on statement</button></div>
+      <div style="margin-top:14px">
+        <label class="field-label" for="la-gap">Hours between the call and the transfer: <span id="la-gap-val">3</span></label>
+        <input type="range" id="la-gap" min="1" max="72" value="3">
+      </div>
+      <div class="split">
+        <div class="pane"><p class="pane-title">Call signal</p><p id="la-c">Not loaded</p></div>
+        <div class="pane"><p class="pane-title">Statement signal</p><p id="la-s">Not loaded</p></div>
+      </div>
+      <div class="box" id="la-out" aria-live="polite"><p>No signals yet.</p></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-4005">
+    <div class="tags"><span class="rank">#10</span><span class="tag balanced">Balanced</span></div>
+    <h2>POA Packet Builder</h2>
+    <p class="oneliner">Converts a parent's power of attorney into <strong>the exact form each bank demands</strong>, before it gets rejected.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children and paid proxies who hold a <strong>valid power of attorney</strong> but get turned away for using the wrong bank form.</dd>
+      <dt>Problem</dt><dd>Banks demand their own POA form or a physician letter. <strong>One 94-year-old went seven months without her pension</strong> over this.</dd>
+      <dt>Why promising</dt><dd>Upload the signed POA once. The tool reads the granted powers, <strong>pre-fills each bank's own certification form</strong>, flags missing notarization and drafts a statute-citing letter if a branch still refuses.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: turn one POA into each bank's own form</h3>
+      <p class="hint">Upload the signed power of attorney once, then pick a bank.</p>
+      <div class="controls">
+        <button id="pp-up">Upload signed POA (PDF)</button>
+        <div>
+          <label for="pp-bank">Bank</label>
+          <select id="pp-bank" disabled>
+            <option value="a">Harbor National Bank</option>
+            <option value="b">Prairie Credit Union</option>
+            <option value="c">Summit Savings</option>
+          </select>
+        </div>
+      </div>
+      <div class="pane" id="pp-powers" hidden><p class="pane-title">Powers found in the POA</p><div id="pp-list" class="stack"></div></div>
+      <div class="pane" id="pp-form" hidden><p class="pane-title" id="pp-title">Bank form</p><div class="kv" id="pp-fields"></div></div>
+      <div class="row-btns"><button id="pp-refuse" disabled>Branch still refuses?</button></div>
+      <div class="box" id="pp-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2550">
+    <div class="tags"><span class="rank">#11</span><span class="tag novel">Novel</span></div>
+    <h2>Medicaid Renewal Mail Guardian</h2>
+    <p class="oneliner">Catches a parent's Medicaid renewal packet <strong>the day it arrives</strong>, before the 30-day clock runs out.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children whose parent's <strong>renewal mail goes to the parent's address</strong>, not theirs.</dd>
+      <dt>Problem</dt><dd><strong>69% of 2024 disenrollments were procedural</strong>, not eligibility-based, and long-term-care recipients usually get only 30 days to answer a mailed renewal packet.</dd>
+      <dt>Why promising</dt><dd>The agent reads a photo or scan of the parent's mail, <strong>picks the renewal packet out of the pile</strong>, extracts the deadline and required documents, and pre-fills the response. Cheap OCR makes scanning every piece affordable.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: find the renewal packet in a parent's mail</h3>
+      <p class="hint">Today's mail at the parent's address, photographed or forwarded as a scan.</p>
+      <ul class="mail" id="mg-list" aria-label="Today's mail"></ul>
+      <div class="controls"><button id="mg-go">Sort today's mail</button></div>
+      <div class="box" id="mg-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2067">
+    <div class="tags"><span class="rank">#12</span><span class="tag novel">Novel</span></div>
+    <h2>AI Voice-Clone Scam Call Guardian</h2>
+    <p class="oneliner">An on-device agent listens live and <strong>flags AI-cloned grandchild-in-trouble scam calls</strong> before money moves.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children and paid proxies protecting an <strong>aging parent</strong> from real-time phone scams, including AI voice-cloned impersonation.</dd>
+      <dt>Problem</dt><dd>Elder scam losses hit $4.885B in 2024, found only weeks or months later. Families have <strong>no way to check a caller's claims while the call is still happening</strong>.</dd>
+      <dt>Why promising</dt><dd>The call is transcribed on the phone and checked against known scam patterns and <strong>the family's own facts</strong>, and the proxy is warned before any money is sent. It has the highest Elo in the whole tournament.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: watch a live call get checked on the phone</h3>
+      <p class="hint">The call is transcribed on the parent's phone and checked against known scam patterns and the family's own facts. No audio leaves the phone.</p>
+      <div class="controls"><button id="vg-go">Start the sample call</button></div>
+      <div class="split">
+        <div class="pane"><p class="pane-title">Warning signs heard</p><ul class="checks" id="vg-signs"></ul></div>
+        <div class="pane"><p class="pane-title">Risk</p><p class="big-num" id="vg-risk">—</p><div class="meter" aria-hidden="true"><span id="vg-bar"></span></div><p class="hint" id="vg-fact"></p></div>
+      </div>
+      <div class="box" id="vg-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1001">
+    <div class="tags"><span class="rank">#13</span><span class="tag novel">Novel</span></div>
+    <h2>Independent Completion Witness</h2>
+    <p class="oneliner">A verifier agent <strong>confirms another agent's task truly finished</strong>, checked against the real end-state.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Operations teams running <strong>fleets of browser agents</strong> on claims and portal automation, who need proof of completion, not a self-report.</dd>
+      <dt>Problem</dt><dd><strong>False completion claims are 45–48% of production agent failures</strong>, and LLM judges catch false success at an AUROC of only 0.65.</dd>
+      <dt>Why promising</dt><dd>A second, independent agent <strong>re-navigates the same target</strong> and issues a signed pass or fail that downstream systems and payers can trust.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: check an agent's “done” against the real portal</h3>
+      <p class="hint">A browser agent says it filed a claim form. A second, independent agent goes back and checks.</p>
+      <div class="controls">
+        <div>
+          <label for="cw-case">Run to check</label>
+          <select id="cw-case"><option value="false">Run 1182 · says “submitted”</option><option value="true">Run 1183 · says “submitted”</option></select>
+        </div>
+        <button id="cw-go">Send the witness</button>
+      </div>
+      <div class="split">
+        <div class="pane"><p class="pane-title">What the agent claimed</p><p id="cw-claim">Pick a run.</p></div>
+        <div class="pane"><p class="pane-title">What the witness found</p><ol class="steps" id="cw-steps"></ol></div>
+      </div>
+      <div class="box" id="cw-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-4525">
+    <div class="tags"><span class="rank">#14</span><span class="tag novel">Novel</span></div>
+    <h2>Callback Verifier for Vendor Payments</h2>
+    <p class="oneliner">A voice agent <strong>calls the vendor's known number</strong> to confirm a bank-detail change before any payment moves.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>AP staff and owners at <strong>small firms</strong> whose only defense against payment-fraud emails is an inconsistent manual callback.</dd>
+      <dt>Problem</dt><dd>Vendor bank-detail fraud cost $2.9B in the US in 2023, averaging over $137k per incident, and the manual callback <strong>often doesn't happen</strong>.</dd>
+      <dt>Why promising</dt><dd>A realtime speech-to-speech API lets the agent <strong>place the verification call itself</strong>, speak with a real person, and release or block the payment.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: verify a bank-detail change with a callback</h3>
+      <p class="hint">A request to change a vendor's bank account arrives. The agent calls the number already on file, never a number from the request.</p>
+      <div class="kv" style="margin-top:12px"><b>Vendor</b><span>Northwind Supplies</span><b>Requested change</b><span>New account ending 4471</span><b>Number called</b><span>(555) 010-2231, on file since 2022</span></div>
+      <div class="controls">
+        <div>
+          <label for="cv-case">What the vendor says</label>
+          <select id="cv-case"><option value="no">We didn't change anything</option><option value="yes">Yes, we moved banks</option></select>
+        </div>
+        <button id="cv-go">Place the callback</button>
+      </div>
+      <div id="cv-call" aria-label="Call transcript"></div>
+      <div class="box" id="cv-out" aria-live="polite"><p>Payment of $18,400 is <strong>on hold</strong> until the callback.</p></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-3529">
+    <div class="tags"><span class="rank">#15</span><span class="tag novel">Novel</span></div>
+    <h2>Screen-Side Cite Bailiff</h2>
+    <p class="oneliner">Watches your open document, checks each citation in a browser itself, and <strong>locks e-filing until you clear every flag</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Solo and small-firm litigators drafting in Word or Google Docs and <strong>filing through court e-filing portals</strong>.</dd>
+      <dt>Problem</dt><dd>Fabricated citations still reach courts, and even <strong>paid legal AI hallucinates 17–43% of the time</strong>, so every brief needs an independent check.</dd>
+      <dt>Why promising</dt><dd>A computer-use agent reads the document on screen and searches each citation the way a clerk would, with no integration. <strong>The locked submit button</strong> is its real differentiator.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: e-filing stays locked until every citation is cleared</h3>
+      <p class="hint">Add a citation to the open draft. The agent searches it in a browser tab the way a clerk would.</p>
+      <div class="controls">
+        <div>
+          <label for="sb-cite">Add citation</label>
+          <select id="sb-cite">
+            <option value="ok">Alder v. Crane Mills (2014)</option>
+            <option value="bad">Harlan v. Brightwater Logistics (2021)</option>
+            <option value="bad2">Veld v. Osprey Marine (2020)</option>
+          </select>
+        </div>
+        <button id="sb-add">Add to draft</button>
+      </div>
+      <div class="pane"><p class="pane-title">Citations in the open document</p><div id="sb-list" class="stack"><p class="hint">None yet.</p></div></div>
+      <div class="row-btns"><button id="sb-file" class="locked" disabled>E-file: locked</button></div>
+      <div class="box" id="sb-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1508">
+    <div class="tags"><span class="rank">#16</span><span class="tag balanced">Balanced</span></div>
+    <h2>Stop the Wire Before It Sends</h2>
+    <p class="oneliner">Cross-checks every vendor bank-detail-change email <strong>against payment history</strong> before the transfer goes out.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Owners and bookkeepers at small firms who pay vendors by wire or ACH with <strong>no finance team</strong>.</dd>
+      <dt>Problem</dt><dd>A spoofed vendor email changed payee details and <strong>cost one small business about $180,000</strong>. These schemes cost $2.9B in the US in one year.</dd>
+      <dt>Why promising</dt><dd>The agent watches the inbox, compares the new account and sending pattern with the vendor's history, and <strong>holds the payment for a callback</strong> before the accounting software releases funds.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: hold a payment when the bank details look wrong</h3>
+      <p class="hint">The agent watches the inbox. Pick the email that changes a vendor's bank details.</p>
+      <div class="stack" id="sw-inbox" style="margin-top:12px"></div>
+      <div class="tbl-wrap"><table class="tbl" aria-label="Checks against payment history"><thead><tr><th scope="col">Check</th><th scope="col">Result</th></tr></thead><tbody id="sw-rows"></tbody></table></div>
+      <div class="box" id="sw-out" aria-live="polite"><p>Scheduled: <strong>$18,400 to Northwind Supplies</strong>, Friday.</p></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-3088">
+    <div class="tags"><span class="rank">#17</span><span class="tag balanced">Balanced</span></div>
+    <h2>Vendor Hold-Queue Call Agent</h2>
+    <p class="oneliner">Calls system-of-record support lines, sits on hold, and <strong>confirms the fix actually landed</strong> before closing the ticket.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Dental, vet and pharmacy office managers</strong> who depend on the Dentrix, Cornerstone or PioneerRx support desks.</dd>
+      <dt>Problem</dt><dd>Support leaves staff <strong>on hold for more than 30 minutes</strong>, and some have called and emailed for weeks while the practice's system stays broken.</dd>
+      <dt>Why promising</dt><dd>A hosted voice-agent stack makes it buildable by a small team now. The agent <strong>re-checks the real system state</strong> instead of trusting the vendor's word.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: hand the support call to an agent</h3>
+      <p class="hint">The practice-management system can't export claims. The agent calls the vendor, waits on hold, then checks the fix itself.</p>
+      <div class="controls">
+        <div>
+          <label for="hq-case">When the vendor says “fixed”</label>
+          <select id="hq-case"><option value="no">The fix didn't land</option><option value="yes">The fix really landed</option></select>
+        </div>
+        <button id="hq-go">Call support</button>
+      </div>
+      <div class="split">
+        <div class="pane"><p class="pane-title">Phone tree</p><ol class="stages" id="hq-tree"><li>Press 2: support</li><li>Press 3: software</li><li>Press 1: open ticket</li></ol></div>
+        <div class="pane"><p class="pane-title">On hold</p><p class="big-num mono" id="hq-timer">00:00</p><p class="hint">Staff time spent: 0 min</p></div>
+      </div>
+      <div class="box" id="hq-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2519">
+    <div class="tags"><span class="rank">#18</span><span class="tag balanced">Balanced</span></div>
+    <h2>The Compliance Portal Copilot</h2>
+    <p class="oneliner">A local-first agent <strong>drafts and files the yearly WISP, PTIN and insurer AI-attestation forms</strong> without touching client files.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Solo CPAs, EAs and small-firm lawyers who must file security plans and renewals <strong>with no admin staff</strong>.</dd>
+      <dt>Problem</dt><dd>Every e-filer must keep a <strong>15–20 page written security plan</strong> and certify it yearly, and malpractice carriers now attach AI-use riders. It all falls on someone with no staff to track deadlines.</dd>
+      <dt>Why promising</dt><dd>A local model drafts from a <strong>five-question interview</strong> using only firm-level facts. A browser agent then fills each portal in the user's own session and tracks renewal dates.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: answer five questions, get this year's filings done</h3>
+      <p class="hint">Only firm-level facts. No client names or files are used.</p>
+      <div class="qgrid">
+        <div><label class="field-label" for="cp-staff">People in the firm</label><select id="cp-staff"><option>Just me</option><option>2–5</option></select></div>
+        <div><label class="field-label" for="cp-efile">Do you e-file returns?</label><select id="cp-efile"><option>Yes</option><option>No</option></select></div>
+        <div><label class="field-label" for="cp-store">Where client files live</label><select id="cp-store"><option>Laptop + cloud backup</option><option>Laptop only</option></select></div>
+        <div><label class="field-label" for="cp-ai">Use AI tools on client work?</label><select id="cp-ai"><option>Yes</option><option>No</option></select></div>
+        <div><label class="field-label" for="cp-ins">Malpractice insurer asks about AI?</label><select id="cp-ins"><option>Yes</option><option>No</option></select></div>
+      </div>
+      <div class="controls"><button id="cp-go">Draft and file</button></div>
+      <div class="box" id="cp-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1534">
+    <div class="tags"><span class="rank">#19</span><span class="tag balanced">Balanced</span></div>
+    <h2>PA Phone Call Copilot</h2>
+    <p class="oneliner">Transcribes a live payer phone call and <strong>turns it straight into a submittable appeal file</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Practice staff and physicians stuck on <strong>peer-to-peer authorization calls</strong> with payer medical directors.</dd>
+      <dt>Problem</dt><dd>Staff spend <strong>20–30 minutes on the phone</strong> to get one MRI authorized, and peer-to-peer escalation is the slowest path when portals stall.</dd>
+      <dt>Why promising</dt><dd>Streaming speech recognition with about 500 ms delay makes every call cheap to capture. The file <strong>quotes exactly what the payer said</strong>, ready as proof if it's disputed later.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: turn a peer-to-peer call into a case file</h3>
+      <p class="hint">A mock prior-authorization call with the payer's medical director. Both sides hear the recording notice first.</p>
+      <div class="controls"><button id="pc-go">Play the call</button></div>
+      <div class="split">
+        <div class="pane"><p class="pane-title">Live transcript</p><div id="pc-trans" class="stack"></div></div>
+        <div class="pane"><p class="pane-title">Case file</p><div id="pc-file" class="stack"><p class="hint">Fills in as the call goes.</p></div></div>
+      </div>
+      <div class="box" id="pc-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1022">
+    <div class="tags"><span class="rank">#20</span><span class="tag balanced">Balanced</span></div>
+    <h2>Rejection-Proof Renewal Filer</h2>
+    <p class="oneliner">Checks a Medicaid renewal or Medicare appeal packet <strong>against known rejection patterns</strong> before the proxy submits it.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children and guardians filing a parent's paperwork, who <strong>can't afford a rejected attempt</strong>.</dd>
+      <dt>Problem</dt><dd><strong>69% of unwinding disenrollments were procedural</strong>, not ineligibility, and only 11.5% of denials get appealed inside the window.</dd>
+      <dt>Why promising</dt><dd>Rule checks catch a missing signature, a mismatched SSN format or a wrong form version <strong>before submission</strong>, with the sensitive fields checked on the device.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: catch rejection triggers before you submit</h3>
+      <p class="hint">A filled Medicaid renewal packet, checked against known rejection patterns. The sensitive fields are checked on this device.</p>
+      <div class="controls"><button id="rp-go">Check the packet</button></div>
+      <div id="rp-list" class="stack" style="margin-top:12px"></div>
+      <div class="box" id="rp-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1516">
+    <div class="tags"><span class="rank">#21</span><span class="tag balanced">Balanced</span></div>
+    <h2>Console-Checked Cyber Insurance Answers</h2>
+    <p class="oneliner">Logs into your actual admin consoles and answers the cyber-insurance questionnaire <strong>only with what's verifiably true</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Owners and office managers at <strong>5–50 person firms with no IT staff</strong>, renewing a cyber-insurance policy.</dd>
+      <dt>Problem</dt><dd>Insurers now ask 60–150 control questions, and an optimistic “yes” on MFA <strong>can void the policy</strong> after a claim.</dd>
+      <dt>Why promising</dt><dd>Working in the owner's logged-in browser, the agent checks each control in Microsoft 365, Google Admin and the endpoint console, and <strong>cites a screenshot for every answer</strong>.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: check questionnaire answers against the real consoles</h3>
+      <p class="hint">The owner's draft answers all say “yes”. The agent checks each one in the admin consoles, inside the owner's own session.</p>
+      <div class="tbl-wrap"><table class="tbl" aria-label="Insurance questionnaire"><thead><tr><th scope="col">Question</th><th scope="col">Answer</th><th scope="col">Evidence</th></tr></thead><tbody id="ci-rows"></tbody></table></div>
+      <div class="controls"><button id="ci-go">Check against the consoles</button></div>
+      <div class="box" id="ci-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1564">
+    <div class="tags"><span class="rank">#22</span><span class="tag novel">Novel</span></div>
+    <h2>Draft From Case Files, Offline</h2>
+    <p class="oneliner">An open-weight model drafts motions and letters from a lawyer's case files, <strong>entirely on their own laptop</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Solo and small-firm lawyers who <strong>paste case facts into consumer ChatGPT</strong> today, because enterprise AI is priced for big firms.</dd>
+      <dt>Problem</dt><dd>A federal ruling held that AI-drafted material was not privileged, yet the safe enterprise tools cost <strong>$428–$639 a month</strong>.</dd>
+      <dt>Why promising</dt><dd>gpt-oss-20b fits in 16 GB and runs on an ordinary laptop, so drafting happens <strong>with no network connection at all</strong>, in the firm's own templates.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: draft from the case folder with zero network traffic</h3>
+      <p class="hint">The model runs on this laptop. Pick what to draft from the files in the case folder.</p>
+      <div class="split">
+        <div class="pane"><p class="pane-title">Case folder</p><ul class="checks"><li>📄 Complaint.pdf</li><li>📄 Deposition excerpt.pdf</li><li>✉ Client emails (12)</li><li>📐 Firm template: motion</li></ul></div>
+        <div class="pane"><p class="pane-title">Network monitor</p><p class="big-num mono" id="do-bytes">0 B</p><p class="hint">sent during drafting</p></div>
+      </div>
+      <div class="controls">
+        <div><label for="do-type">Draft</label><select id="do-type"><option value="motion">Motion to compel discovery</option><option value="letter">Demand letter to opposing counsel</option></select></div>
+        <button id="do-go">Draft offline</button>
+      </div>
+      <div class="pane" id="do-draft" hidden><p class="pane-title" id="do-title">Draft</p><div id="do-text" class="stack"></div></div>
+      <div class="box" id="do-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2053">
+    <div class="tags"><span class="rank">#23</span><span class="tag novel">Novel</span></div>
+    <h2>Summary Reweigh Desk</h2>
+    <p class="oneliner">Loads the whole claim file beside the carrier's AI summary and <strong>highlights every sentence the source can't support</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Independent claims adjusters</strong> and small adjusting firms who must sign off on carrier-generated AI summaries.</dd>
+      <dt>Problem</dt><dd>Carrier AI can hallucinate or <strong>leave out details that change a payout</strong>, and the adjuster bears the brunt when it's wrong.</dd>
+      <dt>Why promising</dt><dd>A <strong>1M-token context</strong> holds the entire claim file and the summary together for one exhaustive check, with the contradicting page linked.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: reweigh a carrier's AI summary against the claim file</h3>
+      <p class="hint">The full file (medical records, police report, repair estimate) sits beside the summary in one pass.</p>
+      <div class="controls"><button id="sr-go">Reweigh the summary</button></div>
+      <div class="tbl-wrap"><table class="tbl" aria-label="Summary sentences"><thead><tr><th scope="col">Summary sentence</th><th scope="col">Source</th></tr></thead><tbody id="sr-rows"></tbody></table></div>
+      <div class="pane" id="sr-page" hidden><p class="pane-title" id="sr-page-title">Source page</p><p id="sr-page-text"></p></div>
+      <div class="box" id="sr-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-4511">
+    <div class="tags"><span class="rank">#24</span><span class="tag novel">Novel</span></div>
+    <h2>Proof Receipts for Proxy Agents</h2>
+    <p class="oneliner">Every agent action on a locked portal becomes <strong>a redacted, annotated proof receipt</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children and daily money managers acting as an aging parent's <strong>proxy across bank, Medicaid and Medicare portals</strong>.</dd>
+      <dt>Problem</dt><dd>Agents falsely claim success on <strong>45–48% of runs</strong>, and fiduciaries must prove every dollar was used and accounted for when audits arrive.</dd>
+      <dt>Why promising</dt><dd>After acting, the agent <strong>revisits the portal's own confirmation page</strong> and turns the capture into a clean receipt, filed in a running per-institution ledger.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: turn a raw portal screenshot into a proof receipt</h3>
+      <p class="hint">The agent just filed a Medicaid renewal and went back to the portal's own confirmation page.</p>
+      <div class="split">
+        <div class="pane"><p class="pane-title">Raw capture</p><p class="mono" id="pr-raw">State Medicaid Portal · Renewal received<br>Name: Ruth A. Keller · SSN 000-12-3456<br>Confirmation MR-88213 · 26 Sep 10:42<br>[menu] [ads] [chat widget]</p></div>
+        <div class="pane"><p class="pane-title">Receipt</p><div id="pr-rcpt"><p class="hint">Not made yet.</p></div></div>
+      </div>
+      <div class="controls"><button id="pr-go">Make the receipt</button></div>
+      <div class="tbl-wrap"><table class="tbl" aria-label="Proof ledger"><thead><tr><th scope="col">Institution</th><th scope="col">Action</th><th scope="col">Proof</th></tr></thead><tbody id="pr-ledger"><tr><td>Harbor National Bank</td><td>Bill pay set up</td><td>Receipt #1</td></tr></tbody></table></div>
+      <div class="box" id="pr-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-2547">
+    <div class="tags"><span class="rank">#25</span><span class="tag novel">Novel</span></div>
+    <h2>Multi-Institution Proxy Agent</h2>
+    <p class="oneliner">Logs into each of a parent's accounts as their proxy and <strong>reports back only what needs attention</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Adult children with delegated access who face <strong>MFA, login walls and status-check fatigue</strong> across bank and health portals.</dd>
+      <dt>Problem</dt><dd>Proxies report <strong>“wasting days trying to log in”</strong>, and secure-message replies just send them somewhere else.</dd>
+      <dt>Why promising</dt><dd>A browser agent working in the proxy's own session visits each portal weekly and compiles <strong>one plain-English digest</strong> instead of ten separate logins.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: one weekly check across every portal</h3>
+      <p class="hint">The agent uses the logins the proxy already has, with consent, inside the proxy's own browser.</p>
+      <div class="controls"><button id="mp-go">Check everything</button></div>
+      <div class="tiles" id="mp-tiles"></div>
+      <div class="box" id="mp-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-3095">
+    <div class="tags"><span class="rank">#26</span><span class="tag novel">Novel</span></div>
+    <h2>On-Prem Exploit Bench</h2>
+    <p class="oneliner">Reproduces AI-drafted vulnerability reports against proprietary code <strong>entirely inside the company's own network</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Internal security teams at regulated companies</strong> whose private bug-bounty programs can't send source code off-premises.</dd>
+      <dt>Problem</dt><dd>Bounty programs are flooded: Elastic received 1,390 reports in half a year, <strong>about 70% rejected</strong> before reproduction, at 30–60 analyst minutes each.</dd>
+      <dt>Why promising</dt><dd>An open-weight model <strong>reproduces each report in a disposable local container</strong> on the exact internal commit, and returns pass or fail with the run log.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: triage two bounty reports without leaving the network</h3>
+      <p class="hint">One report is real. The other names a function the code doesn't have. Both run against the exact internal commit.</p>
+      <div class="kv" style="margin-top:12px"><b>Runs on</b><span>Company server, open-weight model</span><b>Outbound connections</b><span id="eb-net"><span class="chip grey">0</span></span></div>
+      <div class="controls"><button id="eb-go">Reproduce both reports</button></div>
+      <div class="pane"><p class="pane-title">Container log</p><div class="mono stack" id="eb-log"><p class="hint">Idle.</p></div></div>
+      <div class="box" id="eb-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-1063">
+    <div class="tags"><span class="rank">#27</span><span class="tag novel">Novel</span></div>
+    <h2>Rate-Con Learned From One Build</h2>
+    <p class="oneliner">Build one rate confirmation by hand, and <strong>every future load on that lane drafts itself</strong>.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Billing staff at small freight brokers</strong> and carriers who build rate confirmations from templates for every load.</dd>
+      <dt>Problem</dt><dd>Staff open templates, copy details and fill in rates <strong>by hand on every load</strong>, so the work grows with volume.</dd>
+      <dt>Why promising</dt><dd>One worked example teaches the carrier's fields, rate structure and format, so <strong>the next load arrives as a ready-to-send draft</strong>.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: build one rate confirmation, then let the lane draft itself</h3>
+      <p class="hint">Step 1 teaches the lane's format from one example. Step 2 drafts the next load on that lane.</p>
+      <div class="pane"><p class="pane-title">Step 1 · your hand-built example (Dallas → Memphis, Redline Carriers)</p>
+        <div class="kv"><b>Rate</b><span>$2.45 per mile</span><b>Fuel surcharge</b><span>$0.38 per mile</span><b>Detention</b><span>$50/hr after 2 hrs</span><b>Terms</b><span>Net 30, quick-pay 2%</span></div>
+        <div class="row-btns"><button id="rc-teach">Save as this lane's example</button></div>
+      </div>
+      <div class="controls">
+        <div><label for="rc-load">Step 2 · next load</label><select id="rc-load" disabled><option value="452|38000">Load 4471 · 452 mi · 38,000 lb</option><option value="452|41500">Load 4480 · 452 mi · 41,500 lb</option></select></div>
+        <button id="rc-go" disabled>Draft the rate confirmation</button>
+      </div>
+      <div class="box" id="rc-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-5203">
+    <div class="tags"><span class="rank">#28</span><span class="tag balanced">Balanced</span></div>
+    <h2>Scope Gate for Your Own Agent</h2>
+    <p class="oneliner">A consumer's agent gets <strong>a scoped, expiring mandate</strong>, and a local gate blocks any action it doesn't cover.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Consumers who <strong>hand shopping, bookings or account tasks</strong> to their own personal agent.</dd>
+      <dt>Problem</dt><dd>Payment-mandate protocols authorize a transaction but not what led to it, so <strong>nothing stops a personal agent from acting outside its scope</strong>.</dd>
+      <dt>Why promising</dt><dd>The owner grants what, how much and until when. The gate <strong>checks every proposed action before it runs</strong> and holds anything out of scope for review.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: set a mandate, then watch the gate check each action</h3>
+      <p class="hint">Your personal agent has a plan for this week's errands. Change the mandate and run it again.</p>
+      <div class="controls">
+        <div><label for="sg-cap">Spend ceiling per purchase ($)</label><input type="number" id="sg-cap" value="300" min="0" step="10"></div>
+        <div><label for="sg-exp">Mandate expires</label><select id="sg-exp"><option>End of this week</option><option>Tomorrow</option></select></div>
+      </div>
+      <fieldset class="cats"><legend class="field-label">Allowed categories</legend>
+        <label class="check"><input type="checkbox" id="sg-travel" checked> Travel</label>
+        <label class="check"><input type="checkbox" id="sg-food" checked> Groceries</label>
+        <label class="check"><input type="checkbox" id="sg-subs"> Subscriptions</label>
+      </fieldset>
+      <div class="controls"><button id="sg-go">Run the agent's plan</button></div>
+      <div class="tbl-wrap"><table class="tbl" aria-label="Gate decisions"><thead><tr><th scope="col">Proposed action</th><th scope="col">Gate</th></tr></thead><tbody id="sg-rows"></tbody></table></div>
+      <div class="box" id="sg-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-5207">
+    <div class="tags"><span class="rank">#29</span><span class="tag balanced">Balanced</span></div>
+    <h2>Matter-Billed Agent Run Meter</h2>
+    <p class="oneliner">Caps a solo professional's agent-run spend and <strong>charges every run's cost to the client or matter</strong> it served.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Solo lawyers, accountants and consultants</strong> whose agents run browser tasks, paid APIs and model calls billed back to clients.</dd>
+      <dt>Problem</dt><dd>Agent run costs stack up per call with no shared budget view, so <strong>a retry loop can burn a day's billable margin</strong> before anyone notices.</dd>
+      <dt>Why promising</dt><dd>A proxy tags every paid run with a matter code, <strong>hard-caps spend per matter and per day</strong>, and rolls costs up into a rebillable report.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: let a runaway agent hit its matter cap</h3>
+      <p class="hint">Every paid run goes through the meter, tagged with a client matter. Matter 2231 has a $12 daily cap.</p>
+      <div class="controls">
+        <div><label for="rm-matter">Matter</label><select id="rm-matter"><option value="2231">2231 · Keller estate (cap $12/day)</option><option value="2240">2240 · Osei lease review (cap $30/day)</option></select></div>
+        <button id="rm-go">Start a retry loop</button>
+      </div>
+      <p class="field-label" id="rm-label">Spent today: $0.00</p>
+      <div class="meter" aria-hidden="true"><span id="rm-bar"></span></div>
+      <div class="tbl-wrap"><table class="tbl" aria-label="Cost by matter"><thead><tr><th scope="col">Matter</th><th scope="col">Runs</th><th scope="col">Rebillable cost</th></tr></thead><tbody id="rm-rows"></tbody></table></div>
+      <div class="box" id="rm-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="card" id="I-3541">
+    <div class="tags"><span class="rank">#30</span><span class="tag balanced">Balanced</span></div>
+    <h2>Lay of the Land</h2>
+    <p class="oneliner">A retiring farmer drives around talking, and AI turns the narration into <strong>confidence-tagged map layers</strong> successors can view in AR.</p>
+    <dl>
+      <dt>Who it helps</dt><dd><strong>Family farms in succession</strong>, plus vineyards, golf courses and rural estates.</dd>
+      <dt>Problem</dt><dd>Drain tiles, water lines and buried cable <strong>live only in a retiring farmer's head</strong>. Once that knowledge is gone, finding them means slow, invasive probing and trenching.</dd>
+      <dt>Why promising</dt><dd>Speech models and LLMs can now turn rambling narration into <strong>structured, geotagged records</strong>, and a voice agent asks follow-up questions later.</dd>
+    </dl>
+    <div class="demo">
+      <h3>Try it: turn a drive-around narration into map layers</h3>
+      <p class="hint">A retiring farmer drives the fields, talking. Play the drive, then point the phone at a paddock.</p>
+      <div class="controls"><button id="ll-go">Play the drive narration</button></div>
+      <svg class="svgbox" viewBox="0 0 320 200" role="img" aria-label="Farm map with three paddocks; layers appear as the narration plays">
+        <rect x="10" y="10" width="140" height="85" fill="#fff" stroke="#c9ab96"/><text x="16" y="24">North paddock</text>
+        <rect x="160" y="10" width="150" height="85" fill="#fff" stroke="#c9ab96"/><text x="166" y="24">Creek paddock</text>
+        <rect x="10" y="105" width="300" height="85" fill="#fff" stroke="#c9ab96"/><text x="16" y="119">South field</text>
+        <g id="ll-l1" opacity="0"><path d="M20 70 H140" stroke="#3f65b8" stroke-width="3" stroke-dasharray="8 5"/><text x="22" y="62">tile drain</text></g>
+        <g id="ll-l2" opacity="0"><path d="M170 80 C200 40, 260 60, 300 30" stroke="#1d5e3a" stroke-width="3" stroke-dasharray="2 4" fill="none"/><text x="220" y="44">water line</text></g>
+        <g id="ll-l3" opacity="0"><path d="M20 160 H300" stroke="#8c2323" stroke-width="3"/><text x="22" y="152">buried cable</text></g>
+      </svg>
+      <div id="ll-said" class="stack"></div>
+      <div class="controls">
+        <div><label for="ll-pad">Point the phone at</label><select id="ll-pad" disabled><option value="1">North paddock</option><option value="2">Creek paddock</option><option value="3">South field</option></select></div>
+        <button id="ll-ar" disabled>Show overlay</button>
+      </div>
+      <div class="box" id="ll-out" aria-live="polite"></div>
+    </div>
+  </article>
+</main>
+
+<script>
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const $ = id => document.getElementById(id);
+function mk(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function chip(cls, text) { return `<span class="chip ${cls}">${text}</span>`; }
+async function typeInto(node, text, ms = 12) { node.textContent = ""; for (const ch of text) { node.textContent += ch; await wait(ms); } }
+
+// ---- Grounded notes: each drafted sentence links to a transcript moment, or is flagged ----
+{
+  const LINES = { "12:04": ["Client", "I'm getting maybe five hours a night since I started the new job."],
+                  "14:37": ["Client", "My mind just races when I lie down."],
+                  "21:50": ["Client", "The breathing exercise actually helped, twice this week."],
+                  "47:15": ["Therapist", "Let's keep weekly sessions and try the wind-down routine every night."] };
+  const SENTS = [ ["S", "Client reports about five hours of sleep a night since starting a new job.", "12:04"],
+                  ["S", "Client describes racing thoughts at bedtime.", "14:37"],
+                  ["A", "Client disclosed a history of panic attacks in college.", null],
+                  ["O", "Breathing exercise helped on two occasions this week.", "21:50"],
+                  ["P", "Continue weekly sessions; practise the wind-down routine nightly.", "47:15"] ];
+  const lineEls = {};
+  function renderLines() {
+    const box = $("gn-lines"); box.innerHTML = "";
+    for (const [t, [who, text]] of Object.entries(LINES)) {
+      const p = mk("p"); p.innerHTML = `<span class="mono">${t}</span> <strong>${who}:</strong> `; p.append(text);
+      lineEls[t] = p; box.append(p);
+    }
+  }
+  function renderSents() {
+    const box = $("gn-sents"); box.innerHTML = "";
+    SENTS.forEach((s, i) => {
+      const b = mk("button", "pick");
+      b.innerHTML = `<strong>${s[0]}</strong> ${s[1]} ` + (s[2] ? chip("green", "✓ " + s[2]) : chip("red", "⚑ no source"));
+      b.onclick = () => pickSent(i);
+      box.append(b);
+    });
+  }
+  function pickSent(i) {
+    Object.values(lineEls).forEach(p => p.classList.remove("hl"));
+    const [, text, t] = SENTS[i], out = $("gn-out");
+    if (t) {
+      lineEls[t].classList.add("hl");
+      out.innerHTML = `<p>${chip("green", "✓ Traced")} This sentence comes from <strong>${t}</strong> in the recording, highlighted in the transcript.</p>`;
+    } else {
+      out.innerHTML = `<p>${chip("red", "⚑ Flagged")} Nothing in the recording supports this sentence. Verify it or delete it before saving.</p>`;
+      const del = mk("button", null, "Delete this sentence");
+      del.onclick = () => { SENTS.splice(i, 1); renderSents(); out.innerHTML = `<p>${chip("green", "✓ Ready to save")} Deleted. Every sentence left in the note traces back to the recording.</p>`; };
+      out.append(del);
+    }
+  }
+  $("gn-go").onclick = async () => {
+    $("gn-go").disabled = true;
+    $("gn-out").innerHTML = "<p>Transcribing and drafting locally. Nothing leaves the laptop…</p>";
+    await wait(700);
+    renderLines(); renderSents();
+    $("gn-note").hidden = false; $("gn-trans").hidden = false;
+    $("gn-out").innerHTML = `<p>Draft ready: 4 sentences traced, ${chip("red", "⚑ 1 flagged")}. Pick the flagged one.</p>`;
+  };
+}
+
+// ---- 72-hour appeal: letter -> draft -> portal filing -> independent confirmation ----
+{
+  const LETTERS = {
+    snf: { reason: "Skilled-nursing stay “not medically necessary”", rule: "the plan's own coverage criteria for post-hospital skilled care", id: "APL-7731-0426" },
+    home: { reason: "Home health visits “no longer needed”", rule: "the plan's own home-health coverage rule", id: "APL-7731-0588" }
+  };
+  $("as-go").onclick = async () => {
+    const l = LETTERS[$("as-letter").value], items = [...$("as-stages").children], out = $("as-out");
+    $("as-go").disabled = true; out.innerHTML = "";
+    items.forEach(li => li.classList.remove("done"));
+    const notes = [`Denial reason found: ${l.reason}.`, `Appeal drafted, citing ${l.rule}.`, "Logged in to the plan's appeal portal and submitted as expedited.", "Went back to the portal's status page and read the filing ID from it."];
+    let mins = 72 * 60;
+    for (let i = 0; i < items.length; i++) {
+      await wait(500);
+      items[i].classList.add("done");
+      mins -= 7;
+      $("as-clock").textContent = `Time left in the window: ${Math.floor(mins / 60)} h ${String(mins % 60).padStart(2, "0")} m`;
+      out.innerHTML = `<p>${notes[i]}</p>`;
+    }
+    out.innerHTML = `<p>${chip("green", "✓ Filed and confirmed")}</p><div class="kv"><b>Filing ID</b><span class="mono">${l.id}</span><b>Proof</b><span>Screenshot of the status page, saved to the family's file</span><b>Filed with</b><span>71 h 32 m still left in the window</span></div>`;
+    $("as-go").disabled = false;
+  };
+}
+
+// ---- DMS shadow: the same lookup answered by the live system or, during an outage, by the mirror ----
+{
+  let down = false;
+  const DATA = {
+    stock: "In stock, lot B, row 4. Internet price $31,450. Two holds this week.",
+    deal: "Buyer approved at 6.9% APR. Trade-in appraised $14,200. Waiting on title.",
+    ro: "Brake job, parts arrived. Promised 4:30 pm. Advisor: Dana."
+  };
+  $("dms-kill").onclick = () => {
+    down = !down;
+    $("dms-kill").setAttribute("aria-pressed", String(down));
+    $("dms-kill").textContent = down ? "Bring the system back" : "Simulate outage";
+    $("dms-state").innerHTML = down ? '<span class="chip red">✕ Down (ransomware)</span>' : '<span class="chip green">● Online</span>';
+    $("dms-out").innerHTML = down ? "<p>The dealer system stopped answering. Staff switch to the shadow copy.</p>" : "<p>The dealer system is back. The agent resyncs the shadow copy.</p>";
+  };
+  $("dms-look").onclick = async () => {
+    const out = $("dms-out");
+    out.innerHTML = "<p>Looking up…</p>";
+    await wait(400);
+    out.innerHTML = `<p>${DATA[$("dms-q").value]}</p><p>${down ? '<span class="chip blue">Answered by the shadow copy</span> The live system is down; the answer comes from the 06:00 mirror.' : '<span class="chip green">Answered by the live system</span>'}</p>`;
+  };
+}
+
+// ---- Bounty passport: stake, reproduce, return with bonus or forfeit ----
+$("bp-post").onclick = async () => {
+  $("bp-post").disabled = true;
+  for (const k of ["a", "b"]) { await wait(300); $("bp-" + k).innerHTML = chip("amber", "$5 held"); }
+  $("bp-out").innerHTML = "<p>Both reports are in the queue, each backed by a $5 bond paid per request. No signup was needed.</p>";
+  $("bp-run").disabled = false;
+};
+$("bp-run").onclick = async () => {
+  $("bp-run").disabled = true;
+  $("bp-out").innerHTML = "<p>Reproducing both reports in a sandbox…</p>";
+  await wait(700);
+  $("bp-a").innerHTML = chip("green", "$5 + $2 bonus returned"); $("bp-ra").innerHTML = chip("green", "✓ Reproduced");
+  await wait(300);
+  $("bp-b").innerHTML = chip("red", "$5 forfeited"); $("bp-rb").innerHTML = chip("red", "✕ Did not reproduce");
+  $("bp-out").innerHTML = "<p>Only Agent A's report reaches a human triager. Agent B's bond pays for the check it wasted, so fake reports stop being free.</p>";
+};
+
+// ---- Screen agent: types each drafted field into a no-API desktop EHR ----
+{
+  const NOTE = { s: "Sleep down to ~5 h since new job; racing thoughts at bedtime.", o: "Engaged, speech clear; used breathing exercise twice.",
+                 a: "Adjustment-related sleep disruption, improving with skills.", p: "Weekly sessions; wind-down routine nightly." };
+  $("ehr-go").onclick = async () => {
+    $("ehr-go").disabled = true; $("ehr-save").disabled = true;
+    $("ehr-out").innerHTML = "<p>The agent is clicking into each field and typing…</p>";
+    for (const k of ["s", "o", "a", "p"]) {
+      const f = $("ehr-" + k);
+      document.querySelectorAll("#ehr-fields .efield").forEach(e => e.classList.remove("active"));
+      f.parentElement.classList.add("active");
+      await typeInto(f, NOTE[k], 8);
+    }
+    document.querySelectorAll("#ehr-fields .efield").forEach(e => e.classList.remove("active"));
+    $("ehr-out").innerHTML = `<p>${chip("amber", "Waiting for review")} All 4 fields are filled. Nothing is saved until the clinician checks it.</p>`;
+    $("ehr-save").disabled = false;
+  };
+  $("ehr-save").onclick = () => {
+    $("ehr-save").disabled = true; $("ehr-go").disabled = false;
+    $("ehr-out").innerHTML = `<p>${chip("green", "✓ Saved by the clinician")} The note is in the EHR, and no audio or text ever left the laptop.</p>`;
+  };
+}
+
+// ---- Authorised testing: aggregate results only, fix, retest ----
+{
+  async function run(failures) {
+    const bar = $("se-bar");
+    for (let n = 0; n <= 200; n += 25) { bar.style.width = (n / 2) + "%"; $("se-label").textContent = `Conversations run: ${n} of 200`; await wait(90); }
+    return failures;
+  }
+  $("se-run").onclick = async () => {
+    $("se-run").disabled = true; $("se-out").innerHTML = "";
+    await run(3);
+    $("se-bar").parentElement.className = "meter bad";
+    $("se-out").innerHTML = `<p>${chip("red", "✕ 3 of 200 failed")} In 3 conversations the bot approved a refund without checking the order.</p><p class="hint">Each failure gets a guardrail fix and a 60-second lesson for the team that owns the bot.</p>`;
+    $("se-fix").disabled = false;
+  };
+  $("se-fix").onclick = () => {
+    $("se-fix").disabled = true; $("se-retest").disabled = false;
+    $("se-out").innerHTML = `<p>${chip("amber", "Fix applied")} New rule: a refund needs a matching order and a human sign-off above $50.</p>`;
+  };
+  $("se-retest").onclick = async () => {
+    $("se-retest").disabled = true;
+    $("se-bar").parentElement.className = "meter";
+    await run(0);
+    $("se-bar").parentElement.className = "meter ok";
+    $("se-out").innerHTML = `<p>${chip("green", "✓ 0 of 200 failed")} The retest passes. The next weekly run is scheduled automatically.</p>`;
+    $("se-run").disabled = false;
+  };
+}
+
+// ---- Local cite check: each citation verified against cached case text ----
+{
+  const CITES = [
+    ["Alder v. Crane Mills (2014)", "ok", "Holding matches the brief."],
+    ["Pryor v. Eastgate Supply (2019)", "quote", "The quoted line is not in the opinion."],
+    ["Harlan v. Brightwater Logistics (2021)", "none", "No such case in the corpus."],
+    ["Moss v. Tidewater Freight (2017)", "ok", "Holding matches the brief."]
+  ];
+  const rows = $("cb-rows");
+  const draw = res => { rows.innerHTML = ""; CITES.forEach(([c], i) => { const tr = mk("tr"); tr.innerHTML = `<td>${c}</td><td>${res[i] || '<span class="chip grey">not checked</span>'}</td>`; rows.append(tr); }); };
+  draw([]);
+  $("cb-go").onclick = async () => {
+    $("cb-go").disabled = true;
+    const res = [];
+    for (const [, kind, note] of CITES) {
+      await wait(350);
+      res.push(kind === "ok" ? `${chip("green", "✓ Verified")} ${note}` : kind === "quote" ? `${chip("amber", "⚠ Misquoted")} ${note}` : `${chip("red", "✕ Not found")} ${note}`);
+      draw(res);
+    }
+    $("cb-out").innerHTML = `<p><strong>Pryor v. Eastgate Supply</strong>: the brief quotes “the duty is absolute”. The cached opinion says: <span class="hl">“the duty is limited to foreseeable harm.”</span></p><p>2 of 4 citations need fixing before filing. The brief never left the laptop.</p>`;
+    $("cb-go").disabled = false;
+  };
+}
+
+// ---- Reinstatement: extract case data, check the state rule and the window, file ----
+$("rf-go").onclick = async () => {
+  const used = +$("rf-notice").value, state = $("rf-state").value, out = $("rf-out");
+  $("rf-go").disabled = true;
+  out.innerHTML = "<p>Reading the notice: case number MC-448-2291 found…</p>";
+  await wait(500);
+  $("rf-bar").style.width = (used / 90 * 100) + "%";
+  $("rf-bar").parentElement.className = used > 75 ? "meter warn" : "meter";
+  $("rf-label").textContent = `90-day window: ${used} of 90 days used, ${90 - used} left`;
+  await wait(400);
+  if (state === "no") {
+    out.innerHTML = `<p>${chip("amber", "No reinstatement path")} This state has no reinstatement request. The $49 fee is refunded, and the family is pointed to a new application.</p>`;
+  } else {
+    out.innerHTML = "<p>Filling the state portal's reinstatement form…</p>";
+    await wait(600);
+    out.innerHTML = `<p>${chip("green", "✓ Filed")} Tracking number <span class="mono">RIN-20931-77</span>, returned before signup finished.</p>` + (used > 75 ? `<p class="hint">Only ${90 - used} days were left. A week later and the window would have closed.</p>` : "");
+  }
+  $("rf-go").disabled = false;
+};
+
+// ---- Linked alert: call + new payee within a short window => one high-confidence alert ----
+{
+  let call = false, stmt = false;
+  function judge() {
+    const gap = +$("la-gap").value, out = $("la-out");
+    $("la-gap-val").textContent = gap;
+    $("la-c").innerHTML = call ? `${chip("amber", "⚠ Flagged")} Call at 10:14 matched 2 known scam patterns.` : "Not loaded";
+    $("la-s").innerHTML = stmt ? `${chip("amber", "⚠ Unusual")} New payee, $2,400 transfer, ${gap} h after the call.` : "Not loaded";
+    if (call && stmt && gap <= 24) out.innerHTML = `<p>${chip("red", "⚑ One linked alert: high confidence")} A flagged call followed by a new payee ${gap} h later. The family is told now, while the bank can still stop it.</p>`;
+    else if (call && stmt) out.innerHTML = `<p>${chip("amber", "Two separate low-confidence notes")} The signals are ${gap} h apart, too far to link. Each goes into the weekly digest.</p>`;
+    else if (call || stmt) out.innerHTML = `<p>${chip("grey", "One low-confidence note")} A single signal on its own isn't enough to alert the family.</p>`;
+    else out.innerHTML = "<p>No signals yet.</p>";
+  }
+  $("la-call").onclick = () => { call = !call; $("la-call").setAttribute("aria-pressed", String(call)); judge(); };
+  $("la-stmt").onclick = () => { stmt = !stmt; $("la-stmt").setAttribute("aria-pressed", String(stmt)); judge(); };
+  $("la-gap").oninput = judge;
+}
+
+// ---- POA packet: read powers once, fill each bank's own certification form ----
+{
+  const BANKS = {
+    a: { name: "Harbor National Bank · Agent certification", extra: ["Notarized?", "⚠ Page 3 needs a notary stamp"] },
+    b: { name: "Prairie Credit Union · POA affidavit", extra: ["Witness", "✓ Not required"] },
+    c: { name: "Summit Savings · Durable POA form", extra: ["Physician letter", "⚠ Required for this bank"] }
+  };
+  function fill() {
+    const b = BANKS[$("pp-bank").value];
+    $("pp-title").textContent = b.name;
+    $("pp-fields").innerHTML = `<b>Principal</b><span>Ruth A. Keller</span><b>Agent</b><span>Daniel Keller</span><b>Banking powers</b><span>✓ Granted (section 4)</span><b>Durable</b><span>✓ Yes</span><b>${b.extra[0]}</b><span>${b.extra[1]}</span>`;
+    $("pp-form").hidden = false;
+    const warn = b.extra[1].startsWith("⚠");
+    $("pp-out").innerHTML = warn ? `<p>${chip("amber", "1 item to fix")} ${b.extra[0]}: ${b.extra[1].slice(2)}.</p>` : `<p>${chip("green", "✓ Ready to bring to the branch")}</p>`;
+  }
+  $("pp-up").onclick = async () => {
+    $("pp-up").disabled = true;
+    $("pp-out").innerHTML = "<p>Reading the POA…</p>";
+    await wait(500);
+    $("pp-list").innerHTML = `<p>${chip("green", "✓")} Banking and accounts</p><p>${chip("green", "✓")} Real estate</p><p>${chip("grey", "✕")} Gifts (not granted)</p>`;
+    $("pp-powers").hidden = false;
+    $("pp-bank").disabled = false; $("pp-refuse").disabled = false;
+    fill();
+  };
+  $("pp-bank").onchange = fill;
+  $("pp-refuse").onclick = () => {
+    $("pp-out").innerHTML = `<p>${chip("blue", "Draft letter")} “Dear Branch Manager, the attached durable power of attorney grants banking powers in section 4. Under the state's power-of-attorney act, a bank may not require its own form…”</p><p class="hint">The draft cites the statute. The family reviews it before sending.</p>`;
+  };
+}
+
+// ---- Mail guardian: sort the pile, pull out the renewal packet with its deadline ----
+{
+  const MAIL = [["Grocery store flyer", "grey", "Junk"], ["Electric bill", "blue", "Bill"], ["State Medicaid office · large envelope", "red", "⚑ Renewal packet"],
+                ["Garden magazine", "grey", "Junk"], ["Bank letter", "blue", "Keep"]];
+  const list = $("mg-list");
+  MAIL.forEach(([m]) => { const li = mk("li"); li.innerHTML = `<span>${m}</span><span class="chip grey">unsorted</span>`; list.append(li); });
+  $("mg-go").onclick = async () => {
+    $("mg-go").disabled = true;
+    const items = [...list.children];
+    for (let i = 0; i < MAIL.length; i++) { await wait(250); items[i].lastChild.outerHTML = chip(MAIL[i][1], MAIL[i][2]); }
+    $("mg-out").innerHTML = `<p>${chip("red", "Due in 22 days")} Medicaid renewal. It needs <strong>proof of income</strong> and a signature on page 6.</p><div class="kv"><b>Pre-filled</b><span>Name, address, household size, current income sources</span><b>Still needed</b><span>Last month's pension statement</span><b>Reminder</b><span>Sent to the family now and again at 10 days</span></div>`;
+  };
+}
+
+// ---- Scam-call guardian: generic warning signs raise the risk; the family's facts decide; alert the proxy ----
+{
+  const SIGNS = ["Caller says a relative is in trouble", "Asks for money today", "Asks to keep it secret", "Wants gift cards or a wire"];
+  const LEVELS = [["Low", 20, ""], ["Medium", 45, "warn"], ["High", 75, "bad"], ["Very high", 95, "bad"]];
+  $("vg-go").onclick = async () => {
+    $("vg-go").disabled = true;
+    const ul = $("vg-signs"); ul.innerHTML = ""; $("vg-out").innerHTML = ""; $("vg-fact").textContent = "";
+    for (let i = 0; i < SIGNS.length; i++) {
+      await wait(550);
+      const li = mk("li"); li.innerHTML = `${chip("amber", "⚠")} ${SIGNS[i]}`; ul.append(li);
+      const [label, pct, cls] = LEVELS[i];
+      $("vg-risk").textContent = label; $("vg-bar").style.width = pct + "%"; $("vg-bar").parentElement.className = "meter " + cls;
+      if (i === 1) $("vg-fact").textContent = "Family fact check: the grandson named is at school today (family note). The claim doesn't match.";
+    }
+    $("vg-out").innerHTML = `<p>${chip("red", "⚑ Alert sent")} To Daniel's phone: “Mom's call matches a family-emergency scam, and it doesn't match what we know. Call her now.”</p><p class="hint">Sent mid-call, before any money moved.</p>`;
+    $("vg-go").disabled = false;
+  };
+}
+
+// ---- Completion witness: re-navigate the target, compare, sign a verdict ----
+$("cw-go").onclick = async () => {
+  const real = $("cw-case").value === "true", steps = $("cw-steps"), out = $("cw-out");
+  $("cw-go").disabled = true; steps.innerHTML = ""; out.innerHTML = "";
+  $("cw-claim").innerHTML = `Status: <strong>submitted</strong> (self-reported). Claim #C-${real ? "2292" : "2291"}.`;
+  const found = real ? "Found claim #C-2292, confirmation number PX-55120" : "No claim #C-2291 on the submissions page, and no confirmation number";
+  for (const s of ["Opened the payer portal in a fresh session", "Went to Submissions and searched for the claim", found]) {
+    await wait(450); const li = mk("li", "done", s); steps.append(li);
+  }
+  out.innerHTML = real
+    ? `<p>${chip("green", "✓ PASS")} The portal shows the filing. Signed verdict <span class="mono">sig 9f2c…a41</span> goes to the operator and the payer.</p>`
+    : `<p>${chip("red", "✕ FAIL")} The agent said “submitted”, but the portal shows nothing. Signed verdict <span class="mono">sig 3b7e…0d9</span>. The run is re-queued, and nobody is billed for it.</p>`;
+  $("cw-go").disabled = false;
+};
+
+// ---- Callback verifier: call the number on file, confirm or block ----
+$("cv-go").onclick = async () => {
+  const yes = $("cv-case").value === "yes", call = $("cv-call"), out = $("cv-out");
+  $("cv-go").disabled = true; call.innerHTML = "";
+  const say = (who, text, them) => { const d = mk("div", "bubble" + (them ? " them" : "")); d.innerHTML = `<span class="who">${who}</span>`; d.append(text); call.append(d); };
+  out.innerHTML = "<p>Dialing (555) 010-2231…</p>";
+  await wait(500); say("Agent", "Hi, this is the payment check for Oakline Dental. Did Northwind change its bank account this week?");
+  await wait(700); say("Northwind accounts", yes ? "Yes, we did. The new account ends in 4471." : "No, we haven't changed anything.", true);
+  await wait(400);
+  out.innerHTML = yes
+    ? `<p>${chip("green", "✓ Confirmed")} The vendor confirmed the change on the known number. The $18,400 payment is released through the firm's normal payment rail.</p>`
+    : `<p>${chip("red", "✕ Blocked")} The vendor denies any change. The payment stays blocked and AP is flagged.</p>`;
+  $("cv-go").disabled = false;
+};
+
+// ---- Cite bailiff: search each new citation; the submit button unlocks only when every flag is cleared ----
+{
+  const NAMES = { ok: "Alder v. Crane Mills (2014)", bad: "Harlan v. Brightwater Logistics (2021)", bad2: "Veld v. Osprey Marine (2020)" };
+  const items = [];
+  function refresh() {
+    const open = items.filter(x => x.flag && !x.cleared).length, btn = $("sb-file");
+    btn.disabled = open > 0 || !items.length;
+    btn.textContent = open ? `E-file: locked (${open} flag${open > 1 ? "s" : ""} to clear)` : items.length ? "E-file: ready" : "E-file: locked";
+    btn.classList.toggle("locked", btn.disabled);
+  }
+  function draw() {
+    const box = $("sb-list"); box.innerHTML = "";
+    items.forEach((x, i) => {
+      const row = mk("div");
+      row.innerHTML = `${x.name} ${x.flag ? (x.cleared ? chip("grey", "cleared by attorney") : chip("red", "✕ No such case found")) : chip("green", "✓ Found")}`;
+      if (x.flag && !x.cleared) {
+        const lab = mk("label", "check"); const cb = mk("input"); cb.type = "checkbox";
+        cb.onchange = () => { x.cleared = cb.checked; draw(); refresh(); $("sb-out").innerHTML = "<p>Flag cleared. The attorney removed or fixed the citation.</p>"; };
+        lab.append(cb, "I removed or fixed this citation"); row.append(lab);
+      }
+      box.append(row);
+    });
+  }
+  $("sb-add").onclick = async () => {
+    const k = $("sb-cite").value;
+    if (items.some(x => x.key === k)) { $("sb-out").innerHTML = "<p>That citation is already in the draft.</p>"; return; }
+    $("sb-add").disabled = true;
+    $("sb-out").innerHTML = `<p>Opening a search tab and typing “${NAMES[k]}”…</p>`;
+    await wait(600);
+    items.push({ key: k, name: NAMES[k], flag: k !== "ok", cleared: false });
+    draw(); refresh();
+    $("sb-out").innerHTML = k === "ok" ? `<p>${chip("green", "✓ Found")} The case exists and the citation matches.</p>` : `<p>${chip("red", "✕ Flagged")} The search returned no such case. E-filing is locked.</p>`;
+    $("sb-add").disabled = false;
+  };
+  $("sb-file").onclick = () => { $("sb-out").innerHTML = `<p>${chip("green", "✓ Submitted")} The filing went through with every citation checked.</p>`; };
+  refresh();
+}
+
+// ---- Stop the wire: compare a change request with the vendor's payment history ----
+{
+  const MAIL = [["Invoice 2231 attached", false], ["Updated remittance details", true], ["Delivery window next week", false]];
+  const CHECKS = [["Sender domain", "Differs from the one on 26 past invoices", "red", "✕"], ["New account", "Opened 9 days ago, at a different bank", "red", "✕"],
+                  ["Timing", "Arrived 2 days before a large payment", "amber", "⚠"], ["Invoice amounts", "Match the purchase order", "green", "✓"]];
+  MAIL.forEach(([subj, change]) => {
+    const b = mk("button", "pick"); b.innerHTML = `<strong>Northwind Supplies</strong> · ${subj}`;
+    b.onclick = async () => {
+      const rows = $("sw-rows"); rows.innerHTML = "";
+      if (!change) { $("sw-out").innerHTML = `<p>${chip("green", "✓ No bank change")} Nothing to check. The payment stays on schedule.</p>`; return; }
+      $("sw-out").innerHTML = "<p>Bank-detail change found. Checking it against the payment history…</p>";
+      for (const [k, v, c, s] of CHECKS) { await wait(300); const tr = mk("tr"); tr.innerHTML = `<td>${k}</td><td>${chip(c, s)} ${v}</td>`; rows.append(tr); }
+      $("sw-out").innerHTML = `<p>${chip("red", "⏸ Payment held")} The $18,400 transfer is held in the accounting software until someone calls Northwind on the number already on file.</p>`;
+    };
+    $("sw-inbox").append(b);
+  });
+}
+
+// ---- Hold-queue agent: phone tree, hold, then verify system state before closing ----
+$("hq-go").onclick = async () => {
+  const fixed = $("hq-case").value === "yes", out = $("hq-out");
+  $("hq-go").disabled = true; out.innerHTML = "";
+  const tree = [...$("hq-tree").children]; tree.forEach(li => li.classList.remove("done"));
+  for (const li of tree) { await wait(300); li.classList.add("done"); }
+  for (let s = 0; s <= 2052; s += 171) { await wait(60); $("hq-timer").textContent = `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; }
+  out.innerHTML = "<p>Vendor rep: “We pushed a fix. It should work now.” Before closing, the agent runs a test claims export…</p>";
+  await wait(700);
+  out.innerHTML = fixed
+    ? `<p>${chip("green", "✓ Verified fixed")} Test export succeeded. Ticket closed after 34 min on hold, and no staff time was spent.</p>`
+    : `<p>${chip("red", "✕ Still broken")} Test export failed with the same error. The ticket stays open and the agent calls back with the error log.</p>`;
+  $("hq-go").disabled = false;
+};
+
+// ---- Compliance copilot: short interview -> drafted plan + portal filings + tracked renewals ----
+$("cp-go").onclick = async () => {
+  const out = $("cp-out"), v = id => $(id).value;
+  $("cp-go").disabled = true;
+  out.innerHTML = "<p>Drafting the written security plan on this machine…</p>";
+  await wait(500);
+  const secs = ["Who is responsible", "Where client data lives: " + v("cp-store").toLowerCase(), "Access and passwords", "Backups and disposal", "Incident response"];
+  if (v("cp-ai") === "Yes") secs.push("Use of AI tools on client data");
+  const filings = ["PTIN renewal filled in the IRS portal · confirmed"];
+  if (v("cp-ins") === "Yes") filings.push("Insurer AI-use attestation filled in · confirmed");
+  out.innerHTML = `<p>${chip("green", "✓ Written security plan drafted")} ${secs.length} sections: ${secs.join("; ")}.</p>`;
+  await wait(600);
+  out.innerHTML += `<p>${chip("green", "✓ Filed")} ${filings.join(". ")}.</p><p class="hint">Renewal dates for every filing are tracked, and next year's cycle starts itself.</p>`;
+  $("cp-go").disabled = false;
+};
+
+// ---- PA call copilot: stream the transcript, pin quotes into criteria and commitments ----
+{
+  const LINES = [
+    ["00:05", "System", "Recording notice played. Both parties agreed.", null],
+    ["01:12", "Medical director", "We'd need six weeks of failed physical therapy documented.", "Approval criterion"],
+    ["02:40", "Dr. Osei", "She has eight weeks of PT notes, plus the neuro findings.", null],
+    ["03:55", "Medical director", "If those notes are faxed today, I'll approve the MRI.", "Commitment"]
+  ];
+  $("pc-go").onclick = async () => {
+    $("pc-go").disabled = true;
+    const tr = $("pc-trans"), file = $("pc-file"); tr.innerHTML = ""; file.innerHTML = "";
+    for (const [t, who, text, tag] of LINES) {
+      await wait(600);
+      const p = mk("p"); p.innerHTML = `<span class="mono">${t}</span> <strong>${who}:</strong> `; p.append(text); tr.append(p);
+      if (tag) { const q = mk("p"); q.innerHTML = `${chip(tag === "Commitment" ? "blue" : "lav", tag)} “${text}” <span class="mono">${t}</span>`; file.append(q); }
+    }
+    $("pc-out").innerHTML = `<p>${chip("green", "✓ Case file ready")} 1 criterion and 1 commitment, each quoted with its timestamp. It's ready to file as proof if the payer disputes it later.</p>`;
+    $("pc-go").disabled = false;
+  };
+}
+
+// ---- Rejection-proof filer: rule checks per page, fix each, status flips ----
+{
+  const ISSUES = [["Page 2", "SSN written with spaces; the form needs dashes", "Reformat"], ["Page 6", "Signature line is blank", "Mark for signature"], ["Cover", "Form version is from 2023; the state now wants the 2025 version", "Move answers to the new form"]];
+  const fixed = new Set();
+  function status() {
+    const left = ISSUES.length - fixed.size;
+    $("rp-out").innerHTML = left ? `<p>${chip("red", `✕ Would be rejected: ${left} issue${left > 1 ? "s" : ""}`)}</p>` : `<p>${chip("green", "✓ Ready to submit")} No known rejection triggers left.</p>`;
+  }
+  $("rp-go").onclick = async () => {
+    $("rp-go").disabled = true; fixed.clear();
+    const list = $("rp-list"); list.innerHTML = "";
+    await wait(500);
+    ISSUES.forEach(([where, what, fix], i) => {
+      const row = mk("div", "pane"); row.style.marginTop = "0";
+      row.innerHTML = `<p><strong>${where}</strong> · ${what} <span id="rp-s${i}">${chip("red", "✕ Issue")}</span></p>`;
+      const b = mk("button", null, fix);
+      b.onclick = () => { fixed.add(i); $("rp-s" + i).innerHTML = chip("green", "✓ Fixed"); b.disabled = true; status(); };
+      row.append(b); list.append(row);
+    });
+    status(); $("rp-go").disabled = false;
+  };
+}
+
+// ---- Console-checked answers: each "yes" verified or corrected with evidence ----
+{
+  const Q = [["MFA on remote access?", true, "Remote desktop gateway: MFA required (screenshot 1)"],
+             ["MFA on every admin account?", false, "Microsoft 365: 2 of 3 admin accounts have no MFA (screenshot 2)"],
+             ["Backups encrypted?", true, "Backup console: AES-256 on (screenshot 3)"],
+             ["Endpoint protection on all devices?", true, "Endpoint console: 14 of 14 devices covered (screenshot 4)"]];
+  const rows = $("ci-rows");
+  const draw = res => { rows.innerHTML = ""; Q.forEach(([q], i) => { const tr = mk("tr"); tr.innerHTML = `<td>${q}</td><td>${res[i] ? res[i][0] : "Yes (draft)"}</td><td>${res[i] ? res[i][1] : '<span class="chip grey">not checked</span>'}</td>`; rows.append(tr); }); };
+  draw([]);
+  $("ci-go").onclick = async () => {
+    $("ci-go").disabled = true;
+    const res = [];
+    for (const [, ok, ev] of Q) { await wait(400); res.push(ok ? ["Yes", `${chip("green", "✓")} ${ev}`] : [`${chip("red", "No")}`, `${chip("red", "✕")} ${ev}`]); draw(res); }
+    $("ci-out").innerHTML = `<p>${chip("amber", "1 answer corrected before submission")} Turn on MFA for the two admin accounts, then answer “yes” truthfully. That “yes” could otherwise void the policy after a claim.</p>`;
+    $("ci-go").disabled = false;
+  };
+}
+
+// ---- Offline drafting: template-shaped draft streams in while the network counter stays at zero ----
+{
+  const DRAFTS = {
+    motion: ["MOTION TO COMPEL DISCOVERY", "Plaintiff moves to compel Defendant's responses to Requests 4–9, served on March 3 and still unanswered (Complaint ¶12).", "Defendant's deponent admitted the maintenance logs exist (Dep. 44:3–9).", "Plaintiff asks the Court to order production within 14 days."],
+    letter: ["DEMAND LETTER", "We write on behalf of our client about the unpaid invoices described in the enclosed complaint.", "Your client's own emails of May 2 confirm the balance owed.", "Please respond within 10 days to avoid further action."]
+  };
+  $("do-go").onclick = async () => {
+    const d = DRAFTS[$("do-type").value], box = $("do-text");
+    $("do-go").disabled = true; box.innerHTML = ""; $("do-draft").hidden = false; $("do-title").textContent = d[0] + " · in the firm's template";
+    $("do-out").innerHTML = "<p>Reading the case folder and drafting locally…</p>";
+    for (const para of d.slice(1)) { const p = mk("p"); box.append(p); await typeInto(p, para, 6); }
+    $("do-bytes").textContent = "0 B";
+    $("do-out").innerHTML = `<p>${chip("green", "✓ Draft ready")} It was built from 3 case files in the firm's template, and 0 bytes were sent. Nothing about the client left the machine.</p>`;
+    $("do-go").disabled = false;
+  };
+}
+
+// ---- Summary reweigh: each sentence checked against the file; the unsupported one opens its contradicting page ----
+{
+  const SUM = [["Rear-end collision at a red light on June 4.", "Police report p.1", null],
+               ["Claimant was not wearing a seatbelt.", null, ["Police report p.3", "Occupant restraint: <span class=\"hl\">lap and shoulder belt, worn</span>. No ejection."]],
+               ["Repair estimate totals $6,480.", "Repair estimate p.2", null],
+               ["ER visit for neck strain the same day.", "Medical records p.1", null]];
+  const rows = $("sr-rows");
+  const draw = done => { rows.innerHTML = ""; SUM.forEach(([s, src, bad], i) => {
+    const tr = mk("tr"); const td1 = mk("td", null, s), td2 = mk("td");
+    if (i >= done) td2.innerHTML = '<span class="chip grey">not checked</span>';
+    else if (src) td2.innerHTML = `${chip("green", "✓")} ${src}`;
+    else { td2.innerHTML = `${chip("red", "✕ Not supported")} `; const b = mk("button", null, "Show page"); b.onclick = () => { $("sr-page").hidden = false; $("sr-page-title").textContent = bad[0]; $("sr-page-text").innerHTML = bad[1]; $("sr-out").innerHTML = `<p>The source says the opposite. Remove the sentence before sign-off: it could have cut the payout.</p>`; }; td2.append(b); }
+    tr.append(td1, td2); rows.append(tr); }); };
+  draw(0);
+  $("sr-go").onclick = async () => {
+    $("sr-go").disabled = true; $("sr-page").hidden = true;
+    for (let i = 1; i <= SUM.length; i++) { await wait(350); draw(i); }
+    $("sr-out").innerHTML = `<p>${chip("red", "1 of 4 sentences not supported")} Open its page to see the contradiction.</p>`;
+    $("sr-go").disabled = false;
+  };
+}
+
+// ---- Proof receipts: crop, redact, annotate, file into the per-institution ledger ----
+$("pr-go").onclick = async () => {
+  $("pr-go").disabled = true;
+  $("pr-out").innerHTML = "<p>Cropping to the confirmation, redacting the ID number, adding notes…</p>";
+  await wait(700);
+  $("pr-rcpt").innerHTML = `<p><strong>Medicaid renewal filed</strong></p><p>Ruth A. Keller · SSN <span class="redact" aria-label="redacted">████████</span></p><p>${chip("green", "✓ Confirmation MR-88213")}</p><p class="hint">26 Sep 2026, 10:42 · the raw capture is stored alongside the receipt</p>`;
+  const tr = mk("tr"); tr.innerHTML = "<td>State Medicaid</td><td>Renewal filed</td><td>Receipt #2</td>"; $("pr-ledger").append(tr);
+  $("pr-out").innerHTML = `<p>${chip("green", "✓ Added to the ledger")} When an auditor asks how the money was used, each action has a clean receipt.</p>`;
+};
+
+// ---- Multi-portal proxy: visit each portal in turn, then one plain-English digest ----
+{
+  const P = [["Harbor National Bank", "Balance normal. No new payees."], ["State Medicaid", "Renewal due in 9 days."], ["Medicare Advantage plan", "No new denial notices."]];
+  const tiles = $("mp-tiles");
+  P.forEach(([n]) => { const d = mk("div", "pane"); d.innerHTML = `<p class="pane-title">${n}</p><p>${chip("grey", "waiting")}</p>`; tiles.append(d); });
+  $("mp-go").onclick = async () => {
+    $("mp-go").disabled = true;
+    const ds = [...tiles.children];
+    for (let i = 0; i < P.length; i++) {
+      ds[i].lastChild.innerHTML = chip("blue", "logging in…"); await wait(350);
+      ds[i].lastChild.innerHTML = chip("blue", "reading screens…"); await wait(350);
+      ds[i].lastChild.innerHTML = i === 1 ? `${chip("amber", "⚠ needs attention")} ${P[i][1]}` : `${chip("green", "✓ fine")} ${P[i][1]}`;
+    }
+    $("mp-out").innerHTML = `<p><strong>This week's digest:</strong> 1 thing needs you. Medicaid renewal is due in 9 days, and the form is linked. Bank and health plan: nothing new.</p>`;
+    $("mp-go").disabled = false;
+  };
+}
+
+// ---- On-prem bench: disposable local container per report; verdicts with logs; zero outbound calls ----
+$("eb-go").onclick = async () => {
+  $("eb-go").disabled = true;
+  const log = $("eb-log"); log.innerHTML = "";
+  const L = ["R-101: checked out commit 7a3e91c", "R-101: built in a throwaway container", "R-101: reproduction steps 1–3 behave as reported", "R-102: checked out commit 7a3e91c", "R-102: reported function parse_blob() does not exist in this commit", "R-102: stopped, nothing to reproduce"];
+  for (const l of L) { await wait(300); log.append(mk("p", null, l)); }
+  $("eb-out").innerHTML = `<p>R-101 ${chip("green", "✓ Reproduced")}. Sent to an analyst.</p><p>R-102 ${chip("red", "✕ Fabricated")}. Closed with the failed run log attached.</p><p class="hint">0 outbound connections. No code or report reached a third party.</p>`;
+  $("eb-go").disabled = false;
+};
+
+// ---- Rate-con from one example: learned fields carry over, load fields fill in ----
+$("rc-teach").onclick = () => {
+  $("rc-teach").disabled = true; $("rc-load").disabled = false; $("rc-go").disabled = false;
+  $("rc-out").innerHTML = `<p>${chip("green", "✓ Learned")} Fields, rate structure and layout for this lane and carrier.</p>`;
+};
+$("rc-go").onclick = async () => {
+  const [mi, lb] = $("rc-load").value.split("|").map(Number), sel = $("rc-load");
+  $("rc-go").disabled = true;
+  $("rc-out").innerHTML = "<p>Drafting…</p>";
+  await wait(500);
+  const line = (mi * 2.45).toFixed(2), fuel = (mi * 0.38).toFixed(2), total = (mi * 2.83).toFixed(2);
+  $("rc-out").innerHTML = `<p>${chip("blue", "Draft ready to send")} ${sel.options[sel.selectedIndex].text.split(" · ")[0]}</p><div class="kv"><b>Carrier</b><span>Redline Carriers <span class="hint">(learned)</span></span><b>Linehaul</b><span>${mi} mi × $2.45 = $${line}</span><b>Fuel</b><span>${mi} mi × $0.38 = $${fuel}</span><b>Weight</b><span>${lb.toLocaleString("en-US")} lb <span class="hint">(from the load)</span></span><b>Detention, terms</b><span>$50/hr after 2 hrs · Net 30 <span class="hint">(learned)</span></span><b>Total</b><span><strong>$${total}</strong></span></div>`;
+  $("rc-go").disabled = false;
+};
+
+// ---- Scope gate: every proposed action checked against the signed mandate before it runs ----
+{
+  const PLAN = [["Book flight to Denver", 420, "travel"], ["Book hotel, 2 nights", 180, "travel"], ["Order groceries", 86, "food"], ["Start a streaming subscription", 15, "subs"]];
+  $("sg-go").onclick = async () => {
+    const cap = +$("sg-cap").value, allow = { travel: $("sg-travel").checked, food: $("sg-food").checked, subs: $("sg-subs").checked };
+    const rows = $("sg-rows"); rows.innerHTML = ""; $("sg-go").disabled = true;
+    let blocked = 0;
+    for (const [what, cost, cat] of PLAN) {
+      await wait(300);
+      const verdict = !allow[cat] ? chip("amber", "⏸ Held: category not granted") : cost > cap ? chip("red", `✕ Blocked: $${cost} is over $${cap}`) : chip("green", "✓ Allowed");
+      if (!allow[cat] || cost > cap) blocked++;
+      const tr = mk("tr"); tr.innerHTML = `<td>${what} · $${cost}</td><td>${verdict}</td>`; rows.append(tr);
+    }
+    $("sg-out").innerHTML = `<p>${blocked ? `${blocked} action${blocked > 1 ? "s" : ""} stopped before running. The owner reviews them.` : "Every action fits the mandate."} The mandate expires ${$("sg-exp").value.toLowerCase()}.</p>`;
+    $("sg-go").disabled = false;
+  };
+}
+
+// ---- Run meter: each paid run tagged to a matter; a hard cap halts the loop ----
+{
+  const caps = { 2231: 12, 2240: 30 }, spent = { 2231: 0, 2240: 0 }, runs = { 2231: 0, 2240: 0 };
+  const draw = () => { $("rm-rows").innerHTML = Object.keys(caps).map(m => `<tr><td>${m}</td><td>${runs[m]}</td><td>$${spent[m].toFixed(2)}</td></tr>`).join(""); };
+  draw();
+  $("rm-go").onclick = async () => {
+    const m = $("rm-matter").value, cap = caps[m], bar = $("rm-bar");
+    $("rm-go").disabled = true; $("rm-out").innerHTML = "<p>The browser agent keeps retrying a failing login. Each run costs $0.80…</p>";
+    bar.parentElement.className = "meter";
+    while (spent[m] + 0.8 <= cap + 1e-9) {
+      await wait(120); spent[m] += 0.8; runs[m]++;
+      bar.style.width = Math.min(100, spent[m] / cap * 100) + "%";
+      if (spent[m] / cap > .75) bar.parentElement.className = "meter warn";
+      $("rm-label").textContent = `Spent today on ${m}: $${spent[m].toFixed(2)} of $${cap}`; draw();
+    }
+    bar.parentElement.className = "meter bad";
+    $("rm-out").innerHTML = `<p>${chip("red", "⏹ Halted at the cap")} Matter ${m} stopped at $${spent[m].toFixed(2)}. Every cent is already tagged to the client and ready for the rebill report.</p>`;
+    $("rm-go").disabled = false;
+  };
+}
+
+// ---- Lay of the land: narration + GPS -> confidence-tagged layers -> AR label ----
+{
+  const SAID = [["“Dad put the tile in here in '78, runs east to the ditch.”", 1], ["“Water line to the trough follows the creek, roughly.”", 2], ["“Power cable's buried along the south fence, I laid it myself.”", 3]];
+  const LABEL = { 1: "Tile drain · per Grandad · 1978 · medium confidence", 2: "Water line · per the farmer · year unknown · low confidence", 3: "Buried cable · laid by the farmer · high confidence" };
+  $("ll-go").onclick = async () => {
+    $("ll-go").disabled = true; $("ll-said").innerHTML = "";
+    for (const [q, n] of SAID) {
+      await wait(600);
+      const p = mk("p"); p.innerHTML = `${chip("lav", "GPS matched")} `; p.append(q); $("ll-said").append(p);
+      $("ll-l" + n).setAttribute("opacity", "1");
+    }
+    $("ll-pad").disabled = false; $("ll-ar").disabled = false;
+    $("ll-out").innerHTML = "<p>3 layers extracted, each tagged with its source, year and confidence.</p>";
+  };
+  $("ll-ar").onclick = () => { $("ll-out").innerHTML = `<p>${chip("blue", "Overlay")} ${LABEL[$("ll-pad").value]}</p><p class="hint">The same layer goes on the shareable dig-safety map for fencers.</p>`; };
+}
+</script>
+</body>
+</html>

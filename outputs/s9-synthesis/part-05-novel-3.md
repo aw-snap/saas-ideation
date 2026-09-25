@@ -1,0 +1,42 @@
+### Novel #3: Privileged Cite Bench (I-3093), overall #7, tier B
+
+- **Lineage / cell:** seed-atom-hybrid (seed-05); prosumer\|local-private\|novel; T7, with its privilege evidence drawn from T9. It combines two seed-05 atoms (A-seed-05-mech-2 and A-seed-05-insight-1), and I-2553 was merged into it. Gate D dropped I-2514, which used the same mechanism but sold through E&O brokers, and folded that broker channel into this idea. [Card](../archive/ideas/I-3093.md)
+- **One-liner:** Checks every citation in a brief against real case text on the lawyer's own laptop, nothing leaves the machine.
+- **Niche:** Solo and small-firm litigators drafting motions who cannot risk both a fabricated-citation sanction and a privilege waiver.
+- **Pain and evidence:**
+  - One firm paid $59,500 to the opposing firm that found its fake citations ([Bloomberg Law](https://news.bloomberglaw.com/legal-ops-and-tech/ai-fake-citations-expose-lawyer-sloppiness-and-training-gaps)).
+  - Tracked AI-hallucination cases rose from about 200 in mid-2025 to 1,598 by 9 June 2026 ([hallucination cases database](https://www.damiencharlotin.com/hallucinations/); [T7 dossier](../outputs/s3-ideate/pain/T7-dossier.md), P1).
+  - A federal ruling (US v. Heppner, SDNY) held that AI-drafted material was not privileged ([T9 dossier](../outputs/s3-ideate/pain/T9-dossier.md), P1). A cloud cite-checker therefore recreates the exposure it claims to fix.
+- **How it works:** A local open-weight model reads the draft brief and a locally cached case-law corpus. It checks each citation's holding and quote against the real opinion. Next to any citation it cannot confirm, it shows the actual case text as evidence. The brief never leaves the device.
+- **Tech unlock:** gpt-oss-20b fits on a 16 GB laptop, so a full cite-check runs without the cloud call that would itself waive privilege. The S5 audit lists the model as production (TC-22) ([s5-planner-01](../outputs/s5-reality/feasibility/s5-planner-01.md)).
+- **Prior art:**
+  - Quick verdict: adjacent-exists ([s5-hunter-07](../outputs/s5-reality/prior-art/s5-hunter-07.md)). Deep verdict: adjacent-exists ([s8-hunter-12](../outputs/s8-final/prior-art-deep/s8-hunter-12.md)).
+  - These tools check citations against real case text for the same buyer: [LawDroid CiteCheck AI](https://www.lawnext.com/2025/06/lawdroid-launches-citecheck-ai-a-fail-safe-against-ai-citation-hallucinations.html), [BriefCatch](https://www.briefcatch.com/blog/pick-an-ai-case-hallucinations-checker), [Clearbrief](https://www.cbinsights.com/company/clearbrief) and [CaseRead.ai](https://www.caseread.ai/hallucination-shield). All of them are cloud services.
+  - S5 knocked out three cloud cite-checkers (I-2047, I-3038 and I-2046) as direct competitors of CaseRead and LawDroid ([survivors.md](../outputs/s5-reality/survivors.md)). I-3093 survived only because it runs on-device, so that is its whole claim.
+  - No on-device, privilege-preserving citation checker was found.
+- **Pricing:**
+  - A flat monthly license per solo attorney, priced below one manual cite-check. The card gives no figure.
+  - For reference, the T7 dossier puts a manual cite-check at 2–5 hours per brief (a vendor figure, `[unverified]`), and legal proofreaders earn an average of $27.65 an hour.
+  - Gate D adds E&O malpractice brokers as a distribution channel, taken from I-2514. I-2514's red team rated that channel unproven.
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - A local app on one laptop, running gpt-oss-20b through Ollama or llama.cpp, with Wi-Fi off for the whole demo.
+    - Citation extraction from a draft brief in DOCX or PDF.
+    - A local cache of a few dozen real opinions, with local text or vector search. The cache is downloaded before the event from a public case-law source such as CourtListener (API terms `[unverified]`).
+    - A check for each citation: whether the case is in the cache, and whether the quoted words and stated holding match the opinion.
+    - An evidence panel that shows the real opinion text beside each citation the checker cannot confirm.
+    - The red team's fix at demo scale: a small test set of documented fabricated citations, with the miss rate shown on screen.
+  - **Out of scope:**
+    - A jurisdiction-wide corpus. The [S5 audit](../outputs/s5-reality/feasibility/s5-planner-01.md) calls it a data-acquisition task that fits in 48 h only at toy scale.
+    - I-2514's broker dashboard and aggregate risk score. Both are roadmap items.
+  - Feasibility is `risky` only because of corpus scale. The local matching loop is real.
+- **Demo moment:** Feed a brief with one fabricated case to a disconnected laptop. The bad citation is flagged, with the real case text shown beside it.
+- **Red team's best objection (serious):** Cloud cite-checkers (LawDroid, BriefCatch, Clearbrief) already own this niche, and a funded incumbent could add an on-device mode. An unbenchmarked local 20B model that misses a fabricated citation would be a sanctions-grade failure. ([s8-redteam-04](../outputs/s8-final/red-team/s8-redteam-04.md))
+  - **Fix:** Before claiming reliability, publish a false-negative benchmark against known fabricated-citation cases. Lead with privilege preservation as the only differentiator.
+  - Gate D (D.4) groups this idea with I-3529 (#15) as the solo-litigator cite-checking family.
+- **Scores:** 5 · 7 · 8 · 7 · 6 · 8 · 3 · 8.
+  - Judge totals [66.9, 69.2, 53.1], median 66.9, spread 16.1. This is the widest spread in the set.
+  - The mean of 63.1 would be below bar, so Gate D (A.3) treats the band B placement as soft.
+  - Elo 1232.6 → 1247.0, consistency 75, feasibility risky.
+
+<!-- COMPLETE -->

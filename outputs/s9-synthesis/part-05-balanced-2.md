@@ -1,0 +1,45 @@
+### Balanced #2: 72-Hour Appeal Sprint (I-4546), overall #2, tier B
+
+- **Lineage / cell:** ai-native; B2C\|screen-agent\|balanced; T8. [Card](../archive/ideas/I-4546.md)
+  - A novel-track draft (s3-ideator-novel-T6-01-r2#05) was merged into it.
+  - Gate D (D.2) makes it the lead of the "photograph the notice, agent files it" family. I-2559 (#8) and I-1022 (#20) become roadmap steps.
+- **One-liner:** Turns a Medicare Advantage denial letter into a filed, tracked appeal inside the plan's own portal within its expedited window.
+- **Niche:** Family members who have just received a prior-authorization denial for a parent's skilled-nursing stay or home care, and who have 72 hours to act.
+- **Pain and evidence:**
+  - In 2024, Medicare Advantage plans denied 4.1M of 52.8M prior-authorization requests.
+  - Only 11.5% of denials were appealed, yet 80.7% of appeals overturned the denial ([KFF](https://www.kff.org/medicare/medicare-advantage-insurers-made-nearly-53-million-prior-authorization-determinations-in-2024/); [T8 dossier](../outputs/s3-ideate/pain/T8-dossier.md), P2).
+  - Denials arrive mid-crisis. One daughter found "his plan had denied additional days at a skilled nursing facility, the same week his doctor was recommending he stay" ([Senioridy](https://senioridy.com/medicare-advantage-prior-authorization-denial/)).
+- **How it works:**
+  - The user photographs the denial letter.
+  - The agent extracts the denial reason and the plan's criteria, then drafts an appeal that cites the plan's own coverage rules.
+  - It logs into the plan's appeal portal and submits within the expedited window.
+  - It then revisits the status page on its own to confirm a real filing ID before telling the family the appeal is filed.
+- **Tech unlock:** Mistral OCR 3 (TC-30, production) reads the letter cheaply. Skyvern (TC-07, production-adjacent) files and confirms the appeal in portals that have no API. Both are listed in [s5-planner-01](../outputs/s5-reality/feasibility/s5-planner-01.md).
+- **Prior art:**
+  - Quick verdict: adjacent-exists ([s5-hunter-01](../outputs/s5-reality/prior-art/s5-hunter-01.md)). Deep verdict: adjacent-exists ([s8-hunter-01](../outputs/s8-final/prior-art-deep/s8-hunter-01.md)).
+  - [Claimable](https://www.getclaimable.com/) and [Counterforce Health](https://www.counterforcehealth.org/) draft appeals for consumers from a photographed denial. Claimable mails or faxes the appeal, and Counterforce leaves submission to the user. Neither files into the plan's portal or re-checks a filing ID.
+  - [Aegis](https://www.ycombinator.com/companies/aegis) (YC X25) automates portal submission and tracking, but for hospitals and billing groups.
+  - The quick hunt found drafting tools for providers: [Hathr.AI](https://www.hathr.ai/blogs/ai-for-medicare-appeals) and [ACEHOUND](https://www.businesswire.com/news/home/20251007508376/en/).
+  - Drafting alone is already covered. S5 knocked out three letter-only appeal ideas (I-4004, I-2549 and I-2070) as direct competitors of Counterforce and [River](https://rivereditor.com/tools/appeal-letter) ([survivors.md](../outputs/s5-reality/survivors.md)). The file-and-confirm step is what keeps I-4546 at adjacent.
+- **Pricing:** $79 per filed appeal, refunded if the agent can't find a portal. For reference, the T8 dossier cites $300–$600 for a patient advocate on each Level 1 or Level 2 appeal (a vendor figure).
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - A mobile-friendly upload of a sample denial letter. Mistral OCR 3 extracts the plan, the denial reason, the service and the deadline, and a 72-hour countdown starts.
+    - An LLM drafts the appeal against a pre-loaded sample of the plan's coverage criteria.
+    - A review screen where the family approves the draft before submission. This is the red team's fix.
+    - Skyvern logs into a team-built mock Medicare Advantage appeal portal and submits. It then reopens the status page and reads back the filing ID.
+    - A proof screen showing the filing ID, the timestamp and a screenshot of the confirmation page.
+  - **Out of scope:**
+    - Real plan portals. Credentials can't be obtained in 48 h ([S5 audit](../outputs/s5-reality/feasibility/s5-planner-01.md)), and real filing runs into portal terms and MFA (Gate D B.5).
+    - A library of every plan's coverage criteria. The [S5 audit of I-4004](../outputs/s5-reality/feasibility/s5-planner-02.md) flags this as out of reach in 48 h and uses one canned policy instead.
+    - Later steps in the product family. These are I-1022's rejection check before submission, I-2559's reinstatement filing, and I-5103's confirmation call (a section 4 wildcard).
+  - Feasibility is `yes`. Every component is production-grade, and the step that revisits the portal to confirm really runs against the mock portal.
+- **Demo moment:** Upload a sample denial letter. The drafted appeal, the portal submission and a proof screenshot all appear within a minute.
+- **Red team's best objection (serious):** Claimable and Counterforce already draft appeals, and Aegis already files through payer portals for providers. Unattended filing on a stressed family's own portal account, within 72 hours, raises the stakes of any filing error. ([s8-redteam-01](../outputs/s8-final/red-team/s8-redteam-01.md))
+  - **Fix:** Keep the refund-if-no-portal guarantee, and add a human review before final submission.
+  - **Portal terms (Gate D B.5):** Storing a third party's credentials and automating an insurer's portal runs into portal terms, MFA and bot detection. The mock-portal demo is fine. Real filing should go through official channels where they exist `[unverified]`.
+- **Scores:** 5 · 8 · 9 · 8 · 6 · 8 · 4 · 8.
+  - Judge totals [70.0, 73.9, 76.1], median 73.9, spread 6.1 (one judge placed it in tier A).
+  - Elo 1257.9 → 1281.1, consistency 88, feasibility yes.
+
+<!-- COMPLETE -->

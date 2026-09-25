@@ -1,0 +1,47 @@
+### Balanced #1: Grounded Notes With Timestamp Citations (I-2061), overall #1, tier B
+
+- **Lineage / cell:** ai-native; prosumer\|local-private\|balanced; T9. [Card](../archive/ideas/I-2061.md)
+  - Gate D (D.1) pairs it with I-4501 (#5). Both share the on-device loop from session audio to SOAP note, the same cell and the same dossier.
+  - Gate D's strongest pitch merges the two: ground the note first, then let I-4501's screen agent type it into the EHR.
+- **One-liner:** Drafts SOAP notes from session audio entirely on-device, flagging any sentence it cannot trace back to the recording.
+- **Niche:** Solo therapists with 25–30 clients who write notes after hours and cannot trust incumbent AI scribes to stop inventing content.
+- **Pain and evidence:**
+  - Therapists spend 10–20 hours a week on documentation, and 60–70% of them document outside work hours ([T9 dossier](../outputs/s3-ideate/pain/T9-dossier.md), P6; the dossier rates this source as colour only).
+  - Incumbent scribes invent content. One review says "The AI makes things up that are not said in the session" ([Trustpilot review of Mentalyc](https://www.trustpilot.com/review/mentalyc.com), T9 P7).
+  - Cloud scribes switched on by default have also cost therapists their clients' trust (T9 P3).
+- **How it works:**
+  - A local speech-to-text model transcribes the session.
+  - A local language model drafts a SOAP note and tags each clinical claim with the transcript timestamp it came from.
+  - Any sentence without a tag is highlighted. The clinician verifies or deletes it before saving.
+- **Tech unlock:** Kyutai STT (TC-31) transcribes locally with about 500 ms delay on self-hosted hardware. gpt-oss-20b (TC-22, production) drafts the note on a 16 GB laptop. Both are listed in [s5-planner-06](../outputs/s5-reality/feasibility/s5-planner-06.md).
+- **Prior art:**
+  - Quick verdict: adjacent-exists ([s5-hunter-06](../outputs/s5-reality/prior-art/s5-hunter-06.md)). Deep verdict: adjacent-exists ([s8-hunter-07](../outputs/s8-final/prior-art-deep/s8-hunter-07.md)).
+  - Local scribes for therapists already exist, and none of them flags untraceable sentences:
+    - [Yaps.ai](https://www.yaps.ai/blog/private-therapy-notes-app), a paid product that runs on-device.
+    - 1984Doc/AI-Scribe, a free open-source project on GitHub.
+    - A DIY whisper.cpp + Ollama recipe from [Local AI Master](https://localaimaster.com/blog/local-ai-therapists).
+  - The quick hunt also named [SOAP Notes AI Scribe](https://apps.apple.com/us/app/soap-notes-ai-scribe/id6744947404) and [ICANotes](https://www.icanotes.com/ai-therapy-scribe/). Both offer on-device or local modes but do not flag sentences.
+  - **Verified by web check:** [Abridge Linked Evidence](https://support.abridge.com/hc/en-us/articles/30235128433811-Verify-a-Note-With-Linked-Evidence) already links each note sentence to its transcript excerpt and audio timestamp. Abridge is a cloud scribe for health systems, so I-2061 stays adjacent. But the citation UI is not new, and the claim narrows to on-device drafting for solo therapists, with untraceable sentences flagged (Gate D C.1).
+  - Checking a finished note also has a free, live competitor. [Krasyn Note Check](https://dev.to/krasynemr/we-published-how-we-measure-our-ai-scribes-faithfulness-and-built-a-checker-anyone-can-run-on-any-3jdl) flags note sentences that the transcript does not support, and it knocked out I-2522 in S8.
+- **Pricing:** A monthly subscription per clinician, with a free tier capped at five notes. The card gives no figure. For reference, the T9 dossier puts the incumbents Mentalyc and Upheal at $19.99–$119.99 a month.
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - A local desktop or localhost web app on a 16 GB laptop, with Wi-Fi off during the demo.
+    - Kyutai STT running on a scripted mock session recording, with timestamps.
+    - gpt-oss-20b through Ollama or llama.cpp, drafting the SOAP note and attaching a transcript timestamp to each claim.
+    - An attribution check that does not trust the model's own tags. Following the S5 audit, it aligns each sentence against the transcript by embeddings or substring match, and flags sentences that fall below the threshold.
+    - Clicking a flagged sentence replays the matching audio. The note cannot be saved until every flag has been verified or deleted.
+    - Stretch goal, following Gate D: pass the saved note to I-4501's UI-TARS step, which types it into a mock desktop EHR.
+  - **Out of scope:**
+    - Real client sessions, which need per-client written consent (T9 P4).
+    - Any EHR integration beyond the stretch mock.
+  - Feasibility is `yes`. The [S5 audit](../outputs/s5-reality/feasibility/s5-planner-06.md) names reliable sentence-to-timestamp attribution as the riskiest part. It says a scripted session with a generous matching threshold reaches demo quality.
+- **Demo moment:** Play a scripted session, click a flagged sentence and jump straight to the part of the recording where that claim should be.
+- **Red team's best objection (manageable):** Local therapist scribes already exist, including a free open-source one. The only edge, the timestamp-citation UI, is thin once someone copies it. ([s8-redteam-03](../outputs/s8-final/red-team/s8-redteam-03.md))
+  - **Fix:** Ship the citation and flagging UI first, and make it the headline of the demo.
+  - Gate D (C.1) says this fix is weaker than stated, because Abridge already ships the citation UI. Lead with on-device drafting for solo therapists instead.
+- **Scores:** 5 · 7 · 8 · 7 · 7 · 7 · 4 · 8.
+  - Judge totals [68.3, 71.2, 70.0], median 70.0, spread 2.9.
+  - Elo 1258.4 → 1281.9, the highest in the Balanced track. Consistency 88, feasibility yes.
+
+<!-- COMPLETE -->

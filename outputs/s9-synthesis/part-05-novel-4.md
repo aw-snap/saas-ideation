@@ -1,0 +1,41 @@
+### Novel #4: Linked Call-and-Statement Alert (I-5101), overall #9, tier B
+
+- **Lineage / cell:** ai-native; B2C\|local-private\|novel; T8. An S7 mutation of I-1019 and I-2067. Gate D dropped the parent I-1019 as a strict subset of this idea. [Card](../archive/ideas/I-5101.md)
+- **Half evidence (†):** It has no round-1 Elo and no S5 feasibility audit. It played 4 round-2 matches from a 1200 start (Gate D A.5).
+- **One-liner:** One on-device model links a suspicious call to a new payee or transfer within hours, not weeks.
+- **Niche:** Adult children and paid proxies who protect a parent's phone and bank statements and won't send call audio or account data to the cloud.
+- **Pain and evidence:** Elder fraud cost $4.885B in 2024, across 147,127 IC3 complaints (up 46%). Families notice weeks or months after the money has moved. A flagged call and a same-day new payee are two separate signals, and nobody links them. ([T8 dossier](../outputs/s3-ideate/pain/T8-dossier.md), P4; [AARP on the FBI 2024 report](https://www.aarp.org/money/scams-fraud/fbi-report-fraud-2024/))
+- **How it works:** A single on-device model transcribes incoming calls and flags calls that match known scam patterns. It also scans statements for new payees and duplicate charges. Everything runs on the parent's own device. If a flagged call is followed within hours by an unusual transfer or a new payee, the two signals combine into one high-confidence alert instead of two separate ones.
+- **Tech unlock:** On-device speech and document models (Voxtral Realtime, Gemini Nano) running together locally, so no call audio or statement reaches a server. The card itself marks this `[unverified]`.
+  - The S5 audits of its parents list Mistral Voxtral Realtime as production, at about 200 ms on-device ([I-2067, s5-planner-02](../outputs/s5-reality/feasibility/s5-planner-02.md)).
+  - The same audits list Gemini Nano via Chrome built-in AI as production, but `[unverified]` for structured financial extraction ([I-1019, s5-planner-03](../outputs/s5-reality/feasibility/s5-planner-03.md)).
+- **Prior art:**
+  - Quick verdict: adjacent-exists ([S7 hunter](../outputs/s7-evolve/prior-art/s7-hunter-mutator-01.md)). Deep verdict: adjacent-exists ([s8-hunter-03](../outputs/s8-final/prior-art-deep/s8-hunter-03.md)).
+  - Statement half: [EverSafe](https://www.eversafe.com/) and [Carefull](https://getcarefull.com/) monitor linked bank accounts for anomalies such as new payees and alert family members. Both are cloud-based, and neither analyzes phone calls.
+  - Call half: [Hiya AI Phone & Call Assistant](https://apps.apple.com/us/app/hiya-ai-phone-call-assistant/id6474703665) and Android Scam Detection flag scam calls on-device, and Hiya keeps transcripts on-device. Neither links a flagged call to banking activity. The quick hunt also named [Aura](https://www.aura.com/).
+  - From its parents: [StatementLock](https://www.statementlock.com/) parses statements in-browser (I-1019's closest match). [ShieldsOn](https://shieldson.ai/) is verified as a real-time scam-call detector with a one-tap family alert (I-2067's closest competitor).
+  - No product was found that correlates a flagged call with a same-day new payee or transfer in one alert.
+- **Pricing:** A monthly family-plan subscription per parent, priced above either check alone. The card gives no figure. For reference, the T8 dossier lists EverSafe at $7.49–$24.99/month.
+- **MVP (48 h) scope and stack:**
+  - **In scope:**
+    - A local app or Chrome extension on the demo laptop.
+    - Voxtral Realtime transcribes a pre-recorded sample call played into the pipeline. A small local model or rule set flags scam-pattern matches.
+    - Statement ingestion by local import of a bank-app CSV or PDF export, the red team's fix. In-browser parsing detects new payees and duplicate charges against a baseline of earlier transactions. Gemini Nano via the Chrome Prompt API (Gate D loop 1, B.7) handles only the fields the parser can't.
+    - A linker that joins a flagged call and a transaction event inside a time window and raises one combined alert with both pieces of evidence, shown as a push to the adult child's phone.
+    - A disclosure line when call transcription is switched on.
+  - **Out of scope:**
+    - Live call interception on a real phone. Per the parent I-2067 audit, telephony access can't be obtained in 48 h, so a recorded call stands in, and the transcription and flagging still run for real.
+    - Any bank login or aggregation, which would break the on-device claim.
+    - Messy scanned statements. Per the I-1019 audit, Gemini Nano's accuracy there is unverified, so the demo uses a clean statement.
+  - **Open design point:** A monthly statement arrives weeks after the transfer. "Within hours" therefore depends on a recent-transactions export, and the card does not say how often a family would produce one.
+  - Feasibility is not audited (†). The parents' audits were `demoable: yes` (I-2067) and `demoable: risky` (I-1019). The linker itself is ordinary engineering.
+- **Demo moment:** Play a sample call that the model flags, then load a statement with a same-day new payee. A single linked alert fires.
+- **Red team's best objection (manageable):** EverSafe/Carefull and Hiya already cover the two halves separately. The card also never explains how a bank statement reaches the device without a cloud bank login, which undercuts the privacy pitch. ([s8-redteam-03](../outputs/s8-final/red-team/s8-redteam-03.md))
+  - **Fix:** Specify a local statement-ingestion path, such as the bank app's own PDF export, so the on-device claim holds end to end.
+  - Gate D (A.5) carries the same point: the statement-ingestion path is unspecified on the card. It also notes that the why-now is `[unverified]` on the card.
+  - **Call consent (Gate D B.3):** On-device transcription of a parent's incoming calls is legally grey in all-party-consent states, even without storage `[unverified]`. Google ships the same thing on Pixel, which suggests a workable position. Add a disclosure line.
+- **Scores:** 6 · 7 · 8 · 7 · 6 · 7 · 4 · 7.
+  - Judge totals [67.8, 67.3, 66.3], median 67.3, spread 1.5.
+  - Elo: no round 1 (†) → 1223.6 after 4 round-2 matches from a 1200 start. Consistency 75, feasibility not audited (†).
+
+<!-- COMPLETE -->
