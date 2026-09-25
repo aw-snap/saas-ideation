@@ -1,0 +1,413 @@
+{
+ "run_seed": 498282322,
+ "territories": [
+  "T1",
+  "T2",
+  "T3",
+  "T4",
+  "T5",
+  "T6",
+  "T7",
+  "T8",
+  "T9"
+ ],
+ "ideators": {
+  "s3-ideator-novel-T1-01": {
+   "territory": "T1",
+   "track": "novel",
+   "persona": "P16",
+   "cross_territory": "T9",
+   "tech_card": "TC-09",
+   "constraints": [
+    "C01",
+    "C07"
+   ]
+  },
+  "s3-ideator-novel-T1-02": {
+   "territory": "T1",
+   "track": "novel",
+   "persona": "P01",
+   "cross_territory": "T4",
+   "tech_card": "TC-34",
+   "constraints": [
+    "C19",
+    "C22"
+   ]
+  },
+  "s3-ideator-balanced-T1-01": {
+   "territory": "T1",
+   "track": "balanced",
+   "persona": "P24",
+   "cross_territory": "T3",
+   "tech_card": "TC-26",
+   "constraints": [
+    "C02",
+    "C03"
+   ]
+  },
+  "s3-ideator-balanced-T1-02": {
+   "territory": "T1",
+   "track": "balanced",
+   "persona": "P15",
+   "cross_territory": "T8",
+   "tech_card": "TC-31",
+   "constraints": [
+    "C12",
+    "C16"
+   ]
+  },
+  "s3-ideator-novel-T2-01": {
+   "territory": "T2",
+   "track": "novel",
+   "persona": "P32",
+   "cross_territory": "T9",
+   "tech_card": "TC-17",
+   "constraints": [
+    "C11",
+    "C21"
+   ]
+  },
+  "s3-ideator-novel-T2-02": {
+   "territory": "T2",
+   "track": "novel",
+   "persona": "P19",
+   "cross_territory": "T3",
+   "tech_card": "TC-38",
+   "constraints": [
+    "C17",
+    "C18"
+   ]
+  },
+  "s3-ideator-balanced-T2-01": {
+   "territory": "T2",
+   "track": "balanced",
+   "persona": "P25",
+   "cross_territory": "T6",
+   "tech_card": "TC-33",
+   "constraints": [
+    "C08",
+    "C13"
+   ]
+  },
+  "s3-ideator-balanced-T2-02": {
+   "territory": "T2",
+   "track": "balanced",
+   "persona": "P10",
+   "cross_territory": "T7",
+   "tech_card": "TC-13",
+   "constraints": [
+    "C04",
+    "C20"
+   ]
+  },
+  "s3-ideator-novel-T3-01": {
+   "territory": "T3",
+   "track": "novel",
+   "persona": "P22",
+   "cross_territory": "T1",
+   "tech_card": "TC-11",
+   "constraints": [
+    "C06",
+    "C14"
+   ]
+  },
+  "s3-ideator-novel-T3-02": {
+   "territory": "T3",
+   "track": "novel",
+   "persona": "P30",
+   "cross_territory": "T2",
+   "tech_card": "TC-12",
+   "constraints": [
+    "C05",
+    "C15"
+   ]
+  },
+  "s3-ideator-balanced-T3-01": {
+   "territory": "T3",
+   "track": "balanced",
+   "persona": "P29",
+   "cross_territory": "T4",
+   "tech_card": "TC-06",
+   "constraints": [
+    "C10",
+    "C23"
+   ]
+  },
+  "s3-ideator-balanced-T3-02": {
+   "territory": "T3",
+   "track": "balanced",
+   "persona": "P34",
+   "cross_territory": "T6",
+   "tech_card": "TC-29",
+   "constraints": [
+    "C09",
+    "C24"
+   ]
+  },
+  "s3-ideator-novel-T4-01": {
+   "territory": "T4",
+   "track": "novel",
+   "persona": "P17",
+   "cross_territory": "T8",
+   "tech_card": "TC-18",
+   "constraints": [
+    "C09",
+    "C10"
+   ]
+  },
+  "s3-ideator-novel-T4-02": {
+   "territory": "T4",
+   "track": "novel",
+   "persona": "P31",
+   "cross_territory": "T5",
+   "tech_card": "TC-10",
+   "constraints": [
+    "C08",
+    "C21"
+   ]
+  },
+  "s3-ideator-balanced-T4-01": {
+   "territory": "T4",
+   "track": "balanced",
+   "persona": "P27",
+   "cross_territory": "T2",
+   "tech_card": "TC-15",
+   "constraints": [
+    "C07",
+    "C20"
+   ]
+  },
+  "s3-ideator-balanced-T4-02": {
+   "territory": "T4",
+   "track": "balanced",
+   "persona": "P11",
+   "cross_territory": "T7",
+   "tech_card": "TC-14",
+   "constraints": [
+    "C05",
+    "C12"
+   ]
+  },
+  "s3-ideator-novel-T5-01": {
+   "territory": "T5",
+   "track": "novel",
+   "persona": "P23",
+   "cross_territory": "T8",
+   "tech_card": "TC-03",
+   "constraints": [
+    "C11",
+    "C19"
+   ]
+  },
+  "s3-ideator-novel-T5-02": {
+   "territory": "T5",
+   "track": "novel",
+   "persona": "P02",
+   "cross_territory": "T2",
+   "tech_card": "TC-37",
+   "constraints": [
+    "C02",
+    "C17"
+   ]
+  },
+  "s3-ideator-balanced-T5-01": {
+   "territory": "T5",
+   "track": "balanced",
+   "persona": "P04",
+   "cross_territory": "T9",
+   "tech_card": "TC-02",
+   "constraints": [
+    "C04",
+    "C14"
+   ]
+  },
+  "s3-ideator-balanced-T5-02": {
+   "territory": "T5",
+   "track": "balanced",
+   "persona": "P26",
+   "cross_territory": "T3",
+   "tech_card": "TC-23",
+   "constraints": [
+    "C22",
+    "C23"
+   ]
+  },
+  "s3-ideator-novel-T6-01": {
+   "territory": "T6",
+   "track": "novel",
+   "persona": "P35",
+   "cross_territory": "T8",
+   "tech_card": "TC-36",
+   "constraints": [
+    "C03",
+    "C13"
+   ]
+  },
+  "s3-ideator-novel-T6-02": {
+   "territory": "T6",
+   "track": "novel",
+   "persona": "P14",
+   "cross_territory": "T5",
+   "tech_card": "TC-27",
+   "constraints": [
+    "C06",
+    "C24"
+   ]
+  },
+  "s3-ideator-balanced-T6-01": {
+   "territory": "T6",
+   "track": "balanced",
+   "persona": "P21",
+   "cross_territory": "T1",
+   "tech_card": "TC-07",
+   "constraints": [
+    "C01",
+    "C16"
+   ]
+  },
+  "s3-ideator-balanced-T6-02": {
+   "territory": "T6",
+   "track": "balanced",
+   "persona": "P33",
+   "cross_territory": "T3",
+   "tech_card": "TC-21",
+   "constraints": [
+    "C15",
+    "C18"
+   ]
+  },
+  "s3-ideator-novel-T7-01": {
+   "territory": "T7",
+   "track": "novel",
+   "persona": "P20",
+   "cross_territory": "T8",
+   "tech_card": "TC-32",
+   "constraints": [
+    "C10",
+    "C20"
+   ]
+  },
+  "s3-ideator-novel-T7-02": {
+   "territory": "T7",
+   "track": "novel",
+   "persona": "P36",
+   "cross_territory": "T9",
+   "tech_card": "TC-28",
+   "constraints": [
+    "C12",
+    "C24"
+   ]
+  },
+  "s3-ideator-balanced-T7-01": {
+   "territory": "T7",
+   "track": "balanced",
+   "persona": "P05",
+   "cross_territory": "T6",
+   "tech_card": "TC-08",
+   "constraints": [
+    "C14",
+    "C15"
+   ]
+  },
+  "s3-ideator-balanced-T7-02": {
+   "territory": "T7",
+   "track": "balanced",
+   "persona": "P07",
+   "cross_territory": "T1",
+   "tech_card": "TC-35",
+   "constraints": [
+    "C09",
+    "C19"
+   ]
+  },
+  "s3-ideator-novel-T8-01": {
+   "territory": "T8",
+   "track": "novel",
+   "persona": "P03",
+   "cross_territory": "T7",
+   "tech_card": "TC-16",
+   "constraints": [
+    "C03",
+    "C22"
+   ]
+  },
+  "s3-ideator-novel-T8-02": {
+   "territory": "T8",
+   "track": "novel",
+   "persona": "P28",
+   "cross_territory": "T9",
+   "tech_card": "TC-01",
+   "constraints": [
+    "C17",
+    "C21"
+   ]
+  },
+  "s3-ideator-balanced-T8-01": {
+   "territory": "T8",
+   "track": "balanced",
+   "persona": "P18",
+   "cross_territory": "T4",
+   "tech_card": "TC-24",
+   "constraints": [
+    "C11",
+    "C18"
+   ]
+  },
+  "s3-ideator-balanced-T8-02": {
+   "territory": "T8",
+   "track": "balanced",
+   "persona": "P06",
+   "cross_territory": "T2",
+   "tech_card": "TC-19",
+   "constraints": [
+    "C01",
+    "C23"
+   ]
+  },
+  "s3-ideator-novel-T9-01": {
+   "territory": "T9",
+   "track": "novel",
+   "persona": "P09",
+   "cross_territory": "T4",
+   "tech_card": "TC-22",
+   "constraints": [
+    "C04",
+    "C13"
+   ]
+  },
+  "s3-ideator-novel-T9-02": {
+   "territory": "T9",
+   "track": "novel",
+   "persona": "P12",
+   "cross_territory": "T8",
+   "tech_card": "TC-04",
+   "constraints": [
+    "C08",
+    "C16"
+   ]
+  },
+  "s3-ideator-balanced-T9-01": {
+   "territory": "T9",
+   "track": "balanced",
+   "persona": "P08",
+   "cross_territory": "T2",
+   "tech_card": "TC-05",
+   "constraints": [
+    "C02",
+    "C05"
+   ]
+  },
+  "s3-ideator-balanced-T9-02": {
+   "territory": "T9",
+   "track": "balanced",
+   "persona": "P13",
+   "cross_territory": "T1",
+   "tech_card": "TC-20",
+   "constraints": [
+    "C06",
+    "C07"
+   ]
+  }
+ },
+ "complete": true
+}

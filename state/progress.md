@@ -8,3 +8,7 @@
 2026-09-25 | gate_A | loop 1 CHANGES (3 majors: blind-leak guard, seed glob, tournament JSON verification) -> fixed; loop 2 APPROVED with 5 minors, 4 fixed, pivoter load accepted | gates/gate-A.md gates/gate-A-loop1.md tools/pipe.py
 2026-09-25 | s1_discover+s2_seeds | done: 32/32 tasks complete; 4 cartographer files (28-31 candidates each, 59-73 links), 38 tech cards, 8 seed cards, 8 decomposed, 85 pool atoms; 1.12M subagent tokens, 11 min | outputs/s1-discover outputs/s2-seeds config/tech_cards.md
 2026-09-25 | s1_discover | WARNING: session WebSearch cap (200) exhausted mid-S1; 8 scouts cut short (WebFetch fallback, gaps marked); decomposer prior-art has no search and no URLs | outputs/s2-seeds/decomposed
+2026-09-25 | setup | user approved CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION=1500 in .claude/settings.json (needs a session restart) | .claude/settings.json
+2026-09-25 | gate_B | APPROVED: 9 territories (all computer-centric), axes buyer x track x capability(6); seed wall checked (only scope exclusions mention the seed lane) | gates/gate-B.md
+2026-09-25 | assign | config/assignments.json written from run_seed 498282322: 36 ideators, 38 tech cards, 24 constraints | config/assignments.json
+2026-09-25 | pilot | NEXT: restart the session (search cap 1500), then run the pilot: s3-ideate with territories [T1], seed_lane false | state/manifest.json

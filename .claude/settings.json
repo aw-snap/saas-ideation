@@ -12,5 +12,8 @@
     ]
   },
   "autoContinueAtUsageLimit": true,
-  "workflowSizeGuideline": "unrestricted"
+  "workflowSizeGuideline": "unrestricted",
+  "env": {
+    "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION": "1500"
+  }
 }

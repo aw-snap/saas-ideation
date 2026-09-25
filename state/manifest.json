@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "gate_B",
+  "current_stage": "pilot",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -9,7 +9,7 @@
     "gate_A": "done",
     "s1_discover": "done",
     "s2_seeds": "done",
-    "gate_B": "pending",
+    "gate_B": "done",
     "pilot": "pending",
     "s3_ideate": "pending",
     "s4_archive": "pending",
@@ -59,7 +59,7 @@
     "s2-ingredient-pool": "done"
   },
   "agent_calls": {
-    "fable": 3,
+    "fable": 4,
     "opus": 11,
     "sonnet": 23
   },
@@ -94,6 +94,11 @@
       "fable": 0,
       "opus": 10,
       "sonnet": 22
+    },
+    "gate_B": {
+      "fable": 1,
+      "opus": 0,
+      "sonnet": 0
     }
   },
   "budget_caps_3x": {
@@ -112,12 +117,36 @@
       "loops": 2,
       "file": "gates/gate-A.md",
       "loop1": "gates/gate-A-loop1.md (CHANGES: 3 majors fixed)"
+    },
+    "B": {
+      "verdict": "APPROVED",
+      "loops": 1,
+      "file": "gates/gate-B.md",
+      "territories": {
+        "T1": "Payer-portal grind at small medical practices",
+        "T2": "Invoice intake and the e-invoicing switchover at small firms",
+        "T3": "Locked-in vertical systems of record with API tolls",
+        "T4": "Mandated reporting into no-API government portals by tiny organizations",
+        "T5": "Security evidence and compliance chores in organizations with no IT staff",
+        "T6": "Agents versus the walled web",
+        "T7": "Verifying and triaging AI-generated submissions",
+        "T8": "Proxy admin for an aging parent",
+        "T9": "Confidential local AI for solo regulated professionals"
+      },
+      "computer_centric": 9,
+      "axes": "buyer(4) x track(2) x capability(6: agent-infra, local-private, screen-agent, verifier, extractor, drafter-dialogue)",
+      "minors": [
+        "T9 demand evidence thin",
+        "T1/T4 closest pair",
+        "few first-person practitioner quotes pool-wide"
+      ]
     }
   },
   "web_search": {
-    "cap_per_session": 200,
+    "cap_per_session": 1500,
     "env_var": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
     "used_this_session": 200,
-    "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals"
-  }
+    "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart)"
+  },
+  "next_action": "Restart the session so CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION=1500 takes effect. Then pilot (H0): `python3 tools/pipe.py args s3 pilot` -> launch .claude/workflows/s3-ideate.js (T1 ideates; dossiers for T1, T3, T4, T8, T9). Report tokens, idea count and 3 sample cards, then STOP for the user to confirm the full run."
 }
