@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "gate_C",
+  "current_stage": "s7_evolve",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -16,7 +16,7 @@
     "s5_reality": "done",
     "s6_tourn_r1": "done",
     "human_mid": "passed without user input",
-    "gate_C": "pending",
+    "gate_C": "done",
     "s7_evolve": "pending",
     "s6_tourn_r2": "pending",
     "s8_final": "pending",
@@ -234,10 +234,11 @@
     "s6r1-judge-08": "done",
     "s6r1-judge-09": "done",
     "s6r1-judge-10": "done",
-    "s6r1-write": "done"
+    "s6r1-write": "done",
+    "gate-C": "done"
   },
   "agent_calls": {
-    "fable": 4,
+    "fable": 5,
     "opus": 37,
     "sonnet": 217
   },
@@ -312,6 +313,9 @@
     "s6_tourn_r1": {
       "opus": 1,
       "sonnet": 10
+    },
+    "gate_C": {
+      "fable": 1
     }
   },
   "budget_caps_3x": {
@@ -356,6 +360,18 @@
         "T9 demand evidence thin",
         "T1/T4 closest pair",
         "few first-person practitioner quotes pool-wide"
+      ]
+    },
+    "C": {
+      "verdict": "APPROVED",
+      "loops": 1,
+      "file": "gates/gate-C.md",
+      "run": "wf_f119e570-4ca",
+      "tokens": 103791,
+      "minors": [
+        "reactions.md empty -> gate-derived directives D1-D7",
+        "Elo within ~30 is noise at 4 matches; under-matched ideas need a full round-2 slate",
+        "B2C|agent-infra|novel stays at 2 occupants"
       ]
     }
   },
