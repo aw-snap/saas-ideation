@@ -1,0 +1,29 @@
+{
+  "pipeline": "not_started",
+  "current_stage": null,
+  "run_seed": null,
+  "fable_available": null,
+  "build_window": null,
+  "stages": {
+    "setup":        "pending",
+    "gate_A":       "pending",
+    "s1_discover":  "pending",
+    "s2_seeds":     "pending",
+    "gate_B":       "pending",
+    "pilot":        "pending",
+    "s3_ideate":    "pending",
+    "s4_archive":   "pending",
+    "s5_reality":   "pending",
+    "s6_tourn_r1":  "pending",
+    "human_mid":    "pending",
+    "gate_C":       "pending",
+    "s7_evolve":    "pending",
+    "s6_tourn_r2":  "pending",
+    "s8_final":     "pending",
+    "gate_D":       "pending",
+    "s9_report":    "pending",
+    "human_rerank": "pending"
+  },
+  "tasks": {},
+  "agent_calls": { "fable": 0, "opus": 0, "sonnet": 0 }
+}
