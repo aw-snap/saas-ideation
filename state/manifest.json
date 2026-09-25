@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "s6_tourn_r2",
+  "current_stage": "s8_final",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -18,7 +18,7 @@
     "human_mid": "passed without user input",
     "gate_C": "done",
     "s7_evolve": "done",
-    "s6_tourn_r2": "pending",
+    "s6_tourn_r2": "done",
     "s8_final": "pending",
     "gate_D": "pending",
     "s9_report": "pending",
@@ -245,12 +245,23 @@
     "s7-hunter-mutator-01": "done",
     "s7-hunter-mutator-02": "done",
     "s7-hunter-mutator-03": "done",
-    "s7-hunter-mutator-04": "done"
+    "s7-hunter-mutator-04": "done",
+    "s6r2-judge-01": "done",
+    "s6r2-judge-02": "done",
+    "s6r2-judge-03": "done",
+    "s6r2-judge-04": "done",
+    "s6r2-judge-05": "done",
+    "s6r2-judge-06": "done",
+    "s6r2-judge-07": "done",
+    "s6r2-judge-08": "done",
+    "s6r2-judge-09": "done",
+    "s6r2-judge-10": "done",
+    "s6r2-write": "done"
   },
   "agent_calls": {
     "fable": 5,
-    "opus": 39,
-    "sonnet": 225
+    "opus": 40,
+    "sonnet": 235
   },
   "claude_version": "2.1.280",
   "models": {
@@ -330,6 +341,10 @@
     "s7_evolve": {
       "opus": 2,
       "sonnet": 8
+    },
+    "s6_tourn_r2": {
+      "opus": 1,
+      "sonnet": 10
     }
   },
   "budget_caps_3x": {
@@ -640,5 +655,30 @@
     ],
     "fixes": "I-5407 and I-5410 frontmatter track novel->balanced to match the intake lead's corrected cells; mutator-01 cards carry no operator field",
     "split": "pipe.py split archive/survivors-s7.md outputs/s7-evolve/s7-mutator-0{1..4}.md: 39 idea + blind cards, 0 leaks"
+  },
+  "s6_r2": {
+    "run": "wf_67b2f48a-43c",
+    "ideas": 156,
+    "projected_tokens": 1500000,
+    "stop_threshold_tokens": 3000000,
+    "projection_basis": "round 1 cost 1.13M for 126 ideas / 252 matches; 156 ideas / ~312 matches, deck ~52k",
+    "subagent_tokens": 1376733,
+    "duration_min": 11.6,
+    "agents": 11,
+    "failed": 0,
+    "matches": 312,
+    "agreed": 252,
+    "agreement_pct": 80.8,
+    "settled": 0,
+    "polarizing": {
+      "novel": 13,
+      "balanced": 12
+    },
+    "leaders": {
+      "novel": "I-2067 (1289.5)",
+      "balanced": "I-2061 (1281.9)"
+    },
+    "verify": "files match the script return; no round-1 pair replayed (checked against tournament/r1/pairings.json); start Elos match the args",
+    "note": "the prior_pairs arg was hand-copied into the launch and dropped 2 of 252 round-1 pairs (I-2069~I-2053, I-3096~I-2053); neither was re-paired, so the round is unaffected"
   }
 }
