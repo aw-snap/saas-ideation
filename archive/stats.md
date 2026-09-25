@@ -1,6 +1,120 @@
-# Archive stats (S4 merge)
+# Archive stats (updated at S7 evolve-intake)
 
-## Counts
+This file has four parts:
+- the current live pool
+- the S7 intake (new at this pass)
+- flags for the primary session
+- the S4 merge record, kept unchanged below them
+
+## Live pool
+
+| stage | cards |
+|---|---|
+| S4 survivors | 162 |
+| Cut at S5 (direct competitor) | 36 |
+| S5 survivors | 126 |
+| S7 survivors added (new) | 30 |
+| **Live pool now** | **156** |
+| of which competing (ai-native, seed-atom-hybrid, seed-pivot) | 130 |
+| of which protected (`seed-original` and `seed-improved`) | 26 |
+
+The same pool broken down:
+- **By track:** novel 72, balanced 84.
+- **By buyer:**
+
+  | buyer | live cards | of which S7 |
+  |---|---|---|
+  | B2B | 61 | 5 |
+  | B2C | 37 | 12 |
+  | prosumer | 48 | 11 |
+  | agents | 10 | 2 |
+
+- **Seed-lane cards** in the pool: 32. These are the 26 protected cards plus 6 pivots.
+- **Occupied cells:** 38 of 48. That is up from 34, because S7 filled four cells.
+- **Elites:** the 15 whose S4 elite was cut at S5 were re-elected at this pass. The rule is in `archive/map.md`.
+
+The archive holds 673 placed cards: the 636 from S4 plus 37 from S7. The S7 count includes 7 direct-competitor drops and excludes 2 merged-away cards.
+
+## S7 intake
+
+### Counts by mutator
+
+| mutator | ids | raw | direct-competitor dropped | merged (duplicate) | survivors | drop rate | dup rate |
+|---|---|---|---|---|---|---|---|
+| s7-mutator-01 | I-5101..5109 | 9 | 1 (I-5107) | 0 | 8 | 11.1% | 0% |
+| s7-mutator-02 | I-5201..5210 | 10 | 3 (I-5202, I-5204, I-5210) | 0 | 7 | 30.0% | 0% |
+| s7-mutator-03 | I-5301..5310 | 10 | 1 (I-5309) | 2 (I-5303, I-5304) | 7 | 10.0% | 20.0% |
+| s7-mutator-04 | I-5401..5410 | 10 | 2 (I-5405, I-5408) | 0 | 8 | 20.0% | 0% |
+| **total** | | **39** | **7** | **2** | **30** | **17.9%** | **5.1%** |
+
+Both duplicates matched existing survivors. None of the S7 cards duplicated another.
+
+### Counts by operator
+
+The mutator-01 cards carry no `operator` field, so they appear as their own row.
+
+| operator | raw | dropped | merged | survivors |
+|---|---|---|---|---|
+| combine | 9 | 1 | 1 | 7 |
+| simplify | 9 | 2 | 1 | 6 |
+| transplant | 9 | 2 | 0 | 7 |
+| far-jump | 3 | 1 | 0 | 2 |
+| (mutator-01, none) | 9 | 1 | 0 | 8 |
+| **total** | **39** | **7** | **2** | **30** |
+
+The simplify operator produced the most casualties, 3 of 9. Stripping a parent down tends to leave either something a live product already does (I-5204, I-5405) or a strict subset of the parent itself (I-5304).
+
+### Merges against existing survivors (2)
+
+| kept | merged | shared buyer / mechanism / pain | why kept |
+|---|---|---|---|
+| I-3093 Privileged Cite Bench | I-5304 Local Citation Existence Check | solo litigators / local cite check against a cached case-law corpus / fabricated cites plus privilege | I-5304 checks only a subset (existence); I-3093 also checks holdings and names a specific capability |
+| I-1062 One-Split VAT Learner | I-5303 One-Example Split Ledger | small-firm bookkeepers / one corrected split becomes a reusable template / multi-tax-code invoices break extraction | keying per client rather than per vendor is a variant; I-1062 is more specific |
+
+### Cell corrections (5)
+
+| id | was | now | reason |
+|---|---|---|---|
+| I-5104 | B2C\|verifier\|balanced | B2C\|extractor\|balanced | It turns forwarded notices into records of changes and due dates. Nothing is checked against a source of truth. |
+| I-5302 | prosumer\|screen-agent\|balanced | prosumer\|local-private\|balanced | On-device drafting is the reason to buy. Bin 2 comes before bin 3. |
+| I-5407 | prosumer\|extractor\|novel | prosumer\|extractor\|balanced | The why-now names only proven document extraction. |
+| I-5409 | B2C\|extractor\|balanced | B2C\|verifier\|balanced | It checks the app's payout against the driver's own screenshots. Bin 4 comes before bin 5. |
+| I-5410 | B2B\|extractor\|novel | prosumer\|extractor\|balanced | The buyer is an individual micro-seller. The why-now is a rule change, not a capability. |
+
+### Duplicate rate by source (all passes)
+
+| source | raw | within-partition merged | cross-partition merged | total merged | dup rate |
+|---|---|---|---|---|---|
+| round 1 | 288 | 35 | 40 | 75 | 26.0% |
+| round 2 | 180 | 9 | 6 | 15 | 8.3% |
+| round 3 | 180 | 6 | 4 | 10 | 5.6% |
+| seed lane | 88 | 0 | 0 | 0 | 0% |
+| **S7 evolve (new)** | **39** | **0** | **2** | **2** | **5.1%** |
+| **total** | **775** | **50** | **52** | **102** | **13.2%** |
+
+The mutators were told to move away from their parents. Only 2 of 39 cards fell back onto an existing card, a rate close to round 3's. The larger loss is the 17.9% direct-competitor rate, since the S7 cards hit markets that already exist.
+
+## Flags for the primary session
+
+1. **Some S7 prior-art verdicts also apply to live parents.** Several S7 cards were dropped because their mechanism matches a live product. Where the mutation copied its parent's mechanism, the same evidence reaches the parent, which is still in the pool. The archive does not knock cards out; the S5 rules do. Suggested re-checks:
+   - **I-1027 Appeal Packet Builder:** I-5309 repeats its How-it-works almost word for word, and it was judged direct against [EZAppeal](https://ezappeal.com). For this reason I-1027 was not promoted to elite.
+   - **I-3026 Redaction Relay:** I-5107 has the same local redact-and-restore mechanism and was judged direct. The competitors are [PrivacyScrubber](https://chromewebstore.google.com/detail/privacyscrubber-%E2%80%94-pii-red/pimoejgefeilajmmbpghifdmhdlkgjol), [Rescriber](https://chromewebstore.google.com/detail/rescriber/oglddlncokahjddccgjnnpdlgdbijcbl) and [VamiGuard](https://vamiguard.com/).
+   - **I-3517 Vendor Hold-Line Voice Confirmer:** I-5408 is a transplant of it and was judged direct against [Google Hold for Me](https://support.google.com/assistant/answer/10071878) and [Retell AI](https://www.retellai.com/). The hunter called the readback "a refinement, not a new mechanism".
+   - **I-3088 Vendor Hold-Queue Call Agent:** its simplification I-5405 was judged direct against the same products. I-3088 keeps a step I-5405 dropped: it re-checks the system state before closing the ticket. That step is probably its defence, so it stays elite of B2B|drafter-dialogue|balanced.
+   - **I-3537 Supply-Run Spend Guardrail:** it is a parent of I-5202, which was judged direct against [AgentCard](https://agentcard.ai/blog/agentcard-vs-corporate-cards) and [Privacy.com](https://www.privacy.com/blog/openclaw-ai-agent-spending-virtual-card) per-task agent cards. Check whether its mechanism is the per-task card. I-1003's cross-protocol envelope is further away.
+   - **I-1001 Independent Completion Witness:** I-5210 was judged direct against the x402 witness and escrow projects [Witness on x402scan](https://github.com/Merit-Systems/x402scan/issues/1117) and [PayCrow](https://dev.to/michu5696/add-escrow-protection-to-any-x402-agent-payment-in-5-minutes-1n0b). Worth checking whether a standalone witness service is already live.
+   - **Adjacent verdicts that describe a parent's own niche:**
+     - The hunter on I-5307 found [TinyFish](https://tinyfish.ai) and [Agentman](https://agentman.ai) already doing overnight multi-portal PA status checks for staffed practices. That is I-1024's buyer.
+     - The hunter on I-5308 found [PowerDMARC](https://powerdmarc.com) and [EasyDMARC](https://easydmarc.com) generating paste-in DNS records. That is I-3059's mechanism.
+2. **No cell cap at intake.** Ten cells now hold more than an elite plus 3 runners-up; they are listed in `archive/map.md`. The live pool of 156 is inside the 150–200 target, so nothing was cut.
+3. **Unions were kept.** I-5302 combines I-2061 and I-4501, and all three are in prosumer|local-private|balanced. If the tournament pairs within a cell, expect these three to compete head to head.
+4. **Scope of the `elites` JSON.** The `elites` object in `archive/survivors-s7.md` lists all 38 occupied cells, not only the 20 that hold S7 cards, because the S5 knock-outs had left 15 cells without their S4 elite.
+
+---
+
+## S4 merge record (unchanged)
+
+### Counts
 
 | stage | cards |
 |---|---|
@@ -21,7 +135,7 @@ Capped survivors by buyer: B2B 48, B2C 32, prosumer 41, agents 8.
 
 Capped survivors by lineage: ai-native 109, seed-atom-hybrid 11, seed-pivot 9. Seed-lane cards advancing overall: 42 (33 protected + 9 pivots out of 55).
 
-## Duplicate rate by partition
+### Duplicate rate by partition
 
 - **Within** = merges the worker made inside its own partition.
 - **Cross** = cards from that partition merged away in this pass.
@@ -39,7 +153,7 @@ Capped survivors by lineage: ai-native 109, seed-atom-hybrid 11, seed-pivot 9. S
 | w09 | I-6001..6024 | 24 | 0 | 0% | 0 | 0 | 0% |
 | **total** | | **736** | **50** | **6.8%** | **50** | **100** | **13.6%** |
 
-## Duplicate rate by source
+### Duplicate rate by source
 
 The source comes from the raw-id round suffix (`-r1`, `-r2`, `-r3`). The seed lane covers `seed-NN`, `s3-improver-*` and `s3-pivoter-*` cards.
 
@@ -53,7 +167,7 @@ The source comes from the raw-id round suffix (`-r1`, `-r2`, `-r3`). The seed la
 
 Round 1 carries almost all the redundancy. Different T-lanes independently landed on the same obvious ideas: nightly eligibility sweeps, pawn police reports, charity registration, duplicate-claim guards, filing-agent watchdogs and Peppol delivery checks. Rounds 2 and 3 were steered away from the archive and duplicate far less. No seed-lane card was merged.
 
-## Cross-partition merges (50 cards into 49 kept cards)
+### Cross-partition merges (50 cards into 49 kept cards)
 
 Each merged card shares the kept card's buyer, core mechanism and pain. Where two cards were merely similar, both were kept. Examples are the email, voicemail, paper and API interaction variants of an idea, such as I-4041, I-4042, I-3511, I-3513, I-4571 and I-3084.
 
@@ -109,7 +223,7 @@ Each merged card shares the kept card's buyer, core mechanism and pain. Where tw
 | I-3577 Docket-Wide Hallucination Screener | I-2048 Docket Discrepancy Radar | court clerks / nightly docket citation sweep / fabricated citations | sharper pain |
 | I-4060 Pro Se Citation Screen for Clerks | I-3043 Docket Watchdog | court clerks / citation check at docketing / fabricated citations | more specific buyer |
 
-## Cell corrections applied in this pass (12)
+### Cell corrections applied at S4 (12)
 
 | id | was | now | reason |
 |---|---|---|---|
@@ -126,16 +240,11 @@ Each merged card shares the kept card's buyer, core mechanism and pain. Where tw
 | I-4023 | B2B\|verifier\|novel | B2B\|verifier\|balanced | rules check with shipped capabilities (merged into I-1046) |
 | I-4567 | B2B\|verifier\|novel | B2B\|verifier\|balanced | code translation with shipped capabilities (merged into I-4073) |
 
-All other cards keep the cell their worker recorded. That includes the corrections the workers already made (w01: I-1001, I-1042, I-1050, I-1056; w08: I-4556, I-4519).
+All other cards kept the cell their worker recorded. That includes the corrections the workers had already made (w01: I-1001, I-1042, I-1050, I-1056; w08: I-4556, I-4519).
 
-## Flags for the primary session
+### S4 flags (historical)
 
-- **seed-09 is on hold.** User memory says seed-09 is deferred, but partition w09 includes cards derived from it:
-  - I-6001 (seed-original)
-  - I-6005 and I-6008 (seed-improved)
-  - the pivots I-6020 to I-6024
-
-  Under the stated S4 rules, I-6001, I-6005 and I-6008 are protected and advance. None of the seed-09 pivots is an elite or runner-up, so they are archived and do not advance. The primary session should decide whether to hold back I-6001, I-6005 and I-6008 before S5. Removing them would leave 159 survivors.
+- **seed-09 was on hold at S4.** Cards derived from it (I-6001, I-6005, I-6008 and pivots I-6020 to I-6024) sat in partition w09. Seeds 09–11 have since been released. I-6005 and I-6008 were later cut at S5, and I-6001 is kept as a seed original.
 - **Seed triplets:** several protected seed cards restate the same seed. They were not merged, by rule:
   - I-1555, I-2045 and I-3051 (Same Words, More Life)
   - I-2039, I-3045 and I-4519 (paddle capture)

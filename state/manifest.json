@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "s7_evolve",
+  "current_stage": "s6_tourn_r2",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -17,7 +17,7 @@
     "s6_tourn_r1": "done",
     "human_mid": "passed without user input",
     "gate_C": "done",
-    "s7_evolve": "pending",
+    "s7_evolve": "done",
     "s6_tourn_r2": "pending",
     "s8_final": "pending",
     "gate_D": "pending",
@@ -235,12 +235,22 @@
     "s6r1-judge-09": "done",
     "s6r1-judge-10": "done",
     "s6r1-write": "done",
-    "gate-C": "done"
+    "gate-C": "done",
+    "s7-evolution-lead": "done",
+    "s7-archive-intake": "done",
+    "s7-mutator-01": "done",
+    "s7-mutator-02": "done",
+    "s7-mutator-03": "done",
+    "s7-mutator-04": "done",
+    "s7-hunter-mutator-01": "done",
+    "s7-hunter-mutator-02": "done",
+    "s7-hunter-mutator-03": "done",
+    "s7-hunter-mutator-04": "done"
   },
   "agent_calls": {
     "fable": 5,
-    "opus": 37,
-    "sonnet": 217
+    "opus": 39,
+    "sonnet": 225
   },
   "claude_version": "2.1.280",
   "models": {
@@ -316,6 +326,10 @@
     },
     "gate_C": {
       "fable": 1
+    },
+    "s7_evolve": {
+      "opus": 2,
+      "sonnet": 8
     }
   },
   "budget_caps_3x": {
@@ -598,5 +612,33 @@
     "status": "passed without user input (user autonomy brief)",
     "reactions_md": "template examples only (inside an HTML comment); no user reactions",
     "new_seeds": "none (seeds 01-11 all processed)"
+  },
+  "s7": {
+    "run": "wf_8d799c20-e5d",
+    "new_seeds": [],
+    "projected_tokens": 1400000,
+    "stop_threshold_tokens": 2800000,
+    "projection_basis": "evolution lead ~150k + 4 mutators x ~100k + 4 quick hunters x ~150k + intake lead ~250k",
+    "skip_note": "skip passed as [] because no S7 output existed yet (pipe.py args s7 lists every archive card, none of them an S7 output)",
+    "subagent_tokens": 867313,
+    "duration_min": 25.9,
+    "agents": 10,
+    "failed": 0,
+    "new_cards": 39,
+    "dropped_direct_competitor": 7,
+    "merged_into_existing": 2,
+    "survivors": 30,
+    "survivors_by_track": {
+      "novel": 11,
+      "balanced": 19
+    },
+    "new_cells_filled": [
+      "B2C|local-private|novel",
+      "B2C|drafter-dialogue|novel",
+      "B2C|agent-infra|balanced",
+      "prosumer|agent-infra|balanced"
+    ],
+    "fixes": "I-5407 and I-5410 frontmatter track novel->balanced to match the intake lead's corrected cells; mutator-01 cards carry no operator field",
+    "split": "pipe.py split archive/survivors-s7.md outputs/s7-evolve/s7-mutator-0{1..4}.md: 39 idea + blind cards, 0 leaks"
   }
 }
