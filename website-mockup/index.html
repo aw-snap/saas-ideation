@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Concepts</title>
+<style>
+  /* Pastel palette. Every text/background pair is >= 5.8:1 (WCAG AA). */
+  :root {
+    --ink: #2d2a26;
+    --muted: #75594a;
+    --card: #fdf3ea;         /* faded peach */
+    --card-line: #f3e0d0;
+    --panel-line: #f0dccb;
+    --tint: #fdf6f0;
+    --field-line: #a3856f;   /* input borders need 3:1 on white */
+    --focus: #6b8fd6;
+
+    --blue-bg: #dce8fc;  --blue-hover: #c9dbfa;  --blue-line: #a9c3f2;  --blue-ink: #1f3f7a;
+    --green-bg: #d9f1e3; --green-line: #b2dfc3;  --green-ink: #1d5e3a;  --green-dot: #3f9e6a;
+    --lav-bg: #ebe5f8;   --lav-ink: #4a3a78;
+    --amber-bg: #fdebcc; --amber-ink: #7a4608;
+    --red-bg: #fbdcdc;   --red-ink: #8c2323;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 780px; margin: 0 auto; padding: 56px 16px 80px; }
+  h1 { font-size: 34px; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 12px; }
+  h2 { font-size: 25px; line-height: 1.25; letter-spacing: -.01em; margin: 0 0 10px; }
+  h3 { font-size: 16px; line-height: 1.4; margin: 0 0 4px; }
+  p { margin: 0 0 10px; }
+  p, dd { text-wrap: pretty; }   /* avoids one-word last lines */
+  h1, h2, h3 { text-wrap: balance; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 60ch; margin-bottom: 6px; }
+  .note { color: var(--muted); font-size: 14px; margin-bottom: 44px; }
+
+  /* ---- card ---- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+  .tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .rank { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
+  .tag { font-size: 12.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+  .tag.balanced { background: var(--blue-bg); color: var(--blue-ink); }
+  .tag.novel { background: var(--green-bg); color: var(--green-ink); }
+  .tag.kind { background: var(--lav-bg); color: var(--lav-ink); }
+  .oneliner { font-size: 18.5px; line-height: 1.55; max-width: 62ch; margin-bottom: 24px; }
+
+  /* label/value rows, separated by hairlines so each fact reads as one unit */
+  dl { display: grid; grid-template-columns: 164px 1fr; margin: 0 0 28px; border-top: 1px solid var(--card-line); }
+  dt, dd { margin: 0; padding: 14px 0; border-bottom: 1px solid var(--card-line); }
+  dt { font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding-top: 17px; }
+  dd { padding-right: 8px; }
+
+  /* ---- demo panel ---- */
+  .demo { background: #fff; border: 1px solid var(--panel-line); border-radius: 12px; padding: 24px; }
+  .demo.placeholder { background: transparent; border: 2px dashed var(--panel-line); color: var(--muted); font-size: 15px; padding: 18px 20px; }
+  .hint { font-size: 14.5px; color: var(--muted); }
+  .controls { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin: 14px 0 4px; }
+  .controls label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+
+  button, select { font: inherit; }
+  button {
+    background: var(--blue-bg); color: var(--blue-ink);
+    border: 1px solid var(--blue-line); border-radius: 10px;
+    padding: 10px 18px; min-height: 44px; cursor: pointer; font-weight: 600;
+    transition: background .15s;
+  }
+  button:hover { background: var(--blue-hover); }
+  button:active { transform: translateY(1px); }
+  button:disabled { opacity: .55; cursor: default; }
+  button:focus-visible, select:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  select { padding: 10px 12px; min-height: 44px; border: 1px solid var(--field-line); border-radius: 10px; background: #fff; color: var(--ink); max-width: 100%; }
+
+  .steps { list-style: none; padding: 0; margin: 16px 0 8px; font-size: 15px; }
+  .steps:empty { display: none; }
+  .steps li { padding: 3px 0 3px 26px; position: relative; color: var(--muted); }
+  .steps li::before { content: ""; position: absolute; left: 4px; top: 10px; width: 11px; height: 11px; border-radius: 50%; background: var(--panel-line); }
+  .steps li.done { color: var(--ink); }
+  .steps li.done::before { background: var(--green-dot); }
+
+  .box { background: var(--tint); border-radius: 10px; padding: 16px 18px; margin-top: 12px; font-size: 16px; }
+  .box:empty { display: none; }
+  .box p:last-child { margin-bottom: 0; }
+
+  /* sofa demo */
+  .route { display: block; width: 100%; max-width: 440px; margin: 16px 0 4px; background: var(--tint); border-radius: 10px; }
+  .route text { font: 11px system-ui, sans-serif; fill: var(--muted); }
+  .chip { display: inline-block; padding: 3px 12px; border-radius: 999px; font-weight: 700; font-size: 14.5px; }
+  .chip.green { background: var(--green-bg); color: var(--green-ink); }
+  .chip.amber { background: var(--amber-bg); color: var(--amber-ink); }
+  .chip.red { background: var(--red-bg); color: var(--red-ink); }
+
+  /* AAC demo */
+  .convo { background: var(--tint); border-radius: 10px; padding: 14px 18px; margin: 14px 0 18px; font-size: 16px; }
+  .convo p { margin: 0 0 6px; }
+  .convo p:last-child { margin-bottom: 0; }
+  .convo .you { color: var(--blue-ink); }
+  .board-label { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .phrases { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .phrase { background: #fff; color: var(--ink); border-color: var(--panel-line); font-weight: 500; text-align: left; }
+  .phrase:hover { background: var(--tint); }
+  .phrase.top, .phrase.top:hover { background: var(--green-bg); border-color: var(--green-line); color: var(--green-ink); font-weight: 700; }
+
+  @media (max-width: 600px) {
+    main { padding-top: 36px; }
+    h1 { font-size: 28px; }
+    .card { padding: 20px; border-radius: 14px; }
+    .demo { padding: 18px; }
+    dl { grid-template-columns: 1fr; }
+    dt { border-bottom: 0; padding: 14px 0 2px; }
+    dd { padding-top: 0; padding-right: 0; }
+    .controls, .controls > div, select { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Final concepts</h1>
+  <p class="lede">Each card shows who the idea helps, the problem it tackles and why it's promising. Two cards include a quick demo.</p>
+  <p class="note">Placeholder cards from seeds 01, 11 and 02. Overwrite them with the ideas that pass.</p>
+
+  <!-- PLACEHOLDER from seed-01. When replacing, set the rank ("#1") and add a track tag:
+       <span class="tag novel">Novel</span> or <span class="tag balanced">Balanced</span> -->
+  <article class="card">
+    <div class="tags"><span class="rank">Seed 01</span><span class="tag kind">Concrete example</span></div>
+    <h2>Pivot: will the sofa fit?</h2>
+    <p class="oneliner">Film your route from the street to the room on your phone. You get a green, amber or red verdict on whether the sofa will fit, plus a plan for how to carry it in.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Online furniture and appliance retailers, white-glove delivery companies and piano movers, and their customers at checkout.</dd>
+      <dt>Problem</dt><dd>When a sofa won't go up the stairs, the delivery fails. The retailer pays return freight, the walls get damaged and the sale is lost. Tape measures and online calculators can't handle real 3D routes like switchback stairs or a banister.</dd>
+      <dt>Why promising</dt><dd>It treats "will it fit?" as a robotics motion-planning problem. Once a route is scanned, a "fits my home" filter turns returns prevention into a sales tool.</dd>
+    </dl>
+
+    <div class="demo">
+      <h3>Try it: check a sofa against a scanned route</h3>
+      <p class="hint">Input: a 58-second route video, from the front door along the hall to the stairs.</p>
+      <div class="controls">
+        <div>
+          <label for="sofa-pick">Sofa</label>
+          <select id="sofa-pick">
+            <option value="s">2-seater · 180 cm</option>
+            <option value="m">3-seater · 220 cm</option>
+            <option value="l">Corner sofa · 270 cm</option>
+          </select>
+        </div>
+        <button id="sofa-go">Check my route</button>
+      </div>
+      <ol class="steps" id="sofa-steps"></ol>
+      <svg class="route" viewBox="0 0 300 200" role="img" aria-label="Top-down plan: a hallway that turns left into a staircase">
+        <path d="M0 125 H180 V0 H230 V175 H0 Z" fill="#fff" stroke="#c9ab96" stroke-width="2"/>
+        <text x="8" y="118">Front door 85 cm</text>
+        <text x="70" y="192">Hall 90 cm</text>
+        <text x="236" y="20">Stairs up</text>
+        <rect id="sofa" x="-30" y="-12" width="60" height="24" rx="5" fill="#b9cff5" stroke="#6b8fd6" stroke-width="1.5" style="transform: translate(-70px,150px)"/>
+      </svg>
+      <div class="box" id="sofa-out" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <!-- PLACEHOLDER from seed-11 -->
+  <article class="card">
+    <div class="tags"><span class="rank">Seed 11</span><span class="tag kind">Abstract example</span></div>
+    <h2>Context-aware phrase suggestions for AAC</h2>
+    <p class="oneliner">Listens to the conversation and moves your own saved phrases to the top, so you can reply with fewer taps.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>People who use augmentative and alternative communication (AAC), especially with eye tracking or switch scanning, where every selection is slow.</dd>
+      <dt>Problem</dt><dd>Even with a bank of saved phrases, finding the right one means going through folders while the conversation moves on. By the time the reply is found, the moment has often passed.</dd>
+      <dt>Why promising</dt><dd>The phrases already exist; what's missing is a way to find them in time. It ranks phrases and never writes new ones, so the user's voice stays their own. The normal interface is always there, and the user can turn listening off.</dd>
+    </dl>
+
+    <div class="demo">
+      <h3>Try it: watch the phrase board re-rank</h3>
+      <p class="hint">Press the button to hear what the partner says. Then tap a phrase to reply.</p>
+      <div class="controls"><button id="aac-next">Partner speaks next line</button></div>
+      <div class="convo" id="aac-convo" aria-live="polite"><p class="hint">The conversation will appear here.</p></div>
+      <p class="board-label">Your saved phrases. Suggestions are green and move to the front.</p>
+      <div class="phrases" id="aac-board"></div>
+    </div>
+  </article>
+
+  <!-- PLACEHOLDER from seed-02 -->
+  <article class="card">
+    <div class="tags"><span class="rank">Seed 02</span></div>
+    <h2>Spotter: computer vision for the charity paddle raise</h2>
+    <p class="oneliner">Cameras and speech recognition log every raised paddle at the right giving level. Each pledge is saved with a 3-second clip that becomes the donor's thank-you.</p>
+    <dl>
+      <dt>Who it helps</dt><dd>Charity gala organisers, school auction committees and benefit auctioneers. Auctioneers are the sales channel.</dd>
+      <dt>Problem</dt><dd>Pledges are captured by hand in a fast room. Paddles get missed, numbers get misread, and reconciliation drags on for days.</dd>
+      <dt>Why promising</dt><dd>The paddle raise is a big money moment at a gala, and nothing records it automatically. Capturing it fixes reconciliation, and each donor's clip becomes a thank-you asset.</dd>
+    </dl>
+    <div class="demo placeholder">Demo slot: an auctioneer clip plays "ten thousand… thank you, 214!". Paddle 214 lights up on a room grid, and the pledge lands in a running total with its clip.</div>
+  </article>
+</main>
+
+<script>
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const $ = id => document.getElementById(id);
+
+// ---- Demo 1: sofa fit (canned verdicts + a scripted top-down animation) ----
+const SOFAS = {
+  s: { len: 60, verdict: "green", label: "Fits",
+       plan: "Carry it flat through the front door, turn left at the end of the hall, then carry it straight up the stairs." },
+  m: { len: 80, verdict: "amber", label: "Fits with care",
+       plan: "Take the legs off first. At the hall corner, stand the sofa on its end, turn it, then carry it up the stairs." },
+  l: { len: 110, verdict: "red", label: "Won't fit",
+       plan: "It jams at the turn from the hall to the stairs. The sofa needs about 262 cm of clearance and the turn allows about 240 cm. Suggest the modular version." }
+};
+const SOFA_FILL = { ok: ["#b9cff5", "#6b8fd6"], jam: ["#f6c1c1", "#c25555"] };
+const pose = (x, y, deg) => ({ transform: `translate(${x}px,${y}px) rotate(${deg}deg)` });
+const paint = (rect, [fill, stroke]) => { rect.setAttribute("fill", fill); rect.setAttribute("stroke", stroke); };
+
+$("sofa-go").onclick = async () => {
+  const s = SOFAS[$("sofa-pick").value];
+  const rect = $("sofa"), steps = $("sofa-steps"), out = $("sofa-out");
+  $("sofa-go").disabled = true;
+  out.innerHTML = "";
+  steps.innerHTML = "";
+  rect.getAnimations().forEach(a => a.cancel());
+  rect.setAttribute("x", -s.len / 2);
+  rect.setAttribute("width", s.len);
+  paint(rect, SOFA_FILL.ok);
+  for (const label of ["Read the route video", "Rebuild the route in 3D: 1 door, 1 turn, 14 stairs", "Solve the carry path"]) {
+    const li = document.createElement("li");
+    li.textContent = label;
+    steps.append(li);
+    await wait(450);
+    li.classList.add("done");
+  }
+  const frames = s.verdict === "red"
+    ? [pose(-70, 150, 0), pose(145, 150, 0), pose(165, 140, -25)]
+    : [pose(-70, 150, 0), pose(150, 150, 0), pose(205, 110, -90), pose(205, 20, -90)];
+  await rect.animate(frames, { duration: 2200, easing: "ease-in-out", fill: "forwards" }).finished;
+  if (s.verdict === "red") paint(rect, SOFA_FILL.jam);
+  out.innerHTML = `<p><span class="chip ${s.verdict}">${s.label}</span></p><p>${s.plan}</p>` +
+    (s.verdict === "red" ? "" : `<p class="hint">The carry plan goes to the delivery crew with the order.</p>`);
+  $("sofa-go").disabled = false;
+};
+
+// ---- Demo 2: AAC phrase ranking (canned "context → top phrases") ----
+const PHRASES = {
+  sleep: "Let's go to sleep", movie: "I want to watch a movie", tired: "I'm feeling tired",
+  hungry: "I'm hungry", pasta: "Pasta, please", light: "Turn the big light off",
+  yes: "Yes please", no: "No thank you", day: "Tell me about your day"
+};
+const LINES = [
+  { say: "Would you like to watch a movie or go to sleep?", top: ["sleep", "movie", "tired"] },
+  { say: "What do you fancy for dinner tonight?", top: ["pasta", "hungry", "no"] },
+  { say: "Shall I leave the big light on?", top: ["light", "yes", "no"] }
+];
+let line = -1;
+
+function say(who, text) {
+  const p = document.createElement("p"), b = document.createElement("strong");
+  b.textContent = who + ": ";
+  if (who === "You") b.className = "you";
+  p.append(b, text);
+  $("aac-convo").append(p);
+}
+function renderBoard(top) {
+  const board = $("aac-board");
+  board.innerHTML = "";
+  for (const k of [...top, ...Object.keys(PHRASES).filter(k => !top.includes(k))]) {
+    const b = document.createElement("button");
+    b.className = top.includes(k) ? "phrase top" : "phrase";
+    b.textContent = PHRASES[k];
+    b.onclick = () => say("You", PHRASES[k]);
+    board.append(b);
+  }
+}
+$("aac-next").onclick = () => {
+  line = (line + 1) % LINES.length;
+  if (line === 0) $("aac-convo").innerHTML = "";
+  say("Partner", LINES[line].say);
+  renderBoard(LINES[line].top);
+};
+renderBoard([]);
+</script>
+</body>
+</html>
