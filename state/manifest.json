@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "s6_tourn_r1",
+  "current_stage": "gate_C",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -14,8 +14,8 @@
     "s3_ideate": "done",
     "s4_archive": "done",
     "s5_reality": "done",
-    "s6_tourn_r1": "pending",
-    "human_mid": "pending",
+    "s6_tourn_r1": "done",
+    "human_mid": "passed without user input",
     "gate_C": "pending",
     "s7_evolve": "pending",
     "s6_tourn_r2": "pending",
@@ -223,12 +223,23 @@
     "s5-planner-03": "done",
     "s5-planner-04": "done",
     "s5-planner-05": "done",
-    "s5-planner-06": "done"
+    "s5-planner-06": "done",
+    "s6r1-judge-01": "done",
+    "s6r1-judge-02": "done",
+    "s6r1-judge-03": "done",
+    "s6r1-judge-04": "done",
+    "s6r1-judge-05": "done",
+    "s6r1-judge-06": "done",
+    "s6r1-judge-07": "done",
+    "s6r1-judge-08": "done",
+    "s6r1-judge-09": "done",
+    "s6r1-judge-10": "done",
+    "s6r1-write": "done"
   },
   "agent_calls": {
     "fable": 4,
-    "opus": 36,
-    "sonnet": 207
+    "opus": 37,
+    "sonnet": 217
   },
   "claude_version": "2.1.280",
   "models": {
@@ -297,6 +308,10 @@
     "s5_reality": {
       "opus": 1,
       "sonnet": 18
+    },
+    "s6_tourn_r1": {
+      "opus": 1,
+      "sonnet": 10
     }
   },
   "budget_caps_3x": {
@@ -536,5 +551,36 @@
       "no": 2
     },
     "fix": "I-3028 frontmatter track novel->balanced to match the archive lead's cell (merged a balanced twin); the S5 lead counted it balanced"
+  },
+  "s6_r1": {
+    "run": "wf_b621c717-fa0",
+    "ideas": 126,
+    "projected_tokens": 1300000,
+    "stop_threshold_tokens": 2600000,
+    "projection_basis": "10 judges x ~110k (deck ~42k read + ~50 debated matches written) + 1-2 tournament-master calls ~100k",
+    "deck_fixes": "trimmed 4 cards over caps by >3 words (I-4525, I-3070, I-3028 How it works; I-4529 Why now), dropping trailing clauses only; 16 cards remain 1-3 words over",
+    "subagent_tokens": 1125395,
+    "duration_min": 9.3,
+    "agents": 11,
+    "failed": 0,
+    "matches": 252,
+    "agreed": 204,
+    "agreement_pct": 81.0,
+    "settled": 0,
+    "polarizing": {
+      "novel": 11,
+      "balanced": 11
+    },
+    "leaders": {
+      "novel": "I-3529 (1270.0)",
+      "balanced": "I-2519 (1271.9)"
+    },
+    "verify": "pipe.py verify-tournament 1: tournament master files match the script return"
+  },
+  "h1": {
+    "date": "2026-09-26",
+    "status": "passed without user input (user autonomy brief)",
+    "reactions_md": "template examples only (inside an HTML comment); no user reactions",
+    "new_seeds": "none (seeds 01-11 all processed)"
   }
 }
