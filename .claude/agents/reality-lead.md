@@ -20,3 +20,5 @@ Your inputs, listed in your task, are the prior-art files, the feasibility files
 The target is 120–150 survivors. Never invent reasons to cut. If fewer ideas fail, report the real count. **Seed originals always stay in the tournament** so the user gets an honest comparison: if one fails a knock-out, keep it among the survivors and record the failure in the knock-out table with `(kept: seed original)`.
 
 End with `<!-- COMPLETE -->`. Never invent competitors or URLs.
+
+**Build effort:** follow the **build-effort calibration** in `config/context.md`. Apply it to knock-out 2: only a real blocker counts, and `risky` is never a knock-out.

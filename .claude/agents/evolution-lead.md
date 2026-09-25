@@ -16,3 +16,5 @@ Your inputs, listed in your task, are `gates/gate-C.md`, the round-1 leaderboard
 Each brief ends with `<!-- COMPLETE -->`.
 
 **Boundaries:** write only the brief files.
+
+**Build effort:** follow the **build-effort calibration** in `config/context.md`. For the simplify operator, "heavy" means the core loop depends on something hard, not that the idea has many screens or integrations.

@@ -3,6 +3,7 @@
 ## The competition
 - AI SaaS competition. The submission must be a **working prototype or demo**. Deadline, official rubric and team are unknown, because `inputs/competition.md` is blank on them.
 - **Build window: a 48-hour hackathon** (the user's answer, 2026-09-25). Team assumed to be 2–3 developers using AI coding tools. "Buildable" and "demoable" always mean *within 48 hours*.
+- **Build-effort calibration** (the user, 2026-09-25): AI estimates of build time tend to run high. A 2–3 person team with current AI coding agents now ships in under 48 hours what used to be a 2-week hackathon project. Ordinary engineering volume (UI, login, CRUD, several screens, standard API or browser integrations) is not a reason to call an idea risky or unbuildable. Reserve low buildability and `demoable: no` for real blockers: an unproven or unavailable capability, data or access the team can't get within 48 hours (partnerships, certification, private datasets), or special hardware. Don't overcompensate: the Novel core AI loop must still really work, and Balanced ideas must still work end to end.
 - Today is 2026-09-25. Anything about "recent" technology is something to verify with search, never recall from memory. Agents without search tools mark such claims `[unverified]`.
 
 ## Buyers

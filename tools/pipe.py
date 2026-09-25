@@ -165,7 +165,7 @@ def cap_violations(body):
     return out
 
 
-LEAKS = re.compile(r'\b(seed|persona|territory|T[1-9]\b|round [123]|novel track|balanced track)', re.I)
+LEAKS = re.compile(r'\b(seeds?|personas?|territor(?:y|ies)|T[1-9]|round [123]|novel track|balanced track)\b', re.I)  # whole words: 'personal', 'seeded' are fine
 
 
 def render_card(meta, body):

@@ -76,10 +76,10 @@ const [rt, sc] = await parallel([redTeam, score])
 need(rt && rt.every(Boolean), 'a red-teamer failed; relaunch to retry')
 need(sc && sc.every(Boolean), 'a rubric judge failed; relaunch to retry')
 
-// ---- weighted totals per track (PROMPT §11), median of the 3 independent totals ----
+// ---- weighted totals per track (PROMPT §11 as amended by the user 2026-09-25, see config/rubric.md), median of the 3 independent totals ----
 const W = {
-  novel: { novelty: 25, why_now: 20, pain: 15, wtp: 10, buildability: 5, demo_wow: 15, defensibility: 5, pitch_clarity: 5 },
-  balanced: { novelty: 15, why_now: 10, pain: 20, wtp: 15, buildability: 20, demo_wow: 10, defensibility: 5, pitch_clarity: 5 },
+  novel: { novelty: 25, why_now: 20, pain: 16, wtp: 10, buildability: 3, demo_wow: 16, defensibility: 5, pitch_clarity: 5 },
+  balanced: { novelty: 17, why_now: 10, pain: 22, wtp: 17, buildability: 12, demo_wow: 12, defensibility: 5, pitch_clarity: 5 },
 }
 const median = xs => { const s = xs.slice().sort((a, b) => a - b), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2 }
 const byIdea = {}

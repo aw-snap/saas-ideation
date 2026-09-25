@@ -150,9 +150,9 @@ assert.deepEqual(r.tiers, { fable: 0, opus: 0, sonnet: 12 + 4 + 10 })
 const sc = r.out.scorecards
 assert.ok(sc.every(c => c.scores_n === 3), 'three independent scores per idea')
 const nov = sc.find(c => c.track === 'novel'), bal = sc.find(c => c.track === 'balanced')
-assert.equal(nov.rubric, (25 * 8 + 20 * 7 + 15 * 9 + 10 * 6 + 5 * 8 + 15 * 7 + 5 * 5 + 5 * 9) / 10)   // 75.0 -> tier A
+assert.equal(nov.rubric, (25 * 8 + 20 * 7 + 16 * 9 + 10 * 6 + 3 * 8 + 16 * 7 + 5 * 5 + 5 * 9) / 10)   // 75.0 -> tier A
 assert.equal(nov.tier, 'A')
-assert.equal(bal.rubric, (15 * 8 + 10 * 7 + 20 * 9 + 15 * 6 + 20 * 8 + 10 * 7 + 5 * 5 + 5 * 9) / 10) // 76.0
+assert.equal(bal.rubric, (17 * 8 + 10 * 7 + 22 * 9 + 17 * 6 + 12 * 8 + 12 * 7 + 5 * 5 + 5 * 9) / 10) // 75.6
 assert.ok(sc.find(c => c.id === 'I-1007').knocked_out, 'direct competitor flagged')
 assert.ok(r.calls.filter(c => c.role === 'judge').every(c => !/archive\/ideas/.test(c.prompt)), 'rubric judges get blind cards only')
 

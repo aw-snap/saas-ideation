@@ -16,3 +16,8 @@
 2026-09-25 | pilot | H0: waiting for user to confirm the full run | state/manifest.json
 2026-09-25 | pilot | H0 answer: user chose "Pause here"; pipeline paused before full S3 | state/manifest.json
 2026-09-25 | s2_seeds | refresh: seeds 04/05/08 revised by the user after S2 (edits had been swept into 848b1c0); re-normalized, re-decomposed with search, pool rebuilt (100 atoms); 4 calls, 118k tokens | outputs/s2-seeds outputs/s3-ideate/seed-lane
+2026-09-25 | pilot | H0 confirmed: user chose "Go, S3 only" (full S3, then stop before S4) | state/manifest.json
+2026-09-25 | rubric | user amendment queued: buildability weight cut 40% (Novel 5->3, Balanced 20->12) + build-effort calibration; applies after S3 | state/manifest.json
+2026-09-25 | s3_ideate | done: 116/116 agents, 0 failed; 648 ideator cards (36x18) + 16 improved + 40 pivots (+8 seed originals = 712 raw); 9 dossiers; 37/48 cells; 7.08M tokens (proj 4.9M, limit 9.8M), 23 min, 98 searches | outputs/s3-ideate briefs/s3
+2026-09-25 | rubric | user amendment applied: buildability Novel 5->3, Balanced 20->12, build-effort calibration in context.md, 6 later-stage agents point to it; LEAKS regex whole-word fix | config/rubric.md config/context.md .claude/agents .claude/workflows/s8-final.js tools
+2026-09-25 | s3_ideate | stopped before S4 at the user's request | state/manifest.json

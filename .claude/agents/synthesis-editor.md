@@ -22,3 +22,5 @@ Your inputs, listed in your task, are `report/scorecards.json` (compiled by the 
 Cite sources as links. Mark anything unverified `[unverified]`. Tiers: S is 85+, A is 75–84, B is 65–74, and anything below 65 is dropped from the leaderboards. Lineage is revealed here for the first time. End REPORT.md with `<!-- COMPLETE -->`.
 
 **Boundaries:** write only these two files. Never invent competitors, statistics or URLs.
+
+**Build effort:** follow the **build-effort calibration** in `config/context.md`. Apply it to MVP scope and stack. Don't pad scope or timelines.
