@@ -14,3 +14,4 @@
 2026-09-25 | pilot | NEXT: restart the session (search cap 1500), then run the pilot: s3-ideate with territories [T1], seed_lane false | state/manifest.json
 2026-09-25 | pilot | done: 32/32 agents, 0 failed; 72 cards from 4 T1 ideators (18 each), dossiers T1 T3 T4 T8 T9; 1.52M subagent tokens, 16 min, 149 searches; full S3 projected ~4.9M | outputs/s3-ideate briefs/s3
 2026-09-25 | pilot | H0: waiting for user to confirm the full run | state/manifest.json
+2026-09-25 | pilot | H0 answer: user chose "Pause here"; pipeline paused before full S3 | state/manifest.json

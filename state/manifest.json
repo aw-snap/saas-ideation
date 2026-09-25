@@ -1,5 +1,5 @@
 {
- "pipeline": "running",
+ "pipeline": "paused",
  "current_stage": "pilot",
  "run_seed": 498282322,
  "fable_available": true,
@@ -10,7 +10,7 @@
   "s1_discover": "done",
   "s2_seeds": "done",
   "gate_B": "done",
-  "pilot": "awaiting_user",
+  "pilot": "done",
   "s3_ideate": "pending",
   "s4_archive": "pending",
   "s5_reality": "pending",
@@ -185,7 +185,7 @@
   "used_this_session": 350,
   "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart); cap 1500 confirmed live 2026-09-25 (search after 200 succeeded); pilot miners used 149"
  },
- "next_action": "H0: waiting for the user to confirm the full S3 run. On yes: python3 tools/pipe.py args s3 -> launch .claude/workflows/s3-ideate.js (T1 ideators and T1/T3/T4/T8/T9 dossiers skip as complete).",
+ "next_action": "Paused by the user at H0 (2026-09-25). On resume: confirm with the user that the full S3 run should start, then python3 tools/pipe.py args s3 -> launch .claude/workflows/s3-ideate.js (T1 ideators and T1/T3/T4/T8/T9 dossiers skip as complete).",
  "pilot": {
   "run_id": "wf_974f6d69-e8a",
   "subagent_tokens": 1515946,
@@ -202,6 +202,7 @@
   },
   "projected_full_s3_tokens": 4900000,
   "stop_threshold_tokens": 9800000,
-  "projection_basis": "remaining S3 = 4 more dossiers (0.8 x pilot pain+lead share) + 32 ideators (8 x pilot ideator share) + seed lane (~4 ideator-round equivalents) ~ 3.2 x pilot"
+  "projection_basis": "remaining S3 = 4 more dossiers (0.8 x pilot pain+lead share) + 32 ideators (8 x pilot ideator share) + seed lane (~4 ideator-round equivalents) ~ 3.2 x pilot",
+  "user_answer": "Pause here (2026-09-25): stop after the pilot; resume later"
  }
 }
