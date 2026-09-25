@@ -578,7 +578,7 @@ if __name__ == '__main__':
         print(json.dumps(stage_args(*rest)))
     elif cmd == 'scorecards':  # [--drops=FILE.json]  {id: rationale} from Gate D overrides
         f = next((x.split('=', 1)[1] for x in rest if x.startswith('--drops=')), None)
-        d = compile_scorecards(drops=json.loads(read(f)) if f else None)
+        d = compile_scorecards(drops=json.loads(read(f))['drops'] if f else None)
         print(f"report/scorecards.json: {len(d['finalists'])} finalists, eligible per track {d['counts']}, top30 {len(d['top30'])}")
     elif cmd == 'selftest':
         selftest()
