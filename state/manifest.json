@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "s8_final",
+  "current_stage": "gate_D",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -19,7 +19,7 @@
     "gate_C": "done",
     "s7_evolve": "done",
     "s6_tourn_r2": "done",
-    "s8_final": "pending",
+    "s8_final": "done",
     "gate_D": "pending",
     "s9_report": "pending",
     "human_rerank": "pending"
@@ -256,12 +256,38 @@
     "s6r2-judge-08": "done",
     "s6r2-judge-09": "done",
     "s6r2-judge-10": "done",
-    "s6r2-write": "done"
+    "s6r2-write": "done",
+    "s8-hunter-01": "done",
+    "s8-hunter-02": "done",
+    "s8-hunter-03": "done",
+    "s8-hunter-04": "done",
+    "s8-hunter-05": "done",
+    "s8-hunter-06": "done",
+    "s8-hunter-07": "done",
+    "s8-hunter-08": "done",
+    "s8-hunter-09": "done",
+    "s8-hunter-10": "done",
+    "s8-hunter-11": "done",
+    "s8-hunter-12": "done",
+    "s8-redteam-01": "done",
+    "s8-redteam-02": "done",
+    "s8-redteam-03": "done",
+    "s8-redteam-04": "done",
+    "s8-judge-01": "done",
+    "s8-judge-02": "done",
+    "s8-judge-03": "done",
+    "s8-judge-04": "done",
+    "s8-judge-05": "done",
+    "s8-judge-06": "done",
+    "s8-judge-07": "done",
+    "s8-judge-08": "done",
+    "s8-judge-09": "done",
+    "s8-judge-10": "done"
   },
   "agent_calls": {
     "fable": 5,
     "opus": 40,
-    "sonnet": 235
+    "sonnet": 261
   },
   "claude_version": "2.1.280",
   "models": {
@@ -345,6 +371,9 @@
     "s6_tourn_r2": {
       "opus": 1,
       "sonnet": 10
+    },
+    "s8_final": {
+      "sonnet": 26
     }
   },
   "budget_caps_3x": {
@@ -409,7 +438,8 @@
     "env_var": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
     "used_this_session": 448,
     "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart); cap 1500 confirmed live 2026-09-25 (search after 200 succeeded); pilot miners used 149",
-    "used": 457
+    "used": 720,
+    "count_note": "2026-09-26: +20 (aborted S5 launch) +195 (S5) +48 (S7) counted from agent transcripts; ~780 left for S8"
   },
   "next_action": "S5 running: .claude/workflows/s5-reality.js over 162 survivors -> S6 r1 -> H1 (auto-pass) -> Gate C -> S7 -> S6 r2 -> S8 -> Gate D -> S9 -> H2 (auto) -> website",
   "pilot": {
@@ -680,5 +710,48 @@
     },
     "verify": "files match the script return; no round-1 pair replayed (checked against tournament/r1/pairings.json); start Elos match the args",
     "note": "the prior_pairs arg was hand-copied into the launch and dropped 2 of 252 round-1 pairs (I-2069~I-2053, I-3096~I-2053); neither was re-paired, so the round is unaffected"
+  },
+  "s8": {
+    "finalists": 60,
+    "finalists_by_track": {
+      "novel": 27,
+      "balanced": 33
+    },
+    "why_60": "top 12 per track by round-2 Elo plus the elite of every occupied cell (38) plus all 11 seed originals and each seed's best improved card, as pipe.py finalists() builds it; PROMPT asks for ~40 plus the seed scorecards the report needs",
+    "projected_tokens": 2700000,
+    "stop_threshold_tokens": 5400000,
+    "projection_basis": "12 deep hunters x ~150k (5 ideas x ~6 searches) + 4 red-teamers x ~80k + 10 judges x ~60k",
+    "searches_expected": "300-450",
+    "run": "wf_ce807ef2-bce",
+    "subagent_tokens": 1091551,
+    "duration_min": 5.1,
+    "agents": 26,
+    "failed": 0,
+    "short_scored": [],
+    "tiers": {
+      "B": 11,
+      "drop_below_65": 49,
+      "A": 0,
+      "S": 0
+    },
+    "deep_knockouts": 14,
+    "deep_knockout_ids": [
+      "I-1042",
+      "I-1050",
+      "I-1070",
+      "I-1525",
+      "I-2038",
+      "I-2522",
+      "I-2536",
+      "I-3026",
+      "I-3050",
+      "I-3537",
+      "I-3555",
+      "I-4563",
+      "I-5109",
+      "I-5410"
+    ],
+    "scorecards_file": "outputs/s8-final/scorecards.json (script return)",
+    "deviation": "Only 11 of 60 finalists reached 65 (tier B; none A/S). Applying 'drop below 65' literally leaves 11 ideas, short of the ~30 the brief and the user's website need. report/scorecards.json ranks the top 30 as the best 15 non-knocked-out ideas per track by round-2 Elo, ordered by rubric band (B first, then below 65), then Elo; the 19 below-65 ideas are ranked but flagged below_bar and must be labelled so in the report. Tier thresholds were not changed."
   }
 }

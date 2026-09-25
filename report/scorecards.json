@@ -1,0 +1,3748 @@
+{
+ "rule": "Eligible = not a deep-audit direct competitor (the S8 knock-out). Top 30 = best 15 eligible per track by\nround-2 Elo (a short track's gap is filled from the other), ordered by rubric band (S, A, B, then below 65), then Elo:\nElo ranks, the rubric bands. Below-65 ideas are ranked only to reach ~30 and carry below_bar: true\n(deviation from PROMPT S11 \"drop below 65\", logged 2026-09-26: only 11 of 60 finalists cleared 65).",
+ "counts": {
+  "novel": 19,
+  "balanced": 27
+ },
+ "top30": [
+  "I-2061",
+  "I-4546",
+  "I-4051",
+  "I-2052",
+  "I-4501",
+  "I-6001",
+  "I-3093",
+  "I-2559",
+  "I-5101",
+  "I-4005",
+  "I-2550",
+  "I-2067",
+  "I-1001",
+  "I-4525",
+  "I-3529",
+  "I-1508",
+  "I-3088",
+  "I-2519",
+  "I-1019",
+  "I-1534",
+  "I-1022",
+  "I-1516",
+  "I-1564",
+  "I-2053",
+  "I-4511",
+  "I-2514",
+  "I-2547",
+  "I-3095",
+  "I-1063",
+  "I-5203"
+ ],
+ "finalists": [
+  {
+   "id": "I-1001",
+   "name": "Independent Completion Witness",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|agent-infra|novel",
+   "elo_r2": 1276.4,
+   "elo_r1": 1261,
+   "consistency": 86,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 61.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 8,
+    "pain": 7,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    61.9,
+    66,
+    60
+   ],
+   "deep_prior_art": {
+    "id": "I-1001",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "AEVS by Fetch.ai (https://www.producthunt.com/products/aevs-by-fetch-ai)",
+     "agent-completion-verifier (https://github.com/Luca-1304/agent-completion-verifier)",
+     "AgentLiar detector (https://dev.to/nilofer_tweets/agentliar-detector-catch-coding-agents-that-falsely-claim-task-completion-413c)"
+    ],
+    "note": "Live self-report distrust verifiers exist but none confirmed as a second independent agent re-navigating the live portal/target for claims-ops fleets with a signed per-verification fee."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 2,
+   "rank_overall": 13
+  },
+  {
+   "id": "I-1019",
+   "name": "Private Elder Statement Scanner",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|local-private|balanced",
+   "elo_r2": 1253.8,
+   "elo_r1": 1261.7,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 61.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    61.5,
+    61.7,
+    62.2
+   ],
+   "deep_prior_art": {
+    "id": "I-1019",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Carefull (https://getcarefull.com/)",
+     "EverSafe (https://www.eversafe.com/)",
+     "StatementLock (https://www.statementlock.com/)"
+    ],
+    "note": "Elder-fraud monitoring exists via cloud account-linking (Carefull, EverSafe); StatementLock parses statements in-browser but isn't elder-specific or fully on-device."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 7,
+   "rank_overall": 19
+  },
+  {
+   "id": "I-1022",
+   "name": "Rejection-Proof Renewal Filer",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|verifier|balanced",
+   "elo_r2": 1250,
+   "elo_r1": 1227.4,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 61.4,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 4,
+    "pain": 8,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 5,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    61.4,
+    63.8,
+    60.9
+   ],
+   "deep_prior_art": {
+    "id": "I-1022",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "HeyMedicaid (heymedicaid.med)",
+     "Fortuna Health (ycombinator.com/companies/fortuna-health)"
+    ],
+    "note": "Both help with Medicaid enrollment/renewal but neither audits a filled packet against rejection-trigger rules before submission."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 10,
+   "rank_overall": 21
+  },
+  {
+   "id": "I-1042",
+   "name": "AI live interview coach",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-04",
+   "cell": "B2C|drafter-dialogue|balanced",
+   "elo_r2": 1221.8,
+   "elo_r1": 1229.9,
+   "consistency": 38,
+   "polarizing": true,
+   "coverage_badge": true,
+   "rubric": 49.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 4,
+    "pain": 5,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 5,
+    "defensibility": 2,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    49.2,
+    50.2,
+    49.2
+   ],
+   "deep_prior_art": {
+    "id": "I-1042",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Yoodli (https://yoodli.ai/use-cases/interview-preparation)",
+     "Poised (https://poised.com/)",
+     "Orai (https://orai.com/)"
+    ],
+    "note": "Yoodli already nudges live during real video calls with replay analytics; Poised does live in-call coaching too. Same mechanism and niche."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-1050",
+   "name": "Built on Jev",
+   "track": "novel",
+   "lineage": "seed-original",
+   "seed": "seed-07",
+   "cell": "B2B|verifier|novel",
+   "elo_r2": 1108.4,
+   "elo_r1": 1139.2,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 25.6,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 3,
+    "pain": 2,
+    "wtp": 2,
+    "buildability": 4,
+    "demo_wow": 4,
+    "defensibility": 1,
+    "pitch_clarity": 2
+   },
+   "rubric_totals": [
+    25.6,
+    22.4,
+    34
+   ],
+   "deep_prior_art": {
+    "id": "I-1050",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Reflex-S1 (https://github.com/gowtham-source/reflex-s1)",
+     "System1-mcp (https://github.com/ericmaddox/system1-mcp)",
+     "Jev / TypeSafe AI (https://www.techtarget.com/it-infrastructure/news/366650696/Jev-decision-model-touted-as-quicker-cheaper-LLM-alternative)"
+    ],
+    "note": "Open-source 'System 1 reflex layer' implementations already sit directly on/beside Jev, judging every event with a fast model and escalating to a slower one."
+   },
+   "quick_prior_art": "clear",
+   "feasibility": "no",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-1063",
+   "name": "Rate-Con Learned From One Build",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|drafter-dialogue|novel",
+   "elo_r2": 1225.3,
+   "elo_r1": 1257.3,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 52.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 4,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    52.7,
+    52.2,
+    52.7
+   ],
+   "deep_prior_art": {
+    "id": "I-1063",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Tai TMS (https://tai-software.com/automate-operations-with-rate-confirmation-software-by-tai-tms/)",
+     "ARK TMS (https://arktms.com/blog/automated-document-generation-freight-broker-tms)",
+     "FastFreight (https://www.gofastfreight.com/automation/ai-rate-negotiation-automation-ltl)"
+    ],
+    "note": "TMS tools auto-generate rate cons from structured load data, but none teach themselves a lane/carrier's format from one hand-built example as this idea proposes."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 13,
+   "rank_overall": 29
+  },
+  {
+   "id": "I-1070",
+   "name": "Screen API for Legacy PM Systems",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "agents|agent-infra|balanced",
+   "elo_r2": 1207.9,
+   "elo_r1": 1199.2,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 56.4,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 8,
+    "pain": 6,
+    "wtp": 5,
+    "buildability": 6,
+    "demo_wow": 6,
+    "defensibility": 4,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    56.4,
+    59.3,
+    56.1
+   ],
+   "deep_prior_art": {
+    "id": "I-1070",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Beacon Health (https://www.ycombinator.com/companies/beacon-health)",
+     "Clicks Health (YC)",
+     "AKASA Unified Automation"
+    ],
+    "note": "Funded companies already turn legacy PM/EHR screens into agent-callable automation for billing/RCM using computer-use workers; metered endpoint is a business-model variant, not a new mechanism."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-1508",
+   "name": "Stop the Wire Before It Sends",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|verifier|balanced",
+   "elo_r2": 1259.4,
+   "elo_r1": 1259.7,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 62.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 6,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    67.8,
+    59.5,
+    62.9
+   ],
+   "deep_prior_art": {
+    "id": "I-1508",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Eftsure (https://www.eftsure.com)",
+     "Trustpair (https://trustpair.com)",
+     "Stampli Billy (https://www.stampli.com/vendor-management/)"
+    ],
+    "note": "Enterprise AP bank-detail-change screening is mature; SMB no-finance-team niche unclaimed."
+   },
+   "quick_prior_art": "direct-competitor",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 4,
+   "rank_overall": 16
+  },
+  {
+   "id": "I-1516",
+   "name": "Console-Checked Cyber Insurance Answers",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|screen-agent|balanced",
+   "elo_r2": 1244.6,
+   "elo_r1": 1214.3,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 64.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 8,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 4,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    62,
+    71.7,
+    64.9
+   ],
+   "deep_prior_art": {
+    "id": "I-1516",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Anchor AI (getanchor.ai)",
+     "Conveyor Agent (conveyor.com)",
+     "CyberQP Panthera (cyberqp.ai)"
+    ],
+    "note": "Questionnaire auto-answer tools exist but use API integrations for security teams, not a browser agent logging in as the SMB owner."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 11,
+   "rank_overall": 22
+  },
+  {
+   "id": "I-1525",
+   "name": "AI Feature-Request Reviewer",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-06",
+   "cell": "B2B|drafter-dialogue|balanced",
+   "elo_r2": 1116.5,
+   "elo_r1": 1139,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 43.4,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 5,
+    "pain": 5,
+    "wtp": 3,
+    "buildability": 8,
+    "demo_wow": 5,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    43.1,
+    46.8,
+    43.4
+   ],
+   "deep_prior_art": {
+    "id": "I-1525",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Bito AI Architect (https://bito.ai/)",
+     "Jira Ticket Estimator skill (https://mcpmarket.com/tools/skills/jira-ticket-estimator)",
+     "agent-estimate (https://github.com/kiloloop/agent-estimate)"
+    ],
+    "note": "Live tools already read a real codebase and turn an incoming ticket/request into a grounded effort/impact estimate; client-feature-request framing is a thin wrapper on an existing mechanism."
+   },
+   "quick_prior_art": "direct-competitor",
+   "feasibility": "yes",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-1534",
+   "name": "PA Phone Call Copilot",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|extractor|balanced",
+   "elo_r2": 1252.7,
+   "elo_r1": 1246.1,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 62.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    62.2,
+    61.7,
+    62.2
+   ],
+   "deep_prior_art": {
+    "id": "I-1534",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "BastionGPT peer-to-peer note (https://bastiongpt.com/template/peer-to-peer-note)",
+     "CallSphere AI voice agents for prior authorization (https://callsphere.ai/blog/ai-voice-agents-prior-authorization-payer-phone-automation)",
+     "Prosper AI (https://www.getprosper.ai/blog/ai-for-prior-authorization-tools)"
+    ],
+    "note": "Crowded prior-auth AI space, but none found do live, quote-cited real-time transcription of the P2P call itself into a structured appeal file the moment it ends."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 9,
+   "rank_overall": 20
+  },
+  {
+   "id": "I-1555",
+   "name": "Same Words, More Life",
+   "track": "novel",
+   "lineage": "seed-original",
+   "seed": "seed-08",
+   "cell": "B2B|drafter-dialogue|novel",
+   "elo_r2": 1155.9,
+   "elo_r1": 1140.5,
+   "consistency": 89,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 46.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 5,
+    "pain": 5,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    46.7,
+    48.7,
+    46.7
+   ],
+   "deep_prior_art": {
+    "id": "I-1555",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Cleanvoice AI (https://cleanvoice.ai/filler-words/)",
+     "Descript filler remover (https://www.descript.com/tools/remove-filler-from-audio)",
+     "ElevenLabs Voice Changer (https://elevenlabs.io/blog/speech-to-speech)"
+    ],
+    "note": "Filler removers cover sync/filler cleanup; ElevenLabs Voice Changer transfers expressive delivery but needs a performed reference take, not auto monotone-to-lively conversion."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 17
+  },
+  {
+   "id": "I-1564",
+   "name": "Draft From Case Files, Offline",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|local-private|novel",
+   "elo_r2": 1244.5,
+   "elo_r1": 1214.1,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 64.6,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 8,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 8,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    64.6,
+    64.5,
+    69.6
+   ],
+   "deep_prior_art": {
+    "id": "I-1564",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "local-legal-ai (https://github.com/jashankish/local-legal-ai)",
+     "Elephas (https://elephas.app/resources/best-private-ai-tools-for-lawyers)",
+     "Harvey AI/CoCounsel/Spellbook (cloud, enterprise-priced)"
+    ],
+    "note": "Local/offline legal LLM setups exist, but none packaged as case-folder-to-motion-draft matching firm templates, zero-network, at solo-lawyer pricing."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 8,
+   "rank_overall": 23
+  },
+  {
+   "id": "I-2038",
+   "name": "Fit Check for Big Deliveries",
+   "track": "novel",
+   "lineage": "seed-improved",
+   "seed": "seed-01",
+   "cell": "B2B|extractor|novel",
+   "elo_r2": 1236.9,
+   "elo_r1": 1228.5,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 50.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 4,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 2,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    48.5,
+    50.7,
+    54.2
+   ],
+   "deep_prior_art": {
+    "id": "I-2038",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Smart Moving: Furniture Helper (https://apps.apple.com/us/app/smart-moving-furniture-helper/id1666262699)",
+     "Roomantic (https://www.roomantic.ai/)",
+     "magicplan (https://help.magicplan.app/auto-scan-your-floor-plan)"
+    ],
+    "note": "Smart Moving already sells a rotate/tilt stairwell-and-doorway clearance solver to moving companies, same niche and mechanism."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-2043",
+   "name": "Client Quote Estimator for Dev Shops",
+   "track": "balanced",
+   "lineage": "seed-improved",
+   "seed": "seed-06",
+   "cell": "B2B|drafter-dialogue|balanced",
+   "elo_r2": 1174.2,
+   "elo_r1": 1182.8,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 53.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 6,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 5,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    57.3,
+    53.9,
+    52.9
+   ],
+   "deep_prior_art": {
+    "id": "I-2043",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Devtimate (devtimate.com)",
+     "jira-ticket-estimator (github.com/kennyth01/jira-ticket-estimator)",
+     "Scope (within-scope.com)"
+    ],
+    "note": "Devtimate quotes from uploaded briefs not a real repo scan; the repo-scanning tools target internal estimation, not client billing quotes."
+   },
+   "quick_prior_art": "direct-competitor",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 26
+  },
+  {
+   "id": "I-2045",
+   "name": "Same Words, More Life",
+   "track": "novel",
+   "lineage": "seed-improved",
+   "seed": "seed-08",
+   "cell": "B2B|drafter-dialogue|novel",
+   "elo_r2": 1149.7,
+   "elo_r1": 1165.6,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 46.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 5,
+    "pain": 5,
+    "wtp": 5,
+    "buildability": 5,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    46.1,
+    59.3,
+    46.7
+   ],
+   "deep_prior_art": {
+    "id": "I-2045",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Descript (https://www.descript.com/tools/remove-filler-from-video)",
+     "Cleanvoice AI (https://cleanvoice.ai/filler-words/)",
+     "OpusClip (https://www.opus.pro/tools/remove-filler-words-from-video)"
+    ],
+    "note": "Cut-based filler removers are common but none re-synthesize full audio in the same voice with an energy lift while forced-aligning timestamps for slide sync."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 19
+  },
+  {
+   "id": "I-2052",
+   "name": "Bounty Passport",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "agents|agent-infra|novel",
+   "elo_r2": 1262.9,
+   "elo_r1": 1246.5,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 69.2,
+   "tier": "B",
+   "criteria": {
+    "novelty": 7,
+    "why_now": 8,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 6,
+    "demo_wow": 7,
+    "defensibility": 5,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    69.2,
+    77.9,
+    68.2
+   ],
+   "deep_prior_art": {
+    "id": "I-2052",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "HackerOne reputation scoring (https://www.hackerone.com/bug-bounty-programs)",
+     "Bugcrowd CrowdMatch (https://socket.dev/blog/ai-slop-polluting-bug-bounty-platforms)",
+     "Bugbop (https://news.ycombinator.com/item?id=46598427)"
+    ],
+    "note": "AI-slop bounty triage pain and reputation gating are already live, but no product uses a refundable per-submission x402 stake with automated-reproduction forfeiture."
+   },
+   "quick_prior_art": "clear",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 6,
+   "rank_overall": 4
+  },
+  {
+   "id": "I-2053",
+   "name": "Summary Reweigh Desk",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|verifier|novel",
+   "elo_r2": 1244.2,
+   "elo_r1": 1229.1,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 64.4,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    64.4,
+    59.8,
+    64.4
+   ],
+   "deep_prior_art": {
+    "id": "I-2053",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Hesper AI (ycombinator.com/companies/hesper-ai)",
+     "Decerto ClaimsAI (https://www.decerto.com/us/claimsai)",
+     "GPTZero Hallucination Detector (https://gptzero.me/hallucination-detector)"
+    ],
+    "note": "General hallucination-highlighters and carrier-side claims automation exist, but none pairs a full claim file with a carrier's AI summary for independent adjuster sign-off review."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 9,
+   "rank_overall": 24
+  },
+  {
+   "id": "I-2061",
+   "name": "Grounded Notes With Timestamp Citations",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|local-private|balanced",
+   "elo_r2": 1281.9,
+   "elo_r1": 1258.4,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 70,
+   "tier": "B",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 4,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    68.3,
+    71.2,
+    70
+   ],
+   "deep_prior_art": {
+    "id": "I-2061",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Yaps.ai (https://www.yaps.ai)",
+     "1984Doc/AI-Scribe (GitHub)",
+     "Local AI for Therapists stack (localaimaster.com)"
+    ],
+    "note": "Offline/local AI scribes for therapists exist and address privacy; none package the specific per-claim timestamp-citation-and-flag UI, which differentiates the mechanism."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 1,
+   "rank_overall": 1
+  },
+  {
+   "id": "I-2067",
+   "name": "AI Voice-Clone Scam Call Guardian",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|verifier|novel",
+   "elo_r2": 1289.5,
+   "elo_r1": 1259.1,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 64.5,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 7,
+    "pain": 9,
+    "wtp": 6,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    64.5,
+    68.3,
+    60.8
+   ],
+   "deep_prior_art": {
+    "id": "I-2067",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "ShieldsOn (https://shieldson.ai)",
+     "SeniorShield.ai (https://www.seniorshield.ai)",
+     "Android fake call detection (https://blog.google/security/android-fake-call-detection/)"
+    ],
+    "note": "Real-time senior scam-call detection exists but none confirmed to target AI voice-clone family-emergency calls with proxy alerts."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 1,
+   "rank_overall": 12
+  },
+  {
+   "id": "I-2078",
+   "name": "Standing Order Video Brief",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|drafter-dialogue|balanced",
+   "elo_r2": 1195.4,
+   "elo_r1": 1226.4,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 59.5,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 6,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    59.5,
+    63.6,
+    55.1
+   ],
+   "deep_prior_art": {
+    "id": "I-2078",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Ropes & Gray AI Court Order Tracker",
+     "RAILS AI Orders",
+     "Cite Sentinel"
+    ],
+    "note": "Standing-order trackers and citation checkers exist separately; no combined per-filing video briefing found."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 20
+  },
+  {
+   "id": "I-2514",
+   "name": "E&O Broker's Citation Shield",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|local-private|balanced",
+   "elo_r2": 1233.6,
+   "elo_r1": 1211.4,
+   "consistency": 86,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 57.8,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 6,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 6,
+    "demo_wow": 6,
+    "defensibility": 5,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    60.5,
+    57.1,
+    57.8
+   ],
+   "deep_prior_art": {
+    "id": "I-2514",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Clearbrief (https://clearbrief.com/)",
+     "CaseRead.ai (https://www.caseread.ai/hallucination-shield)",
+     "LawDroid CiteCheck AI (https://www.lawnext.com/2025/06/lawdroid-launches-citecheck-ai-a-fail-safe-against-ai-citation-hallucinations.html)"
+    ],
+    "note": "Citation-hallucination checking is a crowded live category, but none found are distributed by malpractice-insurance brokers, run on-prem, or surface only an aggregate risk score to underwriting."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 13,
+   "rank_overall": 26
+  },
+  {
+   "id": "I-2519",
+   "name": "The Compliance Portal Copilot",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|screen-agent|balanced",
+   "elo_r2": 1255.6,
+   "elo_r1": 1271.9,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 59,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 6,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 6,
+    "demo_wow": 6,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    61.7,
+    55.6,
+    59
+   ],
+   "deep_prior_art": {
+    "id": "I-2519",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "WISP Builder (https://wispbuilder.com/)",
+     "IRS Publication 5708 fillable WISP tool",
+     "TaxGPT (https://www.ycombinator.com/companies/taxgpt)"
+    ],
+    "note": "WISP templates and generic compliance-form agents exist, but none combine an AI-drafted WISP interview with a browser agent that auto-files the PTIN portal and insurer attestations."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 6,
+   "rank_overall": 18
+  },
+  {
+   "id": "I-2522",
+   "name": "The Scribe Fact-Checker",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|verifier|balanced",
+   "elo_r2": 1201.6,
+   "elo_r1": 1186.6,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 60.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    59.5,
+    62.9,
+    60.7
+   ],
+   "deep_prior_art": {
+    "id": "I-2522",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Krasyn Note Check (https://dev.to/krasynemr/we-published-how-we-measure-our-ai-scribes-faithfulness-and-built-a-checker-anyone-can-run-on-any-3jdl)",
+     "scribe-verify prototype, non-live (https://github.com/Stephonomon/scribe-verify)"
+    ],
+    "note": "Krasyn's live, free Note Check tool already flags scribe-note sentences unsupported by the transcript across many vendors; same mechanism and adjacent niche."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-2536",
+   "name": "AI PC optimiser and fixer",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-05",
+   "cell": "B2C|screen-agent|balanced",
+   "elo_r2": 1177.8,
+   "elo_r1": 1140.4,
+   "consistency": 90,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 49.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 5,
+    "pain": 6,
+    "wtp": 3,
+    "buildability": 8,
+    "demo_wow": 7,
+    "defensibility": 1,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    49.2,
+    44.1,
+    54.1
+   ],
+   "deep_prior_art": {
+    "id": "I-2536",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Windows 11 agentic Fix it button, Microsoft (https://www.pcworld.com/article/2773838/an-ai-driven-fix-it-button-is-just-what-windows-needs.html)",
+     "PC Optimizer Software (https://apps.microsoft.com/detail/xp99bg9vdxzlbf)",
+     "optimizerDuck (https://github.com/optimizer-duck-app/optimizerDuck)"
+    ],
+    "note": "Microsoft is shipping an in-OS agentic Fix it button for Windows 11 Copilot+ PCs matching niche and mechanism closely, though free and bundled rather than paid third-party."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-2547",
+   "name": "Multi-Institution Proxy Agent",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|screen-agent|novel",
+   "elo_r2": 1232.7,
+   "elo_r1": 1216.6,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 62.6,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    61.1,
+    62.6,
+    66.1
+   ],
+   "deep_prior_art": {
+    "id": "I-2547",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Carefull (https://getcarefull.com/)",
+     "Oma Care (https://www.ycombinator.com/companies/oma-care)",
+     "Claude in Chrome (https://claude.com/claude-in-chrome)"
+    ],
+    "note": "Carefull aggregates financial accounts via linking; Oma Care agentically calls government by phone. No product found that browser-agent-proxies across banks plus Medicaid/Medicare portals."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 11,
+   "rank_overall": 27
+  },
+  {
+   "id": "I-2550",
+   "name": "Medicaid Renewal Mail Guardian",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|extractor|novel",
+   "elo_r2": 1209.5,
+   "elo_r1": 1186.4,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 65.3,
+   "tier": "B",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    65.3,
+    62.8,
+    65.3
+   ],
+   "deep_prior_art": {
+    "id": "I-2550",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "PostScan Mail (apps.apple.com/us/app/postscan-mail/id1276114355)",
+     "Earth Class Mail: Mailbox Scan (apps.apple.com/us/app/earth-class-mail-mailbox-scan/id1484077329)",
+     "Anytime Mailbox (anytimemailbox.com)"
+    ],
+    "note": "Virtual mailboxes OCR-scan mail but require redirecting to their facility and don't extract Medicaid renewal deadlines or pre-fill responses."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 15,
+   "rank_overall": 11
+  },
+  {
+   "id": "I-2559",
+   "name": "90-Day Reinstatement Filer",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|screen-agent|balanced",
+   "elo_r2": 1241.3,
+   "elo_r1": 1217.7,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 69,
+   "tier": "B",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    71.7,
+    60,
+    69
+   ],
+   "deep_prior_art": {
+    "id": "I-2559",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Fortuna Health (https://www.ycombinator.com/companies/fortuna-health)",
+     "Skyvern (https://www.skyvern.com/blog/medicaid-enrollment-automation/)"
+    ],
+    "note": "Fortuna Health matches the consumer Medicaid niche; Skyvern matches the portal-filing-agent mechanism; no product combines OCR-notice capture with autonomous reinstatement filing at signup."
+   },
+   "quick_prior_art": "clear",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 12,
+   "rank_overall": 8
+  },
+  {
+   "id": "I-3026",
+   "name": "Redaction Relay",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|local-private|novel",
+   "elo_r2": 1261.2,
+   "elo_r1": 1246.4,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 49.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 5,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    55.3,
+    49.2,
+    46.8
+   ],
+   "deep_prior_art": {
+    "id": "I-3026",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "RedactLocal (https://www.redactlocal.com/)",
+     "Redacta (https://getredacta.com/)",
+     "Justee (https://justee.ai/pii-redaction/redact-client-information-before-using-ai-law-firm)"
+    ],
+    "note": "RedactLocal already ships local strip-then-reinsert redaction for lawyers/CPAs sending drafts to cloud AI, same niche and mechanism."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-3031",
+   "name": "Consent Concierge Voice Agent",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|drafter-dialogue|novel",
+   "elo_r2": 1200.8,
+   "elo_r1": 1231.7,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 59,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 5,
+    "wtp": 5,
+    "buildability": 8,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    60.6,
+    59,
+    56.4
+   ],
+   "deep_prior_art": {
+    "id": "I-3031",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Zentake (https://www.zentake.com/template/consent-for-ai-scribe-use)",
+     "iPlum dual-party consent (https://www.iplum.com/blog/dual-party-consent-call-recording)",
+     "Jane/Frontdesk consent guidance (https://frontdesk.jane.app/articles/using-AI-scribes-how-to-talk-to-clients-and-get-consent)"
+    ],
+    "note": "Form/e-signature and one-way announcement consent tools exist; no live multilingual interactive voice-dialogue agent logging a verbal yes was found."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 16
+  },
+  {
+   "id": "I-3045",
+   "name": "Spotter for Paddle Raises",
+   "track": "balanced",
+   "lineage": "seed-improved",
+   "seed": "seed-02",
+   "cell": "B2B|extractor|balanced",
+   "elo_r2": 1198.9,
+   "elo_r1": 1198.7,
+   "consistency": 50,
+   "polarizing": true,
+   "coverage_badge": false,
+   "rubric": 53.4,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 6,
+    "pain": 6,
+    "wtp": 5,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    54.6,
+    51.2,
+    53.4
+   ],
+   "deep_prior_art": {
+    "id": "I-3045",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "OneCause Spotter Tool (https://www.onecause.com)",
+     "GiveSmart (https://www.givesmart.com)",
+     "GalaBid/ClickBid paddle raise modules"
+    ],
+    "note": "Mature paddle-raise capture category, but incumbents rely on human spotters entering data manually; no live product auto-detects paddles via camera+speech fusion."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 19
+  },
+  {
+   "id": "I-3046",
+   "name": "Lay of the Land",
+   "track": "balanced",
+   "lineage": "seed-improved",
+   "seed": "seed-03",
+   "cell": "B2B|extractor|balanced",
+   "elo_r2": 1177.3,
+   "elo_r1": 1201,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 62.4,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 6,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 8,
+    "defensibility": 5,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    61.7,
+    62.9,
+    62.4
+   ],
+   "deep_prior_art": {
+    "id": "I-3046",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Farmable (https://apps.apple.com/us/app/farmable-farm-manager-app/id1456760199)",
+     "Mobble (https://www.mobble.io/feature-spotlight/farm-mapping)",
+     "Farm Estate GPS (https://www.farmestategps.com)"
+    ],
+    "note": "Walk-GPS mapping and succession advisory exist separately; no narrated-extraction succession-mapping combo found."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 25
+  },
+  {
+   "id": "I-3048",
+   "name": "Remote Family PC Copilot",
+   "track": "balanced",
+   "lineage": "seed-improved",
+   "seed": "seed-05",
+   "cell": "B2C|screen-agent|balanced",
+   "elo_r2": 1188.6,
+   "elo_r1": 1203.3,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 56,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 4,
+    "pain": 6,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    52.6,
+    56,
+    57.5
+   ],
+   "deep_prior_art": {
+    "id": "I-3048",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "PC Doctor - AI PC Support",
+     "OmniMend",
+     "Microsoft Quick Assist"
+    ],
+    "note": "Evidence-then-approve diagnosis exists as single-user local apps; no unified remote-family-approval-plus-undo product found."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 22
+  },
+  {
+   "id": "I-3050",
+   "name": "Instant Reflex AI Layer",
+   "track": "novel",
+   "lineage": "seed-improved",
+   "seed": "seed-07",
+   "cell": "B2B|verifier|novel",
+   "elo_r2": 1162.7,
+   "elo_r1": 1170.5,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 51.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 7,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 2,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    51.9,
+    54.6,
+    48.8
+   ],
+   "deep_prior_art": {
+    "id": "I-3050",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "TypeSafe AI's Jev (https://typesafe.ai/blog/introducing-system-one-models-and-jev)",
+     "Wiz small-model secret detection (https://www.wiz.io/blog/small-language-model-for-secrets-detection-in-code)",
+     "SonarQube secrets detection (https://www.sonarsource.com/solutions/secrets-detection/)"
+    ],
+    "note": "TypeSafe's Jev (launched Sept 2026, $40M seed) already ships sub-second, cheap, typed per-event judgments with escalation via a developer SDK, usage-priced \u2014 same mechanism and buyer."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-3088",
+   "name": "Vendor Hold-Queue Call Agent",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|drafter-dialogue|balanced",
+   "elo_r2": 1258.7,
+   "elo_r1": 1242.9,
+   "consistency": 78,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 61.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    62.2,
+    59,
+    61.9
+   ],
+   "deep_prior_art": {
+    "id": "I-3088",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "OsmO (https://getosmo.app)",
+     "Google Hold for Me (https://blog.google/products/pixel/hold-for-me/)",
+     "DoNotPay Skip Waiting On Hold"
+    ],
+    "note": "Hold-waiting/IVR-navigation call agents are well established, but none are scoped to practice-management vendor support lines or re-verify the fix against real system state before closing."
+   },
+   "quick_prior_art": "clear",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 5,
+   "rank_overall": 17
+  },
+  {
+   "id": "I-3093",
+   "name": "Privileged Cite Bench",
+   "track": "novel",
+   "lineage": "seed-atom-hybrid",
+   "seed": "seed-05",
+   "cell": "prosumer|local-private|novel",
+   "elo_r2": 1247,
+   "elo_r1": 1232.6,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 66.9,
+   "tier": "B",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    66.9,
+    69.2,
+    53.1
+   ],
+   "deep_prior_art": {
+    "id": "I-3093",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "LawDroid CiteCheck AI (https://www.lawnext.com/2025/06/lawdroid-launches-citecheck-ai-a-fail-safe-against-ai-citation-hallucinations.html)",
+     "BriefCatch (https://www.briefcatch.com/blog/pick-an-ai-case-hallucinations-checker)",
+     "Clearbrief (https://www.cbinsights.com/company/clearbrief)"
+    ],
+    "note": "Live cloud tools check citations in the same niche, but all cloud-hosted; none run fully on-device to preserve privilege."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 7,
+   "rank_overall": 7
+  },
+  {
+   "id": "I-3095",
+   "name": "On-Prem Exploit Bench",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|local-private|novel",
+   "elo_r2": 1228.1,
+   "elo_r1": 1243.8,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 64.1,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 7,
+    "buildability": 6,
+    "demo_wow": 7,
+    "defensibility": 5,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    67.2,
+    64.1,
+    63.8
+   ],
+   "deep_prior_art": {
+    "id": "I-3095",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Konvu Bug Bounty Triage (https://konvu.com/product/bug-bounty-triage)",
+     "Elastic Security Labs internal AI triage (https://www.elastic.co/security-labs/ai-vulnerability-triage-bug-bounty-hackerone)",
+     "CVE-Genie/ExploitBench (https://github.com/exploitbench/exploitbench)"
+    ],
+    "note": "AI reproduces reported exploits in a sandbox and returns pass/fail already, but no confirmed packaged air-gapped/on-prem-only product for regulated bounty programs."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 12,
+   "rank_overall": 28
+  },
+  {
+   "id": "I-3529",
+   "name": "Screen-Side Cite Bailiff",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|screen-agent|novel",
+   "elo_r2": 1269.7,
+   "elo_r1": 1270,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 62.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 8,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 8,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    69.2,
+    62.2,
+    61.1
+   ],
+   "deep_prior_art": {
+    "id": "I-3529",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Westlaw Quick Check (https://legal.thomsonreuters.com/en/products/westlaw-edge/quick-check)",
+     "CiteCheck AI (https://www.lawnext.com/2025/06/lawdroid-launches-citecheck-ai-a-fail-safe-against-ai-citation-hallucinations.html)",
+     "BriefCatch RealityCheck (https://www.briefcatch.com/blog/pick-an-ai-case-hallucinations-checker)"
+    ],
+    "note": "Fabricated-citation catching is crowded but all use legal-database APIs, not a vision browser-use agent, and none blocks e-filing submission."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 4,
+   "rank_overall": 15
+  },
+  {
+   "id": "I-3537",
+   "name": "Supply-Run Spend Guardrail",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|agent-infra|novel",
+   "elo_r2": 1203.5,
+   "elo_r1": 1227,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 48.7,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 8,
+    "pain": 4,
+    "wtp": 4,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    54.2,
+    43.5,
+    48.7
+   ],
+   "deep_prior_art": {
+    "id": "I-3537",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "AgentPay (github.com/romudille-bit/agentpay, agentpay.tools)"
+    ],
+    "note": "Live product enforces hard session-wide spend cap across multiple x402 merchant calls with receipts, same mechanism as the idea."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-3541",
+   "name": "Lay of the Land",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-03",
+   "cell": "B2B|extractor|balanced",
+   "elo_r2": 1208.8,
+   "elo_r1": 1231.3,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 59.5,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 7,
+    "why_now": 7,
+    "pain": 5,
+    "wtp": 5,
+    "buildability": 5,
+    "demo_wow": 8,
+    "defensibility": 5,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    59.5,
+    59.5,
+    60.2
+   ],
+   "deep_prior_art": {
+    "id": "I-3541",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "AgriWebb (https://www.agriwebb.com/solutions/farm-mapping/)",
+     "Farmbrite (https://www.farmbrite.com/farm-mapping)",
+     "ARUtility (https://www.arutility.com/)"
+    ],
+    "note": "GPS field-note apps and AR underground-utility viewers exist separately; none combine narrated oral history, confidence-tagged provenance, and AR playback for farm succession."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 17
+  },
+  {
+   "id": "I-3555",
+   "name": "No-API Portal MCP Adapter",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|agent-infra|novel",
+   "elo_r2": 1252.7,
+   "elo_r1": 1229.2,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 55.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 7,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 7,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    57.3,
+    55.2,
+    48.8
+   ],
+   "deep_prior_art": {
+    "id": "I-3555",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Anchor Browser MCP (https://anchorbrowser.io/blog/turn-any-website-into-mcp-tool-anchor-browser)",
+     "Browserbase MCP/Stagehand (https://www.browserbase.com/mcp)",
+     "UiPath screen-scraping RPA (https://www.uipath.com/blog/rpa/screen-scraping-software-everything-you-need-to-know)"
+    ],
+    "note": "Anchor Browser already logs into locked portals like Availity via computer use and exposes reads/writes as MCP tools for any AI client."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-4005",
+   "name": "POA Packet Builder",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|extractor|balanced",
+   "elo_r2": 1222.1,
+   "elo_r1": 1229.6,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 66.3,
+   "tier": "B",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 6,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 5,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    66.3,
+    60.7,
+    67.3
+   ],
+   "deep_prior_art": {
+    "id": "I-4005",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "DocFills (https://www.docfills.com/forms/power-of-attorney)",
+     "OCR-Software.com Smart Form Filler (https://ocr-software.com/en/smart-form-filler/)"
+    ],
+    "note": "Generic AI POA/form-fillers exist but none maintain a bank-certification-form library, flag notarization gaps, and draft statute-citing rebuttal letters."
+   },
+   "quick_prior_art": "clear",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 14,
+   "rank_overall": 10
+  },
+  {
+   "id": "I-4014",
+   "name": "Pivot: Will the Sofa Fit?",
+   "track": "novel",
+   "lineage": "seed-original",
+   "seed": "seed-01",
+   "cell": "B2B|extractor|novel",
+   "elo_r2": 1155.6,
+   "elo_r1": 1170.7,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 62.5,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 6,
+    "pain": 7,
+    "wtp": 7,
+    "buildability": 5,
+    "demo_wow": 8,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    62.5,
+    67.1,
+    62
+   ],
+   "deep_prior_art": {
+    "id": "I-4014",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Smart Moving: Furniture Helper (App Store)",
+     "MeltflexAI/Luna Furniture calculators",
+     "Polycam/Metaroom LiDAR room scanners"
+    ],
+    "note": "Manual fit calculators and separate 3D room scanners both exist; none combine automatic full-route video-based 3D reconstruction with a verdict and maneuvering animation at checkout."
+   },
+   "quick_prior_art": null,
+   "feasibility": "no",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 18
+  },
+  {
+   "id": "I-4051",
+   "name": "DMS Ransomware Shadow Continuity",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|screen-agent|novel",
+   "elo_r2": 1267.4,
+   "elo_r1": 1259.4,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 74.5,
+   "tier": "B",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 8,
+    "pain": 8,
+    "wtp": 8,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 5,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    74.5,
+    74.9,
+    71.4
+   ],
+   "deep_prior_art": {
+    "id": "I-4051",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Dominion DMS VUE Net (https://www.dominiondms.com/press_release/dominion-dms-announces-a-new-business-continuity-plan-for-automotive-dealers/)",
+     "Dealer IT-BCDR services (https://vtechdealerit.com/it-services/enterprise-data-backup-recovery-auto-dealerships/)"
+    ],
+    "note": "DMS continuity niche active but via backend backup/restore, not a computer-use agent mirroring screens."
+   },
+   "quick_prior_art": "clear",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 5,
+   "rank_overall": 3
+  },
+  {
+   "id": "I-4501",
+   "name": "Screen Agent Drafts Session Notes",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|local-private|balanced",
+   "elo_r2": 1261.8,
+   "elo_r1": 1245.7,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 70,
+   "tier": "B",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 8,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    70.5,
+    70,
+    68.3
+   ],
+   "deep_prior_art": {
+    "id": "I-4501",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Freed AI",
+     "Upheal",
+     "offline-medical-scribe (GitHub)"
+    ],
+    "note": "Cloud scribes push notes only to browser-based EHRs; local GUI agent for legacy desktop EHRs not found."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 3,
+   "rank_overall": 5
+  },
+  {
+   "id": "I-4511",
+   "name": "Proof Receipts for Proxy Agents",
+   "track": "novel",
+   "lineage": "seed-atom-hybrid",
+   "seed": "seed-05",
+   "cell": "B2C|agent-infra|novel",
+   "elo_r2": 1243.9,
+   "elo_r1": 1258.6,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 57.9,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 7,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    59.8,
+    55,
+    57.9
+   ],
+   "deep_prior_art": {
+    "id": "I-4511",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Meridian Verity (https://meridianverity.com/ai-agent-verification-receipts/)",
+     "Asqav (https://www.asqav.com/)",
+     "BrowserProof (https://github.com/yashkhou/browserproof)"
+    ],
+    "note": "Agent action-receipt tools are a live category, but all found competitors serve enterprise/commerce-risk or engineering buyers, not consumer daily-money-managers filing redacted Medicaid/Medicare proof."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 10,
+   "rank_overall": 25
+  },
+  {
+   "id": "I-4519",
+   "name": "Spotter: Paddle-Raise Vision",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-02",
+   "cell": "B2B|extractor|balanced",
+   "elo_r2": 1156.4,
+   "elo_r1": 1156.3,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 54.6,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 6,
+    "pain": 5,
+    "wtp": 4,
+    "buildability": 4,
+    "demo_wow": 8,
+    "defensibility": 4,
+    "pitch_clarity": 6
+   },
+   "rubric_totals": [
+    46.1,
+    54.6,
+    55.6
+   ],
+   "deep_prior_art": {
+    "id": "I-4519",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "OneCause (https://www.onecause.com/solutions/compare-givesmart/)",
+     "Handbid (https://www.handbid.com/features/auction-management)",
+     "Givebutter paddle raise (https://givebutter.com/features/paddle-raise)"
+    ],
+    "note": "Incumbents own gala paddle-raise capture via manual/mobile-bidding entry; none found fuse room cameras with live auctioneer speech recognition for automatic vision-based logging."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "risky",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 27
+  },
+  {
+   "id": "I-4525",
+   "name": "Callback Verifier for Vendor Payments",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2B|verifier|novel",
+   "elo_r2": 1274.1,
+   "elo_r1": 1258.4,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 64.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 8,
+    "defensibility": 3,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    64.2,
+    62.7,
+    64.2
+   ],
+   "deep_prior_art": {
+    "id": "I-4525",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Trustpair (https://trustpair.com/automated-account-validation/)",
+     "Rulebase (https://www.ycombinator.com/launches/MBR-rulebase-the-voice-fraud-defense-system-for-financial-services)"
+    ],
+    "note": "Trustpair owns vendor bank-change verification live but via automated data checks, not an outbound phone call; matching hackathon prototype exists but isn't live."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 3,
+   "rank_overall": 14
+  },
+  {
+   "id": "I-4546",
+   "name": "72-Hour Appeal Sprint",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|screen-agent|balanced",
+   "elo_r2": 1281.1,
+   "elo_r1": 1257.9,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 73.9,
+   "tier": "B",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 8,
+    "pain": 9,
+    "wtp": 8,
+    "buildability": 6,
+    "demo_wow": 8,
+    "defensibility": 4,
+    "pitch_clarity": 8
+   },
+   "rubric_totals": [
+    70,
+    73.9,
+    76.1
+   ],
+   "deep_prior_art": {
+    "id": "I-4546",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Claimable (https://www.getclaimable.com/)",
+     "Counterforce Health (https://www.counterforcehealth.org/)",
+     "Aegis, YC X25 (https://www.ycombinator.com/companies/aegis)"
+    ],
+    "note": "AI appeal-letter drafting from a photographed denial is live and common, but none confirmed to autonomously file into the plan's portal and independently re-verify a filing ID; Aegis has that mechanism but for provider-side buyers."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 2,
+   "rank_overall": 2
+  },
+  {
+   "id": "I-4563",
+   "name": "Foreign-Invoice Autopilot",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|extractor|novel",
+   "elo_r2": 1204.2,
+   "elo_r1": 1211.3,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 47.5,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 2,
+    "why_now": 6,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 5,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    41.4,
+    49.1,
+    47.5
+   ],
+   "deep_prior_art": {
+    "id": "I-4563",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Veryfi (https://www.veryfi.com/invoice-ocr-api/)",
+     "Dext (https://dext.com/en/business/product/capture-receipts-and-invoices)",
+     "Tofu (https://www.gotofu.com/blog/best-multi-language-receipt-ocr-softwares)"
+    ],
+    "note": "Multilingual multi-currency invoice OCR auto-posting to a ledger is an established live category; mechanism identical, buyer niche narrower."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-5101",
+   "name": "Linked Call-and-Statement Alert",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|local-private|novel",
+   "elo_r2": 1223.6,
+   "elo_r1": null,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 67.3,
+   "tier": "B",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 7,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 6,
+    "demo_wow": 7,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    67.8,
+    67.3,
+    66.3
+   ],
+   "deep_prior_art": {
+    "id": "I-5101",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "EverSafe (eversafe.com)",
+     "Carefull (getcarefull.com)",
+     "Hiya AI Phone & Call Assistant (apps.apple.com/us/app/hiya-ai-phone-call-assistant/id6474703665)"
+    ],
+    "note": "Bank monitors and call-scam detectors exist separately, but none link a flagged call to a same-day new payee into one combined alert."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": null,
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 14,
+   "rank_overall": 9
+  },
+  {
+   "id": "I-5109",
+   "name": "Live Interpreter With Transcript",
+   "track": "novel",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|drafter-dialogue|novel",
+   "elo_r2": 1222.8,
+   "elo_r1": null,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 51.1,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 5,
+    "pain": 7,
+    "wtp": 6,
+    "buildability": 6,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    54.3,
+    45.4,
+    51.1
+   ],
+   "deep_prior_art": {
+    "id": "I-5109",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Mabel AI (https://mabel.care/)",
+     "GoSpeech Medical Translate (https://www.gospeech.com/en/solutions/translate/medical-translate)",
+     "Aida (https://apps.apple.com/us/app/aida-ai-medical-interpreter/id6743888100)"
+    ],
+    "note": "Live medical interpreters with exportable bilingual transcripts already ship (Mabel AI, GoSpeech, Aida, Opalite Health); differentiation would need low-resource-language depth."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": null,
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-5203",
+   "name": "Scope Gate for Your Own Agent",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "B2C|agent-infra|balanced",
+   "elo_r2": 1215.6,
+   "elo_r1": null,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 55.6,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 5,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    55.6,
+    50.7,
+    57.8
+   ],
+   "deep_prior_art": {
+    "id": "I-5203",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Mandate (https://github.com/Ivan825/Mandate)",
+     "AP2/ACP payment mandates (https://eco.com/support/en/articles/14839409-ai-agent-spend-controls)",
+     "Permit.io / SandBase pre-action authorization (https://www.permit.io/ai-access-control)"
+    ],
+    "note": "Scoped mandate plus pre-action interception exists as dev-infra and payment protocols; no found product packages it as a consumer subscription app for personal agents."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": null,
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 15,
+   "rank_overall": 30
+  },
+  {
+   "id": "I-5207",
+   "name": "Matter-Billed Agent Run Meter",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|agent-infra|balanced",
+   "elo_r2": 1214.2,
+   "elo_r1": null,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 59.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 6,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 8,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    58.7,
+    59.2,
+    63.1
+   ],
+   "deep_prior_art": {
+    "id": "I-5207",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Keito (https://keito.ai/solutions/ai-agent-cost-tracking/llm-api-cost-tracking/)",
+     "llm0 (https://github.com/llm0ai/llm0)",
+     "LiteLLM (https://www.litellm.ai/)"
+    ],
+    "note": "Keito matches the buyer/billing niche but only attributes cost, no live hard-cap; llm0/LiteLLM hard-cap via proxy but are generic dev infra, not matter-rebilling products."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": null,
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 16
+  },
+  {
+   "id": "I-5410",
+   "name": "Micro-Seller Customs Declaration Autopilot",
+   "track": "balanced",
+   "lineage": "ai-native",
+   "seed": null,
+   "cell": "prosumer|extractor|balanced",
+   "elo_r2": 1231.1,
+   "elo_r1": null,
+   "consistency": 100,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 64.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 9,
+    "pain": 8,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    65.4,
+    61,
+    64.2
+   ],
+   "deep_prior_art": {
+    "id": "I-5410",
+    "verdict": "direct-competitor",
+    "competitors": [
+     "Zonos (https://zonos.com)",
+     "Easyship (https://www.easyship.com)",
+     "Tarifflo (https://www.ycombinator.com/companies/tarifflo)"
+    ],
+    "note": "Zonos already offers listing-to-HTS classification, invoice generation and low-value-shipment brokerage filing for small e-commerce sellers post-de-minimis change; same niche and mechanism."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": null,
+   "knocked_out_s8": true,
+   "below_bar": true,
+   "eligible": false
+  },
+  {
+   "id": "I-6001",
+   "name": "Continuous authorised social-engineering testing",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-09",
+   "cell": "B2B|agent-infra|balanced",
+   "elo_r2": 1253.8,
+   "elo_r1": 1230.5,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": true,
+   "rubric": 66.3,
+   "tier": "B",
+   "criteria": {
+    "novelty": 5,
+    "why_now": 7,
+    "pain": 7,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 8,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    62.4,
+    66.3,
+    68.3
+   ],
+   "deep_prior_art": {
+    "id": "I-6001",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Brightside AI (https://www.brside.com)",
+     "Arsen (https://arsen.co/en/platform/vishing-simulation)",
+     "Lakera Red (https://www.lakera.ai/lakera-red)"
+    ],
+    "note": "Human vishing sims and AI-agent red-teaming both exist separately; no combined weekly test-fix-retest vendor found."
+   },
+   "quick_prior_art": "direct-competitor",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": false,
+   "eligible": true,
+   "rank_track": 8,
+   "rank_overall": 6
+  },
+  {
+   "id": "I-6002",
+   "name": "Jev AI live call copilot",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-10",
+   "cell": "B2B|verifier|balanced",
+   "elo_r2": 1189.3,
+   "elo_r1": 1158.4,
+   "consistency": 88,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 53.6,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 5,
+    "pain": 6,
+    "wtp": 6,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    58,
+    53.6,
+    49.7
+   ],
+   "deep_prior_art": {
+    "id": "I-6002",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Balto",
+     "Krisp",
+     "Parloa"
+    ],
+    "note": "Live coaching copilots and real-time scam/fraud alerts exist separately; no single tool combines both plus discreet supervisor escalation."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 21
+  },
+  {
+   "id": "I-6003",
+   "name": "Jev: context-aware AAC phrase suggestions",
+   "track": "balanced",
+   "lineage": "seed-original",
+   "seed": "seed-11",
+   "cell": "B2C|drafter-dialogue|balanced",
+   "elo_r2": 1181.2,
+   "elo_r1": 1181.3,
+   "consistency": 62,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 56.8,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 3,
+    "why_now": 5,
+    "pain": 7,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 3,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    56.8,
+    51.7,
+    57.3
+   ],
+   "deep_prior_art": {
+    "id": "I-6003",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Spoken AAC (https://apps.apple.com/us/app/spoken-tap-to-talk-aac/id1034487817)",
+     "AAC Talker Listening mode (https://apps.apple.com/us/app/aac-talker/id6446367342)",
+     "Vocable AAC (https://apps.apple.com/us/app/vocable-aac/id1497040547)"
+    ],
+    "note": "Several shipping AAC apps already listen to the conversation partner and surface AI suggestions, but each generates/predicts new text rather than ranking only the user's own pre-saved, approved phrases."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 24
+  },
+  {
+   "id": "I-6006",
+   "name": "AAC Phrase Ranking Companion",
+   "track": "balanced",
+   "lineage": "seed-improved",
+   "seed": "seed-11",
+   "cell": "B2C|drafter-dialogue|balanced",
+   "elo_r2": 1181.6,
+   "elo_r1": 1197.2,
+   "consistency": 75,
+   "polarizing": false,
+   "coverage_badge": false,
+   "rubric": 61.2,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 6,
+    "why_now": 6,
+    "pain": 7,
+    "wtp": 5,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 4,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    61.2,
+    60.7,
+    61.2
+   ],
+   "deep_prior_art": {
+    "id": "I-6006",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Converser research system (https://www.tandfonline.com/doi/full/10.1080/07434610701740448)",
+     "Spoken AAC (https://spokenaac.com/features/)",
+     "Proloquo4Text / TD Snap word prediction"
+    ],
+    "note": "Mechanism has academic prior art (2008 Converser prototype, not live), but no shipping standalone companion app ranks an imported phrase bank from partner speech; commercial apps predict from the user's own typing."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 23
+  },
+  {
+   "id": "I-6007",
+   "name": "Live call-verification copilot for payment requests",
+   "track": "balanced",
+   "lineage": "seed-improved",
+   "seed": "seed-10",
+   "cell": "B2B|verifier|balanced",
+   "elo_r2": 1207.6,
+   "elo_r1": 1184.4,
+   "consistency": 50,
+   "polarizing": true,
+   "coverage_badge": false,
+   "rubric": 58,
+   "tier": "drop",
+   "criteria": {
+    "novelty": 4,
+    "why_now": 5,
+    "pain": 7,
+    "wtp": 7,
+    "buildability": 7,
+    "demo_wow": 6,
+    "defensibility": 2,
+    "pitch_clarity": 7
+   },
+   "rubric_totals": [
+    60.9,
+    55.3,
+    58
+   ],
+   "deep_prior_art": {
+    "id": "I-6007",
+    "verdict": "adjacent-exists",
+    "competitors": [
+     "Balto real-time agent assist (https://www.balto.ai/real-time-agent-assist/)",
+     "Pindrop Pulse (https://www.pindrop.com/product/pindrop-pulse/)",
+     "Rulebase (https://www.ycombinator.com/launches/MBR-rulebase-the-voice-fraud-defense-system-for-financial-services)"
+    ],
+    "note": "Balto matches the live-transcript, private-prompt, escalation mechanism but as general compliance coaching; Pindrop/Rulebase serve same fraud niche via deepfake detection instead."
+   },
+   "quick_prior_art": "adjacent-exists",
+   "feasibility": "yes",
+   "knocked_out_s8": false,
+   "below_bar": true,
+   "eligible": true,
+   "rank_track": 18
+  }
+ ],
+ "seeds": {
+  "seed-01": {
+   "original": {
+    "id": "I-4014",
+    "elo_r2": 1155.6,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2038",
+     "elo_r2": 1236.9,
+     "finalist": true,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3044",
+     "elo_r2": 1186.6,
+     "finalist": false,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-2571",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2572",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2573",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2574",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2575",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-3559",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ]
+  },
+  "seed-02": {
+   "original": {
+    "id": "I-4519",
+    "elo_r2": 1156.4,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2039",
+     "elo_r2": 1151.8,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3045",
+     "elo_r2": 1198.9,
+     "finalist": true,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-3006",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3007",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3008",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3009",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3010",
+     "elo_r2": 1137.1,
+     "finalist": false,
+     "status": "tournament"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-1527",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ]
+  },
+  "seed-03": {
+   "original": {
+    "id": "I-3541",
+    "elo_r2": 1208.8,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2040",
+     "elo_r2": 1164.8,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3046",
+     "elo_r2": 1177.3,
+     "finalist": true,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-2576",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2577",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2578",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2579",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2580",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-1039",
+     "elo_r2": 1163.6,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-1531",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1552",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2018",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2075",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2521",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2534",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3065",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3094",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3507",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3518",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4530",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ]
+  },
+  "seed-04": {
+   "original": {
+    "id": "I-1042",
+    "elo_r2": 1221.8,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2041",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-3047",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-3011",
+     "elo_r2": 1138.8,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3012",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3013",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3014",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-3015",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-2077",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ]
+  },
+  "seed-05": {
+   "original": {
+    "id": "I-2536",
+    "elo_r2": 1177.8,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2042",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-3048",
+     "elo_r2": 1188.6,
+     "finalist": true,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-2581",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2582",
+     "elo_r2": 1126.7,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-2583",
+     "elo_r2": 1169.6,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-2584",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-2585",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-1014",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1023",
+     "elo_r2": 1209.8,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-1057",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1501",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1550",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1553",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2023",
+     "elo_r2": 1228.7,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-2036",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2070",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-2520",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2535",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2594",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3078",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3092",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3093",
+     "elo_r2": 1247,
+     "finalist": true,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3516",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3519",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3527",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3559",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4009",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4010",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4018",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4060",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4511",
+     "elo_r2": 1243.9,
+     "finalist": true,
+     "status": "tournament"
+    },
+    {
+     "id": "I-4522",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4527",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4537",
+     "elo_r2": 1223.9,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-4541",
+     "elo_r2": 1150,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-5102",
+     "elo_r2": 1208.4,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-5304",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "dropped at S7 intake"
+    }
+   ]
+  },
+  "seed-06": {
+   "original": {
+    "id": "I-1525",
+    "elo_r2": 1116.5,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2043",
+     "elo_r2": 1174.2,
+     "finalist": true,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3049",
+     "elo_r2": 1145.5,
+     "finalist": false,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-3016",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3017",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3018",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3019",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3020",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-1544",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1554",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ]
+  },
+  "seed-07": {
+   "original": {
+    "id": "I-1050",
+    "elo_r2": 1108.4,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2044",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-3050",
+     "elo_r2": 1162.7,
+     "finalist": true,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-2586",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2587",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2588",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2589",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2590",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    }
+   ],
+   "atom_hybrids": [
+    {
+     "id": "I-1055",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-1522",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2037",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-2592",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3523",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4059",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-4533",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ]
+  },
+  "seed-08": {
+   "original": {
+    "id": "I-1555",
+    "elo_r2": 1155.9,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-2045",
+     "elo_r2": 1149.7,
+     "finalist": true,
+     "status": "tournament"
+    },
+    {
+     "id": "I-3051",
+     "elo_r2": 1140.5,
+     "finalist": false,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-3021",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3022",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3023",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3024",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-3025",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": []
+  },
+  "seed-09": {
+   "original": {
+    "id": "I-6001",
+    "elo_r2": 1253.8,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-6005",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-6008",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-6020",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6021",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6022",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6023",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6024",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": []
+  },
+  "seed-10": {
+   "original": {
+    "id": "I-6002",
+    "elo_r2": 1189.3,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-6004",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "knocked out in S5"
+    },
+    {
+     "id": "I-6007",
+     "elo_r2": 1207.6,
+     "finalist": true,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-6010",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6011",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6012",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6013",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6014",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    }
+   ],
+   "atom_hybrids": []
+  },
+  "seed-11": {
+   "original": {
+    "id": "I-6003",
+    "elo_r2": 1181.2,
+    "finalist": true,
+    "status": "tournament"
+   },
+   "improved": [
+    {
+     "id": "I-6006",
+     "elo_r2": 1181.6,
+     "finalist": true,
+     "status": "tournament"
+    },
+    {
+     "id": "I-6009",
+     "elo_r2": 1169.9,
+     "finalist": false,
+     "status": "tournament"
+    }
+   ],
+   "pivots": [
+    {
+     "id": "I-6015",
+     "elo_r2": 1132.7,
+     "finalist": false,
+     "status": "tournament"
+    },
+    {
+     "id": "I-6016",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6017",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6018",
+     "elo_r2": null,
+     "finalist": false,
+     "status": "archived in S4 (cell cap or merge)"
+    },
+    {
+     "id": "I-6019",
+     "elo_r2": 1117,
+     "finalist": false,
+     "status": "tournament"
+    }
+   ],
+   "atom_hybrids": []
+  }
+ },
+ "complete": true
+}

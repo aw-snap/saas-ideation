@@ -9,6 +9,7 @@
   verify-tournament ROUND RET  compare tournament master's JSON files with the workflow return RET; fix on mismatch
   jsonblock FILE               print the last ```json block of FILE
   args STAGE [ROUND]           print the Workflow args JSON for STAGE (s1 [h1] s3 [pilot] s4 s5 s6 ROUND s7 s8 s9)
+  scorecards                   compile report/scorecards.json (ranked top 30 + seed lineage) from S5-S8 outputs (before Gate D)
   selftest                     run the built-in checks
 """
 import json, os, random, re, sys, glob, statistics
@@ -394,6 +395,94 @@ def stage_args(stage, rnd=None):
     return a
 
 
+# ---------- final scorecards (after S8, before Gate D) ----------
+
+TIER_ORDER = {'S': 0, 'A': 1, 'B': 2, 'drop': 3}
+
+
+def swap_consistency(ids):
+    """held/swapped over both tournament rounds (settled matches have no order swap and are skipped)."""
+    c = {i: [0, 0] for i in ids}
+    for rnd in (1, 2):
+        for r in json.loads(read(f'tournament/r{rnd}/elo.json'))['results']:
+            if r['consistent'] is None:
+                continue
+            for x in (r['a'], r['b']):
+                if x in c:
+                    c[x][1] += 1; c[x][0] += bool(r['consistent'])
+    return {i: (round(100 * h / s) if s else None) for i, (h, s) in c.items()}
+
+
+def seed_of(meta):
+    if meta.get('lineage') == 'seed-original':
+        return meta.get('raw_id')
+    hit = re.search(r'seed-\d\d', meta.get('parents', ''))
+    return hit.group(0) if hit else None
+
+
+def compile_scorecards(per_track=15, top=30):
+    """Eligible = not a deep-audit direct competitor (the S8 knock-out). Top 30 = best 15 eligible per track by
+    round-2 Elo (a short track's gap is filled from the other), ordered by rubric band (S, A, B, then below 65), then Elo:
+    Elo ranks, the rubric bands. Below-65 ideas are ranked only to reach ~30 and carry below_bar: true
+    (deviation from PROMPT S11 "drop below 65", logged 2026-09-26: only 11 of 60 finalists cleared 65)."""
+    s8 = {c['id']: c for c in json.loads(read('outputs/s8-final/scorecards.json'))['scorecards']}
+    r2 = {r['id']: r for r in json.loads(read('tournament/r2/elo.json'))['ideas']}
+    r1 = {r['id']: r['elo'] for r in json.loads(read('tournament/r1/elo.json'))['ideas']}
+    quick, feas = {}, {}
+    for f in glob.glob(p('outputs/s5-reality/prior-art/*.md')) + glob.glob(p('outputs/s7-evolve/prior-art/*.md')):
+        quick.update({v['id']: v for v in jsonblock(f)})
+    for f in glob.glob(p('outputs/s5-reality/feasibility/*.md')):
+        feas.update({v['id']: v.get('demoable') for v in jsonblock(f)})
+    cons = swap_consistency(list(r2))
+    best_cell = {}
+    for r in sorted(r2.values(), key=lambda r: (-r['elo'], r['id'])):
+        best_cell.setdefault(r['cell'], r['id'])
+    rows = []
+    for i, c in sorted(s8.items()):
+        m, body = card_meta(i), parse_cards(read(f'archive/ideas/{i}.md'))[0]['body']
+        name = re.search(r'^# (.+)$', body, re.M).group(1).strip()
+        ko = c['knocked_out'] and m.get('lineage') != 'seed-original'
+        rows.append({'id': i, 'name': name, 'track': c['track'], 'lineage': m.get('lineage'), 'seed': seed_of(m),
+                     'cell': r2[i]['cell'], 'elo_r2': r2[i]['elo'], 'elo_r1': r1.get(i), 'consistency': cons[i],
+                     'polarizing': cons[i] is not None and cons[i] < 60, 'coverage_badge': best_cell[r2[i]['cell']] == i,
+                     'rubric': c['rubric'], 'tier': c['tier'], 'criteria': c['criteria'], 'rubric_totals': c['totals'],
+                     'deep_prior_art': c['prior_art'], 'quick_prior_art': (quick.get(i) or {}).get('verdict'),
+                     'feasibility': feas.get(i), 'knocked_out_s8': c['knocked_out'],
+                     'below_bar': c['tier'] == 'drop', 'eligible': not c['knocked_out'] and c['tier'] in TIER_ORDER})
+    by_track = {t: sorted([r for r in rows if r['track'] == t and r['eligible']], key=lambda r: (-r['elo_r2'], r['id'])) for t in ('novel', 'balanced')}
+    for t, lst in by_track.items():
+        for k, r in enumerate(lst):
+            r['rank_track'] = k + 1
+    take = {t: min(per_track, len(by_track[t])) for t in by_track}
+    for t, o in (('novel', 'balanced'), ('balanced', 'novel')):
+        take[t] = min(len(by_track[t]), take[t] + max(0, per_track - len(by_track[o])))
+    pick = [r for t in by_track for r in by_track[t][:take[t]]]
+    pick.sort(key=lambda r: (TIER_ORDER[r['tier']], -r['elo_r2'], r['id']))
+    pick = pick[:top]
+    for k, r in enumerate(pick):
+        r['rank_overall'] = k + 1
+    seeds, s5_ko = {}, {k['id'] for k in jsonblock('outputs/s5-reality/survivors.md')['knocked_out']}
+    for f in sorted(glob.glob(p('archive/ideas/*.md'))):
+        m = card_meta(os.path.basename(f)[:-3])
+        s = seed_of(m) if m.get('lineage', '').startswith('seed-') else None
+        atoms = re.findall(r'A-(seed-\d\d)-[\w-]+', m.get('parents', ''))
+        for sid in ([s] if s else []) + (atoms if m.get('lineage') == 'seed-atom-hybrid' else []):
+            e = seeds.setdefault(sid, {'original': None, 'improved': [], 'pivots': [], 'atom_hybrids': []})
+            rec = {'id': m['id'], 'elo_r2': r2.get(m['id'], {}).get('elo'), 'finalist': m['id'] in s8,
+                   'status': 'tournament' if m['id'] in r2 else 'knocked out in S5' if m['id'] in s5_ko else 'dropped at S7 intake' if m['id'].startswith('I-5') else 'archived in S4 (cell cap or merge)'}
+            key = {'seed-original': 'original', 'seed-improved': 'improved', 'seed-pivot': 'pivots'}.get(m.get('lineage'), 'atom_hybrids')
+            if key == 'original':
+                e['original'] = rec
+            elif rec not in e[key]:
+                e[key].append(rec)
+    doc = {'rule': compile_scorecards.__doc__.strip(), 'counts': {t: len(v) for t, v in by_track.items()},
+           'top30': [r['id'] for r in pick], 'finalists': rows, 'seeds': dict(sorted(seeds.items())), 'complete': True}
+    os.makedirs(p('report'), exist_ok=True)
+    with open(p('report/scorecards.json'), 'w') as f:
+        json.dump(doc, f, indent=1)
+    return doc
+
+
 # ---------- self-check ----------
 
 def selftest():
@@ -480,6 +569,9 @@ if __name__ == '__main__':
         print(json.dumps(jsonblock(rest[0]), indent=1))
     elif cmd == 'args':
         print(json.dumps(stage_args(*rest)))
+    elif cmd == 'scorecards':
+        d = compile_scorecards()
+        print(f"report/scorecards.json: {len(d['finalists'])} finalists, eligible per track {d['counts']}, top30 {len(d['top30'])}")
     elif cmd == 'selftest':
         selftest()
     else:
