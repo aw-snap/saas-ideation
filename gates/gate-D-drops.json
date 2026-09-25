@@ -1,0 +1,4 @@
+{
+ "I-1019": "Strict subset of its own child I-5101 (rank 9, parents [I-1019, I-2067]): same on-device statement scan for new payees and duplicate charges, same buyer, same T8 dossier. Lowest rubric of the trio (61.7), and StatementLock already parses statements in-browser, the closest thing to a direct match. Keeping parent and child pads the list.",
+ "I-2514": "Identical mechanism to I-3093 (rank 7): gpt-oss-20b on one workstation checking briefs against a locally cached case-law index. Only the payer differs (E&O broker vs attorney), and the red team rates that go-to-market unproven. Rubric 57.8, lowest of the three cite-checkers in the set. Fold the broker channel into I-3093's business-model line."
+}

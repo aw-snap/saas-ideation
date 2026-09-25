@@ -1,8 +1,12 @@
 {
- "rule": "Eligible = not a deep-audit direct competitor (the S8 knock-out). Top 30 = best 15 eligible per track by\nround-2 Elo (a short track's gap is filled from the other), ordered by rubric band (S, A, B, then below 65), then Elo:\nElo ranks, the rubric bands. Below-65 ideas are ranked only to reach ~30 and carry below_bar: true\n(deviation from PROMPT S11 \"drop below 65\", logged 2026-09-26: only 11 of 60 finalists cleared 65).",
+ "rule": "Eligible = not a deep-audit direct competitor (the S8 knock-out). Top 30 = best 15 eligible per track by\nround-2 Elo (a short track's gap is filled from the other), ordered by rubric band (S, A, B, then below 65), then Elo:\nElo ranks, the rubric bands. Below-65 ideas are ranked only to reach ~30 and carry below_bar: true\n(deviation from PROMPT S11 \"drop below 65\", logged 2026-09-26: only 11 of 60 finalists cleared 65); 64-65 is\nlabelled borderline. Gate D drops ({id: rationale}) leave the ranking and the next eligible idea of the same track fills in.",
  "counts": {
   "novel": 19,
-  "balanced": 27
+  "balanced": 25
+ },
+ "gate_d_drops": {
+  "I-1019": "Strict subset of its own child I-5101 (rank 9, parents [I-1019, I-2067]): same on-device statement scan for new payees and duplicate charges, same buyer, same T8 dossier. Lowest rubric of the trio (61.7), and StatementLock already parses statements in-browser, the closest thing to a direct match. Keeping parent and child pads the list.",
+  "I-2514": "Identical mechanism to I-3093 (rank 7): gpt-oss-20b on one workstation checking briefs against a locally cached case-law index. Only the payer differs (E&O broker vs attorney), and the red team rates that go-to-market unproven. Rubric 57.8, lowest of the three cite-checkers in the set. Fold the broker channel into I-3093's business-model line."
  },
  "top30": [
   "I-2061",
@@ -23,18 +27,18 @@
   "I-1508",
   "I-3088",
   "I-2519",
-  "I-1019",
   "I-1534",
   "I-1022",
   "I-1516",
   "I-1564",
   "I-2053",
   "I-4511",
-  "I-2514",
   "I-2547",
   "I-3095",
   "I-1063",
-  "I-5203"
+  "I-5203",
+  "I-5207",
+  "I-3541"
  ],
  "finalists": [
   {
@@ -79,7 +83,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 6,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Second-agent completion verification already exists in three live forms (AEVS, agent-completion-verifier, AgentLiar); niche/billing differentiation is thin and a primary-agent vendor could add first-party verification.",
+    "fix": "Sell as a neutral, cross-vendor auditor to payers/insurers who need independence from the agent operator."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 2,
    "rank_overall": 13
@@ -126,10 +138,16 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 0.7,
+   "red_team": {
+    "severity": "serious",
+    "objection": "StatementLock already parses uploaded statements in-browser for fraud/duplicates; Carefull/EverSafe own the funded elder-fraud niche via easier cloud account-linking.",
+    "fix": "Lead with the offline/no-SSN-in-cloud trust angle StatementLock and Carefull can't match; target families who refuse account-linking."
+   },
    "below_bar": true,
-   "eligible": true,
-   "rank_track": 7,
-   "rank_overall": 19
+   "borderline": false,
+   "gate_d_drop": "Strict subset of its own child I-5101 (rank 9, parents [I-1019, I-2067]): same on-device statement scan for new payees and duplicate charges, same buyer, same T8 dossier. Lowest rubric of the trio (61.7), and StatementLock already parses statements in-browser, the closest thing to a direct match. Keeping parent and child pads the list.",
+   "eligible": false
   },
   {
    "id": "I-1022",
@@ -172,10 +190,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 2.9,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "HeyMedicaid and Fortuna Health own this niche and could add a rejection-rule check quickly; buyer files rarely, weakening repeat revenue.",
+    "fix": "Position as an audit layer these incumbents integrate, not a standalone competing app."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 10,
-   "rank_overall": 21
+   "rank_track": 9,
+   "rank_overall": 20
   },
   {
    "id": "I-1042",
@@ -219,7 +245,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": true,
+   "rubric_spread": 1.0,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Yoodli already nudges pace/fillers/energy live during real video calls plus replay analytics, the exact mechanism in the same B2C interview niche; Poised does live in-call coaching too.",
+    "fix": "Narrow to a sub-niche Yoodli ignores (non-native-speaker phrasing, bootcamp white-label) instead of general live nudges."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -264,7 +298,15 @@
    "quick_prior_art": "clear",
    "feasibility": "no",
    "knocked_out_s8": true,
+   "rubric_spread": 11.6,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Open-source reflex layers (Reflex-S1, System1-mcp) already implement exactly this mechanism on Jev, and the idea depends on Jev's own unverified speed/cost claims.",
+    "fix": "Pick one concrete downstream product and verify Jev's real latency/cost before building a platform."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -309,10 +351,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 0.5,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Tai TMS, ARK TMS and FastFreight already auto-generate rate confirmations from structured load data with no learning step; switching cost from an existing TMS is real and one-shot learning is unproven across rate variance.",
+    "fix": "Target brokers without a TMS, not TMS-equipped shops that already automate this."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 13,
-   "rank_overall": 29
+   "rank_overall": 27
   },
   {
    "id": "I-1070",
@@ -356,7 +406,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": true,
+   "rubric_spread": 3.2,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Beacon Health, Clicks Health and AKASA already ship funded computer-use agents automating legacy PM/EHR screens for RCM; metered pricing isn't a moat.",
+    "fix": "Narrow to specific PM systems these funded players haven't wrapped, or supply tools under their platforms."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -401,7 +459,15 @@
    "quick_prior_art": "direct-competitor",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 8.3,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Bank-detail-change screening before payment is a mature funded category (Eftsure, Trustpair, Stampli); the SMB gap is a pricing tier any of them can ship faster than a new entrant can build trust.",
+    "fix": "Launch as a cheap SMB tier bundled inside QuickBooks/Xero rather than standalone."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 4,
    "rank_overall": 16
@@ -448,10 +514,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 9.7,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Questionnaire-automation tools already exist for security teams; letting an agent auto-log into a client's live admin console and answer insurance questions creates real liability if it misreads a control.",
+    "fix": "Keep the owner as final signer on every answer and cap liability for misread controls contractually."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 11,
-   "rank_overall": 22
+   "rank_track": 10,
+   "rank_overall": 21
   },
   {
    "id": "I-1525",
@@ -495,7 +569,15 @@
    "quick_prior_art": "direct-competitor",
    "feasibility": "yes",
    "knocked_out_s8": true,
+   "rubric_spread": 3.7,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Bito AI Architect, a Jira Ticket Estimator skill, and open-source agent-estimate already read a real codebase and turn a ticket into a grounded estimate; the client-feature-request framing is a thin wrapper on an existing mechanism.",
+    "fix": "None credible without a genuinely different mechanism or niche these tools structurally can't reach."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -540,10 +622,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 0.5,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Prior-auth AI space is crowded (BastionGPT, CallSphere, Prosper); live-recording a payer's rep also risks two-party consent law exposure the card never addresses.",
+    "fix": "Add explicit per-state call-recording consent capture; lead on the quote-cited real-time differentiator."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 9,
-   "rank_overall": 20
+   "rank_track": 8,
+   "rank_overall": 19
   },
   {
    "id": "I-1555",
@@ -587,7 +677,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 2.0,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Filler removal and expressive speech-to-speech each cover half the pitch separately; the unclaimed auto-expressiveness transform is an unverified capability claim.",
+    "fix": "Validate the auto-expressiveness transform on real audio first; fall back to filler-removal-plus-sync if weak."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 17
   },
@@ -633,10 +731,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 5.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Local/offline legal LLM tools already solve privacy-and-offline; remaining differentiation is a closable feature gap, and unchecked drafting risks malpractice-grade hallucination.",
+    "fix": "Ship a mandatory citation/fact-check pass before any draft is shown; lead on template-matching."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 8,
-   "rank_overall": 23
+   "rank_overall": 22
   },
   {
    "id": "I-2038",
@@ -680,7 +786,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": true,
+   "rubric_spread": 5.7,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Smart Moving: Furniture Helper already ships camera-based measuring plus rotation/tilt clearance solving through stairs and doorways to moving companies, same niche and mechanism.",
+    "fix": "Differentiate on checkout-embedded scan-at-purchase workflow or undercut on price; otherwise hard to justify."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -725,9 +839,17 @@
    "quick_prior_art": "direct-competitor",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 4.4,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Devtimate already sells client-ready quotes to agencies; the repo-scan grounding edge is flagged [unverified], and a wrong AI quote creates client-facing liability.",
+    "fix": "Ship estimates as ranges with confidence flags and a mandatory human-review gate before clients see them."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 26
+   "rank_track": 24
   },
   {
    "id": "I-2045",
@@ -771,7 +893,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 13.2,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Same idea as I-1555; incumbents (Descript, Cleanvoice, OpusClip) already do cut-based filler removal and slide sync, leaving only an unbuilt, unverified re-synthesis feature as differentiation.",
+    "fix": "Ship as an add-on inside an existing lecture-capture platform (Panopto, Echo360) instead of standalone."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 19
   },
@@ -817,7 +947,15 @@
    "quick_prior_art": "clear",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 9.7,
+   "red_team": {
+    "severity": "serious",
+    "objection": "HackerOne/Bugcrowd already gate fake reports via free reputation scoring; a cash bond on top is extra friction incumbents have no reason to add.",
+    "fix": "Launch on new/small bounty programs with no existing reputation history, not as an add-on to HackerOne."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 6,
    "rank_overall": 4
@@ -864,10 +1002,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 4.6,
+   "red_team": {
+    "severity": "serious",
+    "objection": "General hallucination-highlighters (GPTZero, Originality.ai) already do sentence-level claim checking, and carrier-side claims-AI vendors already build audit trails; the independent-adjuster niche may be too small to justify a dedicated product.",
+    "fix": "Ship as a thin claims-specific wrapper around an existing hallucination-detection API rather than building detection from scratch."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 9,
-   "rank_overall": 24
+   "rank_overall": 23
   },
   {
    "id": "I-2061",
@@ -911,7 +1057,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 2.9,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Local therapist scribes already exist, including a free open-source option; the only edge (timestamp citation UI) is thin against free alternatives once copied.",
+    "fix": "Ship the citation/flagging UI first and make it the headline demo differentiator."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 1,
    "rank_overall": 1
@@ -958,7 +1112,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 7.5,
+   "red_team": {
+    "severity": "serious",
+    "objection": "ShieldsOn and Android's built-in OS-level fake-call detection already flag scam calls for seniors, one free and platform-owned, a structural threat no pricing fixes.",
+    "fix": "Focus narrowly on the proxy-alert-to-adult-child feature Android/ShieldsOn lack and market that specifically."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 1,
    "rank_overall": 12
@@ -1005,9 +1167,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 8.5,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Standing-order trackers and citation checkers already exist separately; a video wrapper is a thin, easily-copied UX layer over two live capabilities.",
+    "fix": "Validate litigators prefer video over a one-line checklist before building the video pipeline."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 20
+   "rank_track": 18
   },
   {
    "id": "I-2514",
@@ -1051,10 +1221,16 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 3.4,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Citation-checking is dominated by Clearbrief (~70% of Am Law 20); the real novelty is broker distribution, which assumes brokers act as software distributors -- an unproven go-to-market, not a proven product gap.",
+    "fix": "Validate broker interest with one design partner before building on-prem infra."
+   },
    "below_bar": true,
-   "eligible": true,
-   "rank_track": 13,
-   "rank_overall": 26
+   "borderline": false,
+   "gate_d_drop": "Identical mechanism to I-3093 (rank 7): gpt-oss-20b on one workstation checking briefs against a locally cached case-law index. Only the payer differs (E&O broker vs attorney), and the red team rates that go-to-market unproven. Rubric 57.8, lowest of the three cite-checkers in the set. Fold the broker channel into I-3093's business-model line.",
+   "eligible": false
   },
   {
    "id": "I-2519",
@@ -1098,7 +1274,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 6.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Autonomous filing on IRS PTIN and insurer portals risks costly mis-filings for compliance-focused buyers, a serious trust barrier not addressed by the card.",
+    "fix": "Ship draft-and-review only for v1; add autonomous submission later as opt-in."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 6,
    "rank_overall": 18
@@ -1144,7 +1328,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": true,
+   "rubric_spread": 3.4,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Krasyn's Note Check is live, free, and does the identical sentence-vs-transcript flagging across major scribe vendors, undercutting the $15/mo add-on regardless of local-only framing.",
+    "fix": "Lead entirely with the local/no-cloud-upload guarantee Krasyn lacks as the sole reason to pay."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -1189,7 +1381,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": true,
+   "rubric_spread": 10.0,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Microsoft ships a free, in-OS, agentic Fix it button on Windows 11 Copilot+ PCs matching the exact niche and mechanism, bundled at zero cost.",
+    "fix": "Target non-Copilot+/older Windows PCs, or pivot to the family remote-approval angle Microsoft lacks."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -1234,10 +1434,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 5.0,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Banks and Medicare/Medicaid portals actively detect and block automated logins (bot detection, MFA); storing a parent's live credentials for automated crawling is a major security/liability risk, and Carefull already owns the niche via safer API linking.",
+    "fix": "Use official APIs/aggregation where available; reserve browser-agent login for portals with no API, with human MFA handoff."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 11,
-   "rank_overall": 27
+   "rank_overall": 25
   },
   {
    "id": "I-2550",
@@ -1281,7 +1489,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 2.5,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Premise requires the parent (not the tech-savvy adult child) to photograph their own mail, undermining onboarding for the least app-savvy population.",
+    "fix": "Partner with mail-forwarding services so mail reaches the child's scanner automatically."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 15,
    "rank_overall": 11
@@ -1327,9 +1543,17 @@
    "quick_prior_art": "clear",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 11.7,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Fortuna Health already serves the consumer Medicaid-procedural niche and Skyvern already files no-API state forms; the idea recombines two live products' mechanisms for a narrow addressable moment.",
+    "fix": "Partner into Fortuna Health's funnel rather than compete for the same discovery moment."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 12,
+   "rank_track": 11,
    "rank_overall": 8
   },
   {
@@ -1374,7 +1598,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": true,
+   "rubric_spread": 8.5,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "RedactLocal already ships the exact strip-locally-then-reinsert redaction loop for the same lawyer/CPA buyer, live today.",
+    "fix": "Find a concrete gap RedactLocal lacks (e.g., tax-specific field types, IRC \u00a77216 logging) or abandon."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -1419,7 +1651,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 4.2,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Using an AI agent to obtain 'informed consent' for AI recording is circular, and it's unclear ethics boards accept AI-agent-captured consent as sufficient; therapist liability if the AI mishandles the exchange is unresolved.",
+    "fix": "Position as consent-capture assistance under ethics-board-reviewed scripts, not the compliance authority itself; keep a human confirmation step."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 16
   },
@@ -1465,9 +1705,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 3.4,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Mature entrenched incumbents (OneCause, GiveSmart, GalaBid) own paddle capture with CRM/payment lock-in; fusion tech claim is [unverified], and idea duplicates I-4519 in this same batch.",
+    "fix": "Sell as an add-on feeding existing platforms; validate ballroom-noise fusion accuracy before demoing."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 19
+   "rank_track": 17
   },
   {
    "id": "I-3046",
@@ -1511,9 +1759,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 1.2,
+   "red_team": {
+    "severity": "serious",
+    "objection": "GPS farm mapping and succession advisory both exist as separate live products; the paying buyer (advisors/lenders per report) is unvalidated distribution with no evidence anyone currently pays for this.",
+    "fix": "Get one succession advisor or ag lender to confirm they'd pay per report before building."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 25
+   "rank_track": 23
   },
   {
    "id": "I-3048",
@@ -1557,9 +1813,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 4.9,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Evidence-then-approve diagnosis already exists in single-user apps and remote control already exists separately; this is a modest integration, not a hard mechanism, and also collides with Microsoft's free Fix it agent.",
+    "fix": "Lead with the remote-family-approval workflow specifically, the one unfilled gap."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 22
+   "rank_track": 20
   },
   {
    "id": "I-3050",
@@ -1603,7 +1867,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": true,
+   "rubric_spread": 5.8,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "TypeSafe AI's Jev, launched Sept 2026 with $40M seed, already ships sub-second, cheap, typed per-event judgments with escalation to the same developer buyer at usage-based pricing.",
+    "fix": "None credible as a general platform; only a narrow vertical wrapper might carve out space Jev doesn't own."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -1648,7 +1920,15 @@
    "quick_prior_art": "clear",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 3.2,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "General hold-waiting agents (OsmO, Google Hold for Me, DoNotPay) already solve the core mechanic; niche framing is a thin, easily-copied differentiator.",
+    "fix": "Lead entirely on the post-call system-state verification step, the actual gap incumbents lack."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 5,
    "rank_overall": 17
@@ -1695,7 +1975,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 16.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Cloud cite-checkers (LawDroid, BriefCatch, Clearbrief) already own the niche; an unbenchmarked local 20B model missing a fabricated citation is a sanctions-grade failure mode.",
+    "fix": "Publish a false-negative benchmark against known fabricated-citation cases before claiming reliability."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 7,
    "rank_overall": 7
@@ -1742,10 +2030,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 3.4,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Sandbox-reproduce-and-verdict is already well established (Konvu, Elastic, CVE-Genie); the claimed on-prem-only differentiator is unconfirmed for the closest competitor and could be added by them.",
+    "fix": "Confirm directly whether Konvu can/will offer on-prem deployment before investing."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 12,
-   "rank_overall": 28
+   "rank_overall": 26
   },
   {
    "id": "I-3529",
@@ -1789,7 +2085,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 8.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Westlaw Quick Check, LawDroid CiteCheck AI and BriefCatch already catch fabricated citations via faster, more reliable database APIs than a vision-based browser-search agent, and locking e-filing submit requires integration across many incompatible court portals.",
+    "fix": "Use database APIs (CourtListener) for verification; scope the e-filing submit-lock differentiator to one court system first."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 4,
    "rank_overall": 15
@@ -1834,7 +2138,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": true,
+   "rubric_spread": 10.7,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "AgentPay is a live, actively-developed project whose agentpay-session feature already enforces the exact session-wide spend cap this idea proposes.",
+    "fix": "Package AgentPay's capability as a no-code maker UI rather than rebuilding the session-cap mechanism."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -1879,9 +2191,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 0.7,
+   "red_team": {
+    "severity": "serious",
+    "objection": "GPS farm mapping and AR underground-utility overlay already exist separately, plus outdoor AR pin accuracy from phone GPS alone is typically only a few meters, undercutting the precise-location value claim.",
+    "fix": "Drop AR for v1 and validate GPS accuracy before promising precise on-site pinpointing."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 17
+   "rank_track": 15,
+   "rank_overall": 30
   },
   {
    "id": "I-3555",
@@ -1925,7 +2246,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": true,
+   "rubric_spread": 8.5,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Anchor Browser already sells this exact mechanism today and explicitly names Availity-style payer portals as a target use case, the idea's own flagship demo.",
+    "fix": "Narrow to a vertical Anchor/Browserbase haven't packaged, e.g. Dentrix/Yardi desktop apps sold per-connector."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -1969,9 +2298,17 @@
    "quick_prior_art": "clear",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 6.6,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Generic AI form-fillers (DocFills, OCR-Software.com) already address this problem space; maintaining dozens of banks' changing certification forms is a high-upkeep content-ops burden, and drafting statute-based rebuttal letters risks unauthorized-practice-of-law exposure.",
+    "fix": "Cap scope to the top 10-15 banks by proxy volume; route rebuttal letters through attorney-reviewed templates."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 14,
+   "rank_track": 12,
    "rank_overall": 10
   },
   {
@@ -2016,7 +2353,15 @@
    "quick_prior_art": null,
    "feasibility": "no",
    "knocked_out_s8": false,
+   "rubric_spread": 5.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Core mechanism depends on an [unverified] claim that ordinary phone video yields accurate 3D reconstruction; an existing app already gives maneuvering guidance from simpler manual measurements.",
+    "fix": "Validate single-video reconstruction accuracy against LiDAR ground truth before promising the checkout demo."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 18
   },
@@ -2061,7 +2406,15 @@
    "quick_prior_art": "clear",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 3.5,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Vendor-side continuity products (Dominion VUE Net) already solve DMS outages via backend backup, and continuous automated agent login likely violates CDK/Reynolds terms of service, risking dealer account suspension.",
+    "fix": "Secure written permission or an API partnership with the DMS vendor before selling continuous automated login."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 5,
    "rank_overall": 3
@@ -2108,7 +2461,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 2.2,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Cloud scribes already push notes into browser EHRs; legacy-desktop GUI-grounding accuracy is unproven, and a misplaced click into a clinical record is a safety/liability incident.",
+    "fix": "Require clinician field-by-field confirmation before any write to the EHR, never auto-submit."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 3,
    "rank_overall": 5
@@ -2155,10 +2516,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 4.8,
+   "red_team": {
+    "severity": "serious",
+    "objection": "This idea depends on proxy agents reliably logging into locked bank/Medicaid portals, a shaky foundation given MFA and bot detection; a self-generated screenshot receipt is also not independent proof of the action it claims to verify.",
+    "fix": "Anchor each receipt to the portal's own confirmation number and disclose the self-capture limitation; pair only with a proven proxy-agent layer."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 10,
-   "rank_overall": 25
+   "rank_overall": 24
   },
   {
    "id": "I-4519",
@@ -2202,9 +2571,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "risky",
    "knocked_out_s8": false,
+   "rubric_spread": 9.5,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Same entrenched incumbent category as I-3045, near-duplicate pitch within this batch, and shares the same [unverified] fusion-accuracy dependency plus an underaddressed guest-consent question.",
+    "fix": "Merge with I-3045 into one validated pitch before choosing platform-add-on vs. standalone framing."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 27
+   "rank_track": 25
   },
   {
    "id": "I-4525",
@@ -2247,7 +2624,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 1.5,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Trustpair already owns bank-detail-change verification via faster, cheaper instant data checks; an unsolicited AI-voice verification call also gives the vendor no way to trust it isn't itself a scam.",
+    "fix": "Route the callback through a human AP staffer reading an AI-drafted script, not a fully autonomous voice agent."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 3,
    "rank_overall": 14
@@ -2294,7 +2679,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 6.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "AI appeal-letter drafting is already live (Claimable, Counterforce) and Aegis already auto-files through payer portals for providers; applying unattended portal-filing to a stressed family's own account within 72 hours raises real stakes for a filing error.",
+    "fix": "Keep the refund-if-no-portal guarantee and add a human-review checkpoint before final submission."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 2,
    "rank_overall": 2
@@ -2341,7 +2734,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": true,
+   "rubric_spread": 7.7,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Veryfi, Dext and Tofu already do multilingual, multi-currency invoice OCR with one-tap ledger posting at established scale; the mechanism is identical and the freelance-translator niche is a positioning choice incumbents can retarget quickly.",
+    "fix": "Only viable as a thin vertical skin (pricing/UX for solo freelancers) on top of an existing OCR API."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -2386,7 +2787,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": null,
    "knocked_out_s8": false,
+   "rubric_spread": 1.5,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "EverSafe/Carefull and Hiya already cover the two halves separately; the card never explains how a bank statement reaches the device on-device without a cloud bank-login, undercutting the privacy pitch.",
+    "fix": "Specify a local statement-ingestion path (e.g., bank app PDF export) that preserves the on-device claim end to end."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
    "rank_track": 14,
    "rank_overall": 9
@@ -2433,7 +2842,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": null,
    "knocked_out_s8": true,
+   "rubric_spread": 8.9,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Mabel AI, GoSpeech, Aida, and Opalite Health are all live products doing real-time voice-to-voice medical/public-sector interpretation with exportable bilingual transcripts, the exact mechanism and niche.",
+    "fix": "Benchmark speech-to-speech quality on target low-resource languages against Mabel/GoSpeech; proceed only if it wins."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -2478,10 +2895,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": null,
    "knocked_out_s8": false,
+   "rubric_spread": 7.1,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Scoped mandates plus pre-action interception already exist as dev-infra and payment protocols; this targets a barely-existing consumer 'personal agent' market that platform vendors will likely own natively.",
+    "fix": "Target early power-user adopters now and differentiate on cross-agent, multi-vendor enforcement."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 15,
-   "rank_overall": 30
+   "rank_track": 13,
+   "rank_overall": 28
   },
   {
    "id": "I-5207",
@@ -2525,9 +2950,18 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": null,
    "knocked_out_s8": false,
+   "rubric_spread": 4.4,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Keito already matches the exact buyer and billing niche (client/matter cost attribution for solo professionals) and lacks only a live hard-cap, a feature an incumbent with existing distribution can add faster than a new entrant can win the niche.",
+    "fix": "Ship the hard-cap-plus-matter-rebilling combo fast, targeting solo professionals Keito underserves."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 16
+   "rank_track": 14,
+   "rank_overall": 29
   },
   {
    "id": "I-5410",
@@ -2571,7 +3005,15 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": null,
    "knocked_out_s8": true,
+   "rubric_spread": 4.4,
+   "red_team": {
+    "severity": "fatal",
+    "objection": "Zonos already reads listings, predicts HTS codes, generates customs data and files low-value entries for the identical post-de-minimis micro-seller niche.",
+    "fix": "Undercut on price for sellers Zonos/Easyship underserve, or front-end an existing broker API instead of rebuilding classification."
+   },
    "below_bar": true,
+   "borderline": true,
+   "gate_d_drop": null,
    "eligible": false
   },
   {
@@ -2616,9 +3058,17 @@
    "quick_prior_art": "direct-competitor",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 5.9,
+   "red_team": {
+    "severity": "serious",
+    "objection": "The idea bundles two already-mature separate categories (human vishing simulators, AI-agent red-teaming) with no evidence anyone wants both together, plus real consent/legal exposure from cloned-voice attacks on rank-and-file staff.",
+    "fix": "Validate bundle demand with one buyer first, or resell existing vendors under one white-label contract instead of rebuilding."
+   },
    "below_bar": false,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 8,
+   "rank_track": 7,
    "rank_overall": 6
   },
   {
@@ -2663,9 +3113,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 8.3,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Real-time playbook coaching and real-time fraud/scam alerts already exist as separate live products; combining them is a closable feature gap, and it leans on the same unverified Jev speed claim as I-1050.",
+    "fix": "Lead with the discreet phrase-triggered escalation and prove it on a standard verified LLM, not only Jev."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 21
+   "rank_track": 19
   },
   {
    "id": "I-6003",
@@ -2709,9 +3167,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 5.6,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Vocable AAC already offers a personal phrase library with AI assist during conversation, and Spoken/AAC Talker already listen to the partner; for switch-scanning users, any latency or mis-ranking risks making communication slower than existing manual navigation.",
+    "fix": "Differentiate hard on the composition-free rank-only constraint and validate response-time gains with real AAC users before wider build."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 24
+   "rank_track": 22
   },
   {
    "id": "I-6006",
@@ -2755,9 +3221,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 0.5,
+   "red_team": {
+    "severity": "manageable",
+    "objection": "Core mechanism has 2008 academic prior art that never commercialized, suggesting a non-technical blocker (privacy/consent); card doesn't address partner-consent for always-listening near the AAC user.",
+    "fix": "Investigate why Converser never shipped and design an explicit listening-consent toggle before building."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 23
+   "rank_track": 21
   },
   {
    "id": "I-6007",
@@ -2801,9 +3275,17 @@
    "quick_prior_art": "adjacent-exists",
    "feasibility": "yes",
    "knocked_out_s8": false,
+   "rubric_spread": 5.6,
+   "red_team": {
+    "severity": "serious",
+    "objection": "Balto already delivers the identical live-transcript, private-prompt, escalation mechanism as general compliance coaching, an easy feature addition for an incumbent with existing distribution.",
+    "fix": "Sell pre-built payment-verification rule packs as a Balto/Gryphon integration instead of a standalone platform."
+   },
    "below_bar": true,
+   "borderline": false,
+   "gate_d_drop": null,
    "eligible": true,
-   "rank_track": 18
+   "rank_track": 16
   }
  ],
  "seeds": {

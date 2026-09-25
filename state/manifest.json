@@ -1,6 +1,6 @@
 {
   "pipeline": "running",
-  "current_stage": "gate_D",
+  "current_stage": "s9_report",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
@@ -20,7 +20,7 @@
     "s7_evolve": "done",
     "s6_tourn_r2": "done",
     "s8_final": "done",
-    "gate_D": "pending",
+    "gate_D": "done",
     "s9_report": "pending",
     "human_rerank": "pending"
   },
@@ -282,10 +282,11 @@
     "s8-judge-07": "done",
     "s8-judge-08": "done",
     "s8-judge-09": "done",
-    "s8-judge-10": "done"
+    "s8-judge-10": "done",
+    "gate-D": "done"
   },
   "agent_calls": {
-    "fable": 5,
+    "fable": 7,
     "opus": 40,
     "sonnet": 261
   },
@@ -374,6 +375,9 @@
     },
     "s8_final": {
       "sonnet": 26
+    },
+    "gate_D": {
+      "fable": 2
     }
   },
   "budget_caps_3x": {
@@ -431,6 +435,28 @@
         "Elo within ~30 is noise at 4 matches; under-matched ideas need a full round-2 slate",
         "B2C|agent-infra|novel stays at 2 occupants"
       ]
+    },
+    "D": {
+      "loop1": {
+        "verdict": "CHANGES",
+        "file": "gates/gate-D-loop1.md",
+        "run": "wf_f9ae386e-cfb",
+        "tokens": 253419,
+        "drops": [
+          "I-1019",
+          "I-2514"
+        ],
+        "fixes": "drops applied via gates/gate-D-drops.json (backfill I-5207, I-3541, the next balanced by Elo); scorecards now carry red-team severity/objection/fix, rubric spread, borderline (64-65) flag and rank_track; the 5 [unverified] prior-art claims checked by web search in outputs/s8-final/gate-d-verification.md"
+      },
+      "verdict": "APPROVED",
+      "loops": 2,
+      "file": "gates/gate-D.md",
+      "loop2": {
+        "run": "wf_55816e27-cd5",
+        "tokens": 116010,
+        "overrides": [],
+        "note": "backfills I-5207/I-3541 pass; all loop-1 report-level findings carried forward"
+      }
     }
   },
   "web_search": {
@@ -438,7 +464,7 @@
     "env_var": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
     "used_this_session": 448,
     "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals; user approved raising the cap to 1500 (project .claude/settings.json env, takes effect after a session restart); cap 1500 confirmed live 2026-09-25 (search after 200 succeeded); pilot miners used 149",
-    "used": 720,
+    "used": 725,
     "count_note": "2026-09-26: +20 (aborted S5 launch) +195 (S5) +48 (S7) counted from agent transcripts; ~780 left for S8"
   },
   "next_action": "S5 running: .claude/workflows/s5-reality.js over 162 survivors -> S6 r1 -> H1 (auto-pass) -> Gate C -> S7 -> S6 r2 -> S8 -> Gate D -> S9 -> H2 (auto) -> website",

@@ -9,7 +9,7 @@
   verify-tournament ROUND RET  compare tournament master's JSON files with the workflow return RET; fix on mismatch
   jsonblock FILE               print the last ```json block of FILE
   args STAGE [ROUND]           print the Workflow args JSON for STAGE (s1 [h1] s3 [pilot] s4 s5 s6 ROUND s7 s8 s9)
-  scorecards                   compile report/scorecards.json (ranked top 30 + seed lineage) from S5-S8 outputs (before Gate D)
+  scorecards [--drops=F.json]  compile report/scorecards.json (ranked top 30 + seed lineage) from S5-S8 outputs (before Gate D)
   selftest                     run the built-in checks
 """
 import json, os, random, re, sys, glob, statistics
@@ -420,11 +420,13 @@ def seed_of(meta):
     return hit.group(0) if hit else None
 
 
-def compile_scorecards(per_track=15, top=30):
+def compile_scorecards(per_track=15, top=30, drops=None):
     """Eligible = not a deep-audit direct competitor (the S8 knock-out). Top 30 = best 15 eligible per track by
     round-2 Elo (a short track's gap is filled from the other), ordered by rubric band (S, A, B, then below 65), then Elo:
     Elo ranks, the rubric bands. Below-65 ideas are ranked only to reach ~30 and carry below_bar: true
-    (deviation from PROMPT S11 "drop below 65", logged 2026-09-26: only 11 of 60 finalists cleared 65)."""
+    (deviation from PROMPT S11 "drop below 65", logged 2026-09-26: only 11 of 60 finalists cleared 65); 64-65 is
+    labelled borderline. Gate D drops ({id: rationale}) leave the ranking and the next eligible idea of the same track fills in."""
+    drops = drops or {}
     s8 = {c['id']: c for c in json.loads(read('outputs/s8-final/scorecards.json'))['scorecards']}
     r2 = {r['id']: r for r in json.loads(read('tournament/r2/elo.json'))['ideas']}
     r1 = {r['id']: r['elo'] for r in json.loads(read('tournament/r1/elo.json'))['ideas']}
@@ -434,6 +436,9 @@ def compile_scorecards(per_track=15, top=30):
     for f in glob.glob(p('outputs/s5-reality/feasibility/*.md')):
         feas.update({v['id']: v.get('demoable') for v in jsonblock(f)})
     cons = swap_consistency(list(r2))
+    red = {}
+    for f in glob.glob(p('outputs/s8-final/red-team/*.md')):
+        red.update({v['id']: {k: v.get(k) for k in ('severity', 'objection', 'fix')} for v in jsonblock(f)})
     best_cell = {}
     for r in sorted(r2.values(), key=lambda r: (-r['elo'], r['id'])):
         best_cell.setdefault(r['cell'], r['id'])
@@ -448,7 +453,9 @@ def compile_scorecards(per_track=15, top=30):
                      'rubric': c['rubric'], 'tier': c['tier'], 'criteria': c['criteria'], 'rubric_totals': c['totals'],
                      'deep_prior_art': c['prior_art'], 'quick_prior_art': (quick.get(i) or {}).get('verdict'),
                      'feasibility': feas.get(i), 'knocked_out_s8': c['knocked_out'],
-                     'below_bar': c['tier'] == 'drop', 'eligible': not c['knocked_out'] and c['tier'] in TIER_ORDER})
+                     'rubric_spread': round(max(c['totals']) - min(c['totals']), 1) if c['totals'] else None,
+                     'red_team': red.get(i), 'below_bar': c['tier'] == 'drop', 'borderline': c['rubric'] is not None and 64 <= c['rubric'] < 65,
+                     'gate_d_drop': drops.get(i), 'eligible': not c['knocked_out'] and c['tier'] in TIER_ORDER and i not in drops})
     by_track = {t: sorted([r for r in rows if r['track'] == t and r['eligible']], key=lambda r: (-r['elo_r2'], r['id'])) for t in ('novel', 'balanced')}
     for t, lst in by_track.items():
         for k, r in enumerate(lst):
@@ -475,7 +482,7 @@ def compile_scorecards(per_track=15, top=30):
                 e['original'] = rec
             elif rec not in e[key]:
                 e[key].append(rec)
-    doc = {'rule': compile_scorecards.__doc__.strip(), 'counts': {t: len(v) for t, v in by_track.items()},
+    doc = {'rule': compile_scorecards.__doc__.strip(), 'counts': {t: len(v) for t, v in by_track.items()}, 'gate_d_drops': drops,
            'top30': [r['id'] for r in pick], 'finalists': rows, 'seeds': dict(sorted(seeds.items())), 'complete': True}
     os.makedirs(p('report'), exist_ok=True)
     with open(p('report/scorecards.json'), 'w') as f:
@@ -569,8 +576,9 @@ if __name__ == '__main__':
         print(json.dumps(jsonblock(rest[0]), indent=1))
     elif cmd == 'args':
         print(json.dumps(stage_args(*rest)))
-    elif cmd == 'scorecards':
-        d = compile_scorecards()
+    elif cmd == 'scorecards':  # [--drops=FILE.json]  {id: rationale} from Gate D overrides
+        f = next((x.split('=', 1)[1] for x in rest if x.startswith('--drops=')), None)
+        d = compile_scorecards(drops=json.loads(read(f)) if f else None)
         print(f"report/scorecards.json: {len(d['finalists'])} finalists, eligible per track {d['counts']}, top30 {len(d['top30'])}")
     elif cmd == 'selftest':
         selftest()
