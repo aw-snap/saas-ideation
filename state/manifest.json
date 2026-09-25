@@ -1,14 +1,14 @@
 {
   "pipeline": "running",
-  "current_stage": "s1_discover",
+  "current_stage": "gate_B",
   "run_seed": 498282322,
   "fable_available": true,
   "build_window": "48-hour hackathon (user answer, 2026-09-25); team assumed 2-3 developers using AI coding tools (assumption, competition.md blank)",
   "stages": {
     "setup": "done",
     "gate_A": "done",
-    "s1_discover": "pending",
-    "s2_seeds": "pending",
+    "s1_discover": "done",
+    "s2_seeds": "done",
     "gate_B": "pending",
     "pilot": "pending",
     "s3_ideate": "pending",
@@ -24,11 +24,44 @@
     "s9_report": "pending",
     "human_rerank": "pending"
   },
-  "tasks": {},
+  "tasks": {
+    "s1-cartographer-screen-work-briefs": "done",
+    "s1-cartographer-screen-work": "done",
+    "s1-cartographer-tech-unlocks-briefs": "done",
+    "s1-cartographer-tech-unlocks": "done",
+    "s1-cartographer-overlooked-briefs": "done",
+    "s1-cartographer-overlooked": "done",
+    "s1-cartographer-weak-signals-briefs": "done",
+    "s1-cartographer-weak-signals": "done",
+    "s1-scout-screen-work-01": "done",
+    "s1-scout-screen-work-02": "done",
+    "s1-scout-screen-work-03": "done",
+    "s1-scout-screen-work-04": "done",
+    "s1-scout-screen-work-05": "done",
+    "s1-scout-tech-unlocks-01": "done",
+    "s1-scout-tech-unlocks-02": "done",
+    "s1-scout-tech-unlocks-03": "done",
+    "s1-scout-tech-unlocks-04": "done",
+    "s1-scout-tech-unlocks-05": "done",
+    "s1-scout-overlooked-01": "done",
+    "s1-scout-overlooked-02": "done",
+    "s1-scout-overlooked-03": "done",
+    "s1-scout-overlooked-04": "done",
+    "s1-scout-overlooked-05": "done",
+    "s1-scout-weak-signals-01": "done",
+    "s1-scout-weak-signals-02": "done",
+    "s1-scout-weak-signals-03": "done",
+    "s1-scout-weak-signals-04": "done",
+    "s1-scout-weak-signals-05": "done",
+    "s2-seed-lead": "done",
+    "s2-decomposer-01": "done",
+    "s2-decomposer-02": "done",
+    "s2-ingredient-pool": "done"
+  },
   "agent_calls": {
     "fable": 3,
-    "opus": 1,
-    "sonnet": 1
+    "opus": 11,
+    "sonnet": 23
   },
   "claude_version": "2.1.280",
   "models": {
@@ -56,6 +89,11 @@
       "fable": 2,
       "opus": 0,
       "sonnet": 0
+    },
+    "s1_discover+s2_seeds": {
+      "fable": 0,
+      "opus": 10,
+      "sonnet": 22
     }
   },
   "budget_caps_3x": {
@@ -75,5 +113,11 @@
       "file": "gates/gate-A.md",
       "loop1": "gates/gate-A-loop1.md (CHANGES: 3 majors fixed)"
     }
+  },
+  "web_search": {
+    "cap_per_session": 200,
+    "env_var": "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION",
+    "used_this_session": 200,
+    "note": "S1 hit the cap: 194 searches succeeded; late scouts fell back on WebFetch; decomposer prior art is knowledge-only (no URLs), and S5 re-checks seed originals"
   }
 }
